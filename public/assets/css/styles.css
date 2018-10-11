@@ -8,9 +8,9 @@ header .navbar {
 }
 
 header .navbar-collapse {
-    flex-grow: 0; 
+    flex-grow: 0;
     background: black; }
-  
+
 header .navbar {
     background: black;
     max-height: 80px; }
@@ -20,7 +20,7 @@ header .navbar {
 
 .navbar .navbar-nav .nav-link:hover {
     background-color: rgb(0, 122, 236); }
-    
+
 
 header a.navbar-brand, a.logo {
     font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -55,3 +55,9 @@ header .social li a {
 header .social li a:hover {
     color: #0091ff;
     border-color: #59a0d7; }
+
+
+
+
+
+
