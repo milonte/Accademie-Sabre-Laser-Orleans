@@ -56,9 +56,30 @@ header .social li a:hover {
     color: #0091ff;
     border-color: #59a0d7; }
 
-#footer
+
+/* -- FOOTER -- */
+.footer
 {
     background-color: black;
+}
+
+.footer_logo
+{
+    font-size: 35px;
+}
+
+footer a
+{
     color: white;
 }
 
+@media (max-width: 992px) {
+    .footer_logo
+    {
+        font-size: 35px;
+    }
+    .mention
+    {
+        font-size: 14px;
+    }
+}
