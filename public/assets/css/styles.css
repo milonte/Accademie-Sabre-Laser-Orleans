@@ -65,9 +65,7 @@ header .social li a:hover {
     text-align: center;
     padding-bottom: 20pt;
 }
-.btn-outline-secondary {
-    margin-left: 15vw;
-}
+
 @media (max-width: 992px) {
     .img-presentation {
         margin-top: 8.5vh;
