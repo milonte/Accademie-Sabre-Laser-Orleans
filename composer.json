@@ -1,10 +1,10 @@
 {
-    "name": "aurel/simple-mvc",
+    "name": "younesform/orleans-0918-php-aslo",
     "description": "Simple from scratch PHP MVC",
     "authors": [
         {
-            "name": "Aurelien",
-            "email": "barbier.aurelien@wildcodeschool.fr"
+            "name": "younesform",
+            "email": "assoufiy@hotmail.fr"
         }
     ],
     "minimum-stability": "stable",
@@ -12,10 +12,10 @@
         "php" : ">=7",
         "ext-pdo" : "*",
         "nikic/fast-route": "^1.2",
-        "twig/twig": "^2.4"
+        "twig/twig": "^2.4",
+        "squizlabs/php_codesniffer": "^3.3"
     },
     "require-dev": {
-        "squizlabs/php_codesniffer": "*"
     },
     "autoload": {
         "psr-4": {
