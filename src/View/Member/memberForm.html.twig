@@ -1,0 +1,85 @@
+{% block content %}
+
+    <div class="row">
+        <div class="col-9 justify-center">
+            <form method="POST">
+                <div class="form-group row">
+                    <div class="col-4"><label for="firstname">Prénom</label></div>
+                    <div class="col-8"><input type="text" class="form-control" id="firstname" name="firstname" placeholder="John" required></div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4"><label for="lastname">Nom</label></div>
+                    <div class="col-8"><input type="text" class="form-control" id="lastname" name="lastname" placeholder="Doe" required></div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4"><label for="email">Email</label></div>
+                    <div class="col-8"><input type="email" class="form-control" id="email" name="email" placeholder="john.doe@gmail.com" required></div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4"><label for="adress">Adresse</label></div>
+                    <div class="col-8"><input type="text" class="form-control" id="adress" name="adress" placeholder="1 Avenue du Champ de Marst" required></div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4"><label for="postalcode">Code Postal</label></div>
+                    <div class="col-8"><input type="text" class="form-control" id="postalcode" name="postalcode" placeholder="45100" required></div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4"><label for="city">Ville</label></div>
+                    <div class="col-8"><input type="text" class="form-control" id="city" name="city" placeholder="Orléans" required></div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4"><label for="tel">Téléphone</label></div>
+                    <div class="col-8"><input type="tel" class="form-control" id="tel" name="tel" placeholder="02 38 69 80 80" required></div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4"><label for="birthDate">Date de naissance</label></div>
+                    <div class="col-8"><input type="date" class="form-control" id="birthDate" name="birthDate" placeholder="01/01/2000" required></div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4"><label>Je certifie</label></div>
+                    <div class="col-8">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="age16" id="16+" value=16+">
+                            <label class="form-check-label" for="16+">avoir 16 ans ou plus</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="age16" id="16-" value="16-">
+                            <label class="form-check-label" for="16-">avoir moins de 16 ans</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4"><label for="EmergencyContact">Contact d'urgence</label></div>
+                    <div class="col-8"><input type="text" class="form-control" id="EmergencyContact" name="EmergencyContact" placeholder="contact urgence" required></div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4"><label for="EmergencyContactTel">Tel d'urgence</label></div>
+                    <div class="col-8"><input type="tel" class="form-control" id="EmergencyContactTel" name="EmergencyContactTel" placeholder="02 38 69 80 80" required></div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4"><label>Modalité de paiement</label></div>
+                    <div class="col-8">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="paiement" id="1 fois" value=1">
+                            <label class="form-check-label" for="1 fois">1 fois 150€</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="paiement" id="2 fois" value=2">
+                            <label class="form-check-label" for="2 fois">2 fois 75€</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="paiement" id="3 fois" value=3">
+                            <label class="form-check-label" for="3 fois">3 fois 50€</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary">Envoyer</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+
+{% endblock %}
