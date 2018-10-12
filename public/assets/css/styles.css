@@ -55,3 +55,17 @@ header .social li a {
 header .social li a:hover {
     color: #0091ff;
     border-color: #59a0d7; }
+/*css bouton "nous contacter" */
+
+.btn-contact {
+    font-size: 150%;
+    height: 6vh;
+    margin-top: 32pt;
+    width: 35%;
+}
+@media (max-width: 768px) {
+    .btn-contact {
+        width: 50%;
+        font-size: 128%;
+    }
+}
