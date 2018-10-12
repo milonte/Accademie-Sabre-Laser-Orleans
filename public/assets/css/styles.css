@@ -245,3 +245,27 @@ header .btn-outline-white:hover,
     color: #46484a;
     background: #fff;
 }
+
+/* -- FOOTER -- */
+.footer {
+    background-color: black;
+}
+
+.footer_logo {
+    font-size: 35px;
+}
+
+footer a {
+    color: white;
+}
+
+
+@media (max-width: 420px) {
+    .footer_logo {
+        font-size: 25px;
+    }
+
+    .mention {
+        font-size: 12px;
+    }
+}
