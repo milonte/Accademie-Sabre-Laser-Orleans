@@ -54,7 +54,8 @@ header .social li a {
 
 header .social li a:hover {
     color: #0091ff;
-    border-color: #59a0d7; }
+    border-color: #59a0d7;
+}
 /*css Présentation de l'asso */
 
 .presentation {
