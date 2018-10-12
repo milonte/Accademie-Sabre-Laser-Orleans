@@ -11,7 +11,7 @@ namespace Controller;
 
 use Model\Item;
 use Model\ItemManager;
-
+var_dump($_POST);
 /**
  * Class ItemController
  *
@@ -29,12 +29,13 @@ class ItemController extends AbstractController
      * @throws \Twig_Error_Syntax
      */
     public function index()
-    {
-        $itemManager = new ItemManager($this->getPdo());
-        $items = $itemManager->selectAll();
+        {
+            $itemManager = new ItemManager($this->getPdo());
+            $items = $itemManager->selectAll();
 
-        return $this->twig->render('Item/index.html.twig', ['items' => $items]);
-    }
+            return $this->twig->render('Item/index.html.twig', ['items' => $items]);
+
+        }
 
 
     /**
