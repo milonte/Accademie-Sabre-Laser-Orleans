@@ -1,0 +1,50 @@
+
+
+/* -- FOOTER -- */
+.footer
+{
+    background-color: black;
+}
+
+.footer_logo
+{
+    font-size: 35px;
+}
+
+footer a
+{
+    color: white;
+}
+
+@media (max-width: 1298px) {
+    .footer_logo
+    {
+        font-size: 35px;
+    }
+    .mention
+    {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 992px) {
+    .footer_logo
+    {
+        font-size: 30px;
+    }
+    .mention
+    {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 320px) {
+    .footer_logo
+    {
+        font-size: 25px;
+    }
+    .mention
+    {
+        font-size: 12px;
+    }
+}
