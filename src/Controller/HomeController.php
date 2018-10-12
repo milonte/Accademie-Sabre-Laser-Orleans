@@ -9,8 +9,7 @@
 
 namespace Controller;
 
-use Model\Home;
-use Model\HomeManager;
+
 
 /**
  * Class HomeController
