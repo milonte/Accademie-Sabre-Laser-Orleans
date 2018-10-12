@@ -58,17 +58,17 @@ header .social li a:hover {
 }
 /*css Présentation de l'asso */
 
-.presentation {
+.about_us {
     padding-top: 65pt;
     font-size: 14.5pt;
 }
-.titrepresentation {
+.titleabout_us {
     text-align: center;
     padding-bottom: 20pt;
 }
 
 @media (max-width: 992px) {
-    .img-presentation {
+    .img-about_us {
         margin-top: 8.5vh;
     }
 }
