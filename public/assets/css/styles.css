@@ -178,6 +178,24 @@ header .social li a:hover {
     font-size: 1em;
 }
 
+/* VIDEO */
+.video-responsive
+{
+    overflow:hidden;
+    padding-bottom:56.25%;
+    position:relative;
+    height:0;
+}
+
+.video-responsive iframe
+{
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
+}
+
 /* ---  BANNIERE BOUTONS ---  */
 
 header .btn:not(:disabled):not(.disabled) {
