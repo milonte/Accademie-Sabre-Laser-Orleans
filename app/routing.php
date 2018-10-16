@@ -11,7 +11,6 @@
 
 $routes = [
     'Item' => [ // Controller
-        ['index', '/', 'GET'], // action, url, method
         ['add', '/item/add', ['GET', 'POST']], // action, url, method
         ['edit', '/item/edit/{id:\d+}', ['GET', 'POST']], // action, url, method
         ['show', '/item/{id:\d+}', 'GET'], // action, url, method
@@ -20,5 +19,7 @@ $routes = [
     'Member' => [ // Controller
         ['addMember', '/inscription', ['GET', 'POST']], // action, url, method
     ],
-
+    'Home' => [ // Controller
+        ['index', '/', 'GET'], // action, url, method
+    ],
 ];
