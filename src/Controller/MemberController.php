@@ -45,7 +45,7 @@ class MemberController extends AbstractController
                 || !preg_match(" #^[0-9]{2}[-/ ]?[0-9]{2}[-/ ]?[0-9]{2}[-/ ]?[0-9]{2}[-/ ]?[0-9]{2}?$# ", $_POST['EmergencyContactTel'])) {
                 $errorsForm['invalid phone']="Le numéro de téléphone renseigné est incorrect";
             }
-            if (!preg_match("#^(0?\d|[12]\d|3[01])-(0?\d|1[012])-((?:19|20)\d{2})$# ", $_POST['birthDate'])) {
+            if (!preg_match("#([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))$# ", $_POST['birthDate'])) {
                 $errorsForm['invalid date']="le format de la date est incorrect";
             }
             foreach ($_POST as $value) {
