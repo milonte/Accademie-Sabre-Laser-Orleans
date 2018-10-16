@@ -18,5 +18,6 @@ $routes = [
     ],
     'Home' => [ // Controller
         ['index', '/', 'GET'], // action, url, method
+        ['gallery', '/gallery', 'GET'], // action, url, method
     ]
 ];
