@@ -8,7 +8,6 @@
 
 namespace Model;
 
-
 class Member
 {
     private $id;
@@ -25,7 +24,6 @@ class Member
     private $emergencyPhone;
     private $payment;
     private $status;
-    
     
     
     
@@ -253,6 +251,4 @@ class Member
     {
         $this->status = $status;
     }
-
 }
-
