@@ -17,7 +17,7 @@ $routes = [
         ['delete', '/item/delete/{id:\d+}', 'GET'], // action, url, method
     ],
     'Member' => [ // Controller
-        ['addMember', '/inscription', ['GET', 'POST']], // action, url, method
+        ['add', '/inscription', ['GET', 'POST']], // action, url, method
     ],
     'Home' => [ // Controller
         ['index', '/', 'GET'], // action, url, method

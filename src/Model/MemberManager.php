@@ -37,7 +37,7 @@ VALUES (:firstname, :lastname, :email, :adress, :postal_code,:city, :phone, :bir
         $statement->bindValue('firstname', $member->getFirstname(), \PDO::PARAM_STR);
         $statement->bindValue('lastname', $member->getLastname(), \PDO::PARAM_STR);
         $statement->bindValue('email', $member->getEmail(), \PDO::PARAM_STR);
-        $statement->bindValue('adress', $member->getAdress(), \PDO::PARAM_STR);
+        $statement->bindValue('adress', $member->getAddress(), \PDO::PARAM_STR);
         $statement->bindValue('postal_code', $member->getPostalCode(), \PDO::PARAM_INT);
         $statement->bindValue('city', $member->getCity(), \PDO::PARAM_STR);
         $statement->bindValue('phone', $member->getPhone(), \PDO::PARAM_INT);

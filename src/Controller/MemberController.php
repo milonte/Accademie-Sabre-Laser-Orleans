@@ -14,67 +14,78 @@ use Model\MemberManager;
 
 class MemberController extends AbstractController
 {
+    const NUMBERMAXFIELD = 12;
+    const MAXSIZEMEMBERFIELD = 45;
+    private $id;
     
     public function index()
     {
         return $this->twig->render('Member/memberForm.html.twig');
     }
     
-    public function testInput($data)
-    {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = strip_tags($data);
-        return $data;
-    }
-    
-    public function addMember()
+    private function memberFormDataValidation():array
     {
         $errorsForm=[];
+        $emptyField=false;
         
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (count($_POST)<12) {
+            foreach ($_POST as $value) {
+                if (empty($value)) {
+                    $emptyField = true;
+                }
+            }
+            if ($emptyField == true) {
                 $errorsForm[] = "ATTENTION, tous les champs doivent être renseigné";
             }
-            
-            if (!preg_match(" /^.+@.+\.[a-zA-Z]{2,}$/ ", $_POST['email'])) {
-                $errorsForm['invalid email']="Le format de l'email n'est pas correct";
+            if (count($_POST) < self::NUMBERMAXFIELD) {
+                $errorsForm[] = "ATTENTION, tous les champs doivent être renseigné";
             }
-            
+    
+            if (!preg_match(" /^.+@.+\.[a-zA-Z]{2,}$/ ", $_POST['email'])) {
+                $errorsForm['invalid email'] = "Le format de l'email n'est pas correct";
+            }
+    
             if (!preg_match(" #^[0-9]{2}[-/ ]?[0-9]{2}[-/ ]?[0-9]{2}[-/ ]?[0-9]{2}[-/ ]?[0-9]{2}?$# ", $_POST['tel'])
                 || !preg_match(" #^[0-9]{2}[-/ ]?[0-9]{2}[-/ ]?[0-9]{2}[-/ ]?[0-9]{2}[-/ ]?[0-9]{2}?$# ", $_POST['EmergencyContactTel'])) {
-                $errorsForm['invalid phone']="Le numéro de téléphone renseigné est incorrect";
+                $errorsForm['invalid phone'] = "Le numéro de téléphone renseigné est incorrect";
             }
             if (!preg_match("#([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))$# ", $_POST['birthDate'])) {
-                $errorsForm['invalid date']="le format de la date est incorrect";
+                $errorsForm['invalid date'] = "le format de la date est incorrect";
             }
             foreach ($_POST as $value) {
-                if (gettype($value)=="string") {
-                    if (strlen($value)>40) {
-                        $errorsForm['sizeString'] ="le nombre de caractère utilisé est trop long";
+                if (gettype($value) == "string") {
+                    if (strlen($value) > self::MAXSIZEMEMBERFIELD) {
+                        $errorsForm['sizeString'] = "le nombre de caractère utilisé est trop long";
                     }
                 }
             }
-            if (empty($errorsForm)) {
-                $memberAdd = new MemberManager($this->getPdo());
-                $member = new Member();
-                $member->setFirstname(self::testInput($_POST['firstname']));
-                $member->setLastname(self::testInput($_POST['lastname']));
-                $member->setEmail(self::testInput($_POST['email']));
-                $member->setAdress(self::testInput($_POST['adress']));
-                $member->setPostalCode(self::testInput($_POST['postalcode']));
-                $member->setCity(self::testInput($_POST['city']));
-                $member->setPhone(self::testInput($_POST['tel']));
-                $member->setBirthDate(self::testInput($_POST['birthDate']));
-                $member->setAge16(self::testInput($_POST['age16']));
-                $member->setEmergencyContact(self::testInput($_POST['EmergencyContact']));
-                $member->setEmergencyPhone(self::testInput($_POST['EmergencyContactTel']));
-                $member->setPayment(self::testInput($_POST['paiement']));
-                
-                $id = $memberAdd->insert($member);
-                //header('Location:/inscription');
-            }
         }
-        return $this->twig->render('Member/memberForm.html.twig', ['errors' => $errorsForm, 'post' => $_POST]);
+        return $errorsForm;
+    }
+    
+    
+    public function add()
+    {
+        if (empty(self::memberFormDataValidation()) and !empty($_POST)) {
+            $memberAdd = new MemberManager($this->getPdo());
+            $member = new Member();
+            $member->setFirstName(strip_tags(stripslashes(trim($_POST['firstname']))));
+            $member->setLastname(strip_tags(stripslashes(trim($_POST['lastname']))));
+            $member->setEmail(strip_tags(stripslashes(trim($_POST['email']))));
+            $member->setAddress(strip_tags(stripslashes(trim($_POST['adress']))));
+            $member->setPostalCode(strip_tags(stripslashes(trim($_POST['postalcode']))));
+            $member->setCity(strip_tags(stripslashes(trim($_POST['city']))));
+            $member->setPhone(strip_tags(stripslashes(trim($_POST['tel']))));
+            $member->setBirthDate(strip_tags(stripslashes(trim($_POST['birthDate']))));
+            $member->setAge16(strip_tags(stripslashes(trim($_POST['age16']))));
+            $member->setEmergencyContact(strip_tags(stripslashes(trim($_POST['EmergencyContact']))));
+            $member->setEmergencyPhone(strip_tags(stripslashes(trim($_POST['EmergencyContactTel']))));
+            $member->setPayment(strip_tags(stripslashes(trim($_POST['paiement']))));
+            
+            $this->id = $memberAdd->insert($member);
+            //header('Location:/inscription'. $id);
+        }
+    
+        return $this->twig->render('Member/memberForm.html.twig', ['errors' => self::memberFormDataValidation(), 'id' => $this->id]);
     }
 }

@@ -11,38 +11,19 @@ namespace Model;
 class Member
 {
     private $id;
-    private $lastname;
-    private $firstname;
+    private $lastName;
+    private $firstName;
     private $email;
-    private $adress;
-    private $postal_code;
+    private $address;
+    private $postalCode;
     private $city;
     private $phone;
-    private $birth_date;
+    private $birthDate;
     private $age16;
     private $emergencyContact;
     private $emergencyPhone;
     private $payment;
     private $status;
-    
-    
-    
-    /**
-     * @return mixed
-     */
-    public function getAdress()
-    {
-        return $this->adress;
-    }
-    
-    /**
-     * @param mixed $adress
-     */
-    public function setAdress($adress)
-    {
-        $this->adress = $adress;
-    }
-
     
     /**
      * @return mixed
@@ -63,33 +44,33 @@ class Member
     /**
      * @return mixed
      */
-    public function getLastname()
+    public function getLastName()
     {
-        return $this->lastname;
+        return $this->lastName;
     }
     
     /**
-     * @param mixed $lastname
+     * @param mixed $lastName
      */
-    public function setLastname($lastname)
+    public function setLastName($lastName)
     {
-        $this->lastname = $lastname;
+        $this->lastName = $lastName;
     }
     
     /**
      * @return mixed
      */
-    public function getFirstname()
+    public function getFirstName()
     {
-        return $this->firstname;
+        return $this->firstName;
     }
     
     /**
-     * @param mixed $firstname
+     * @param mixed $firstName
      */
-    public function setFirstname($firstname)
+    public function setFirstName($firstName)
     {
-        $this->firstname = $firstname;
+        $this->firstName = $firstName;
     }
     
     /**
@@ -111,17 +92,33 @@ class Member
     /**
      * @return mixed
      */
-    public function getPostalCode()
+    public function getAddress()
     {
-        return $this->postal_code;
+        return $this->address;
     }
     
     /**
-     * @param mixed $postal_code
+     * @param mixed $address
      */
-    public function setPostalCode($postal_code)
+    public function setAddress($address)
     {
-        $this->postal_code = $postal_code;
+        $this->address = $address;
+    }
+    
+    /**
+     * @return mixed
+     */
+    public function getPostalCode()
+    {
+        return $this->postalCode;
+    }
+    
+    /**
+     * @param mixed $postalCode
+     */
+    public function setPostalCode($postalCode)
+    {
+        $this->postalCode = $postalCode;
     }
     
     /**
@@ -161,15 +158,15 @@ class Member
      */
     public function getBirthDate()
     {
-        return $this->birth_date;
+        return $this->birthDate;
     }
     
     /**
-     * @param mixed $birth_date
+     * @param mixed $birthDate
      */
-    public function setBirthDate($birth_date)
+    public function setBirthDate($birthDate)
     {
-        $this->birth_date = $birth_date;
+        $this->birthDate = $birthDate;
     }
     
     /**
@@ -251,4 +248,7 @@ class Member
     {
         $this->status = $status;
     }
+    
+    
+    
 }
