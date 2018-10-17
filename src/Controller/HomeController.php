@@ -19,8 +19,6 @@ use Model\HomeAddressManager;
  */
 class HomeController extends AbstractController
 {
-
-
     /**
      * Display item listing
      *
