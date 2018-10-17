@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: sylvain
@@ -38,6 +39,7 @@ abstract class AbstractManager
     {
         $this->table = $table;
         $this->className = __NAMESPACE__ . '\\' . ucfirst($table);
+        var_dump($this->className);
         $this->pdo = $pdo;
     }
 
@@ -46,7 +48,7 @@ abstract class AbstractManager
      *
      * @return array
      */
-    public function selectAll(): array
+    public function selectAll() : array
     {
         return $this->pdo->query('SELECT * FROM ' . $this->table, \PDO::FETCH_CLASS, $this->className)->fetchAll();
     }

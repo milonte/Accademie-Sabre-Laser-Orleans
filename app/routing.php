@@ -20,7 +20,7 @@ $routes = [
     'Home' => [ // Controller
         ['index', '/', 'GET'], // action, url, method
     ],
-    'Events' => [
+    'Event' => [
         ['index', '/events', 'GET'],
     ]
 ];

@@ -1,0 +1,27 @@
+#events {
+    padding-top: 20px;
+}
+
+#events .card {
+    margin-top: 30px;
+    padding: 8px;
+}
+
+#events .card-body {
+    margin: auto;
+}
+
+#events .card-text {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+#events .card-footer {
+   
+}
+
+#events .card img {
+    padding: 0;
+    margin: 0;
+    max-height: 300px;
+}
