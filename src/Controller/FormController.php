@@ -1,27 +1,35 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: root
- * Date: 11/10/17
- * Time: 16:07
- * PHP version 7
+ * User: wilder2
+ * Date: 16/10/18
+ * Time: 20:06
  */
+
 namespace Controller;
-/**
- * Class HomeController
- *
- */
-class HomeController extends AbstractController
+
+
+class FormController extends AbstractController
 {
     /**
-     * Display item listing
-     *
      * @return string
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
     public function index()
+    {
+        return $this->twig->render('Home/contact_form.html.twig');
+    }
+
+
+    /**
+     * @return string
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
+     */
+    public function errors()
     {
         $errorsForm = [];
 
@@ -40,10 +48,6 @@ class HomeController extends AbstractController
             }
 
         }
-        return $this->twig->render('Home/index.html.twig', ['errors' => $errorsForm, 'post' => $_POST]);
+        return $this->twig->render('Home/contact_form.html.twig', ['errors' => $errorsForm, 'post' => $_POST]);
     }
-
-
-
-
 }
