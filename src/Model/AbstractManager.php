@@ -39,7 +39,6 @@ abstract class AbstractManager
     {
         $this->table = $table;
         $this->className = __NAMESPACE__ . '\\' . ucfirst($table);
-        var_dump($this->className);
         $this->pdo = $pdo;
     }
 
