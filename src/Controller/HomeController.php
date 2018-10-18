@@ -7,7 +7,9 @@
  * PHP version 7
  */
 
+
 namespace Controller;
+
 
 /**
  * Class HomeController
