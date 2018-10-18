@@ -6,6 +6,7 @@
  * Time: 16:07
  * PHP version 7
  */
+
 namespace Controller;
 
 /**
@@ -70,6 +71,7 @@ class HomeController extends AbstractController
 
         return $errorsForm;
     }
+
     public function index()
     {
         return $this->twig->render('Home/index.html.twig', ['errors' => self::contactForm(), 'post' => $_POST]);

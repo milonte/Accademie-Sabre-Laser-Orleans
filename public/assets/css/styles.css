@@ -48,19 +48,24 @@ header .social li a {
     text-align: center;
     text-decoration: none;
     color: white;
-
     line-height: 1.5;
-    font-size: 1.4rem; }
+    font-size: 1.4rem;
+}
 
 header .social li a:hover {
     color: #0091ff;
-    border-color: #59a0d7; }
+    border-color: #59a0d7;
+}
+
 /*css bouton "nous contacter" */
 
+.section-button {
+    margin-top: 70pt;
+    margin-bottom: 70pt;
+}
 .btn-contact {
     font-size: 150%;
     height: 6vh;
-    margin-top: 32pt;
     width: 35%;
 }
 @media (max-width: 768px) {
