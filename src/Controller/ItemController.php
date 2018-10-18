@@ -11,7 +11,6 @@ namespace Controller;
 
 use Model\Item;
 use Model\ItemManager;
-var_dump($_POST);
 /**
  * Class ItemController
  *
