@@ -13,6 +13,11 @@ namespace Controller;
  * Class HomeController
  *
  */
+
+use \Swift_SmtpTransport;
+use \Swift_Mailer;
+use \Swift_Message;
+
 class HomeController extends AbstractController
 {
     /**
@@ -64,11 +69,25 @@ class HomeController extends AbstractController
                 $errorsForm['invalid message'] = "Votre message ne doit pas contenir de caractère non-autorisés";
             }
             if (empty($errorsForm)) {
+                try {
+                    $transport = (new Swift_SmtpTransport('smtp.gmail.com', 465))
+                        ->setUsername('projetaslo45@gmail.com')
+                        ->setPassword('narutoshippu')
+                        ->setEncryption('ssl');
+                    $mailer = new Swift_Mailer($transport);
+                    $message = new Swift_Message();
+                    $message->setSubject('Message formulaire aslo45');
+                    $message->setFrom([$_POST['email'] => 'sender name']);
+                    $message->addTo('projetaslo45@gmail.com', 'recipient name');
+                    $message->setBody('Cet email a été envoyé par ' . $_POST['lastname'] . ' ' . $_POST['firstname'] . ' ' . ':' . ' ' . $_POST['message']);
+                    $result = $mailer->send($message);
+                } catch (\Exception $exception) {
+                    echo $exception->getMessage();
+                }
                 header('Location: /');
                 exit;
             }
         }
-
         return $errorsForm;
     }
 
