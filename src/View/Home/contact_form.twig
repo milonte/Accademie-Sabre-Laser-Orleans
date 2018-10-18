@@ -3,14 +3,10 @@
         Nous contacter
     </button></p>
 <div class="textForm">
-    {% if post %}
     {% if errors is not empty %}
         <p class="text-danger">Les champs ne sont pas renseigné correctement, le mail n'a pas été envoyé</p>
     {% endif %}
-    {% if errors is empty  %}
-        <p class="text-success">Le mail a bien été envoyé</p>
-    {% endif %}
-    {% endif %}
+
 </div>
 <div class="modal fade" id="form_contact" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">

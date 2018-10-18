@@ -21,7 +21,9 @@ class HomeController extends AbstractController
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    private function formContact()
+
+
+    public function index()
     {
         $errorsForm = [];
 
@@ -66,12 +68,6 @@ class HomeController extends AbstractController
                 exit;
             }
         }
-    }
-
-
-    public function index()
-    {
-
 
         return $this->twig->render('Home/index.html.twig', ['errors' => $errorsForm, 'post' => $_POST]);
     }
