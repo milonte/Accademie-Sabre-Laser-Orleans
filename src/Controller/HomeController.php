@@ -7,6 +7,7 @@
  * PHP version 7
  */
 namespace Controller;
+
 /**
  * Class HomeController
  *
@@ -23,12 +24,11 @@ class HomeController extends AbstractController
      */
 
 
-    public function index()
+    private function contactForm()
     {
         $errorsForm = [];
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
             if (strlen($_POST['lastname']) < 2) {
                 if (empty($_POST['lastname'])) {
                     $errorsForm['lastname0'] = "Votre nom doit être indiqué";
@@ -63,13 +63,15 @@ class HomeController extends AbstractController
                 $errorsForm['invalid message'] = "Votre message ne doit pas contenir de caractère non-autorisés";
             }
             if (empty($errorsForm)) {
-
                 header('Location: /');
                 exit;
             }
         }
 
-        return $this->twig->render('Home/index.html.twig', ['errors' => $errorsForm, 'post' => $_POST]);
+        return $errorsForm;
+    }
+    public function index()
+    {
+        return $this->twig->render('Home/index.html.twig', ['errors' => self::contactForm(), 'post' => $_POST]);
     }
 }
-
