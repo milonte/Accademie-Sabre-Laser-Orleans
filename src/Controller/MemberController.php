@@ -72,7 +72,7 @@ class MemberController extends AbstractController
             $member->setFirstName(strip_tags(stripslashes(trim($_POST['firstname']))));
             $member->setLastname(strip_tags(stripslashes(trim($_POST['lastname']))));
             $member->setEmail(strip_tags(stripslashes(trim($_POST['email']))));
-            $member->setAddress(strip_tags(stripslashes(trim($_POST['adress']))));
+            $member->setAddress(strip_tags(stripslashes(trim($_POST['address']))));
             $member->setPostalCode(strip_tags(stripslashes(trim($_POST['postalcode']))));
             $member->setCity(strip_tags(stripslashes(trim($_POST['city']))));
             $member->setPhone(strip_tags(stripslashes(trim($_POST['tel']))));
