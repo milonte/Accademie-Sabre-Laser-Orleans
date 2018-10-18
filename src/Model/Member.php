@@ -10,23 +10,79 @@ namespace Model;
 
 class Member
 {
+    /**
+     * @var
+     */
     private $id;
+    
+    /**
+     * @var
+     */
     private $lastName;
+    
+    /**
+     * @var
+     */
+    
     private $firstName;
+    /**
+     * @var
+     */
+    
     private $email;
+    /**
+     * @var
+     */
+    
     private $address;
+    /**
+     * @var
+     */
+    
     private $postalCode;
+    /**
+     * @var
+     */
+    
     private $city;
+    /**
+     * @var
+     */
+    
     private $phone;
+    /**
+     * @var
+     */
+    
     private $birthDate;
+    /**
+     * @var
+     */
+    
     private $age16;
+    /**
+     * @var
+     */
+    
     private $emergencyContact;
+    /**
+     * @var
+     */
+    
     private $emergencyPhone;
+    /**
+     * @var
+     */
+    
     private $payment;
+    /**
+     * @var
+     */
+    
     private $status;
     
     /**
-     * @return mixed
+     * @return int
      */
     public function getId()
     {
@@ -34,15 +90,15 @@ class Member
     }
     
     /**
-     * @param mixed $id
+     * @param int $id
      */
-    public function setId($id)
+    public function setId(int $id)
     {
         $this->id = $id;
     }
     
     /**
-     * @return mixed
+     * @return string
      */
     public function getLastName()
     {
@@ -50,15 +106,15 @@ class Member
     }
     
     /**
-     * @param mixed $lastName
+     * @param string $lastName
      */
-    public function setLastName($lastName)
+    public function setLastName(string $lastName)
     {
         $this->lastName = $lastName;
     }
     
     /**
-     * @return mixed
+     * @return string
      */
     public function getFirstName()
     {
@@ -66,15 +122,15 @@ class Member
     }
     
     /**
-     * @param mixed $firstName
+     * @param string $firstName
      */
-    public function setFirstName($firstName)
+    public function setFirstName(string $firstName)
     {
         $this->firstName = $firstName;
     }
     
     /**
-     * @return mixed
+     * @return string
      */
     public function getEmail()
     {
@@ -82,15 +138,15 @@ class Member
     }
     
     /**
-     * @param mixed $email
+     * @param string $email
      */
-    public function setEmail($email)
+    public function setEmail(string $email)
     {
         $this->email = $email;
     }
     
     /**
-     * @return mixed
+     * @return string
      */
     public function getAddress()
     {
@@ -98,15 +154,15 @@ class Member
     }
     
     /**
-     * @param mixed $address
+     * @param string $address
      */
-    public function setAddress($address)
+    public function setAddress(string $address)
     {
         $this->address = $address;
     }
     
     /**
-     * @return mixed
+     * @return int
      */
     public function getPostalCode()
     {
@@ -114,15 +170,15 @@ class Member
     }
     
     /**
-     * @param mixed $postalCode
+     * @param int $postalCode
      */
-    public function setPostalCode($postalCode)
+    public function setPostalCode(int $postalCode)
     {
         $this->postalCode = $postalCode;
     }
     
     /**
-     * @return mixed
+     * @return string
      */
     public function getCity()
     {
@@ -130,15 +186,15 @@ class Member
     }
     
     /**
-     * @param mixed $city
+     * @param string $city
      */
-    public function setCity($city)
+    public function setCity(string $city)
     {
         $this->city = $city;
     }
     
     /**
-     * @return mixed
+     * @return int
      */
     public function getPhone()
     {
@@ -146,15 +202,15 @@ class Member
     }
     
     /**
-     * @param mixed $phone
+     * @param int $phone
      */
-    public function setPhone($phone)
+    public function setPhone(int $phone)
     {
         $this->phone = $phone;
     }
     
     /**
-     * @return mixed
+     * @return string
      */
     public function getBirthDate()
     {
@@ -162,15 +218,15 @@ class Member
     }
     
     /**
-     * @param mixed $birthDate
+     * @param string $birthDate
      */
-    public function setBirthDate($birthDate)
+    public function setBirthDate(string $birthDate)
     {
         $this->birthDate = $birthDate;
     }
     
     /**
-     * @return mixed
+     * @return string
      */
     public function getAge16()
     {
@@ -178,15 +234,15 @@ class Member
     }
     
     /**
-     * @param mixed $age16
+     * @param string $age16
      */
-    public function setAge16($age16)
+    public function setAge16(string $age16)
     {
         $this->age16 = $age16;
     }
     
     /**
-     * @return mixed
+     * @return string
      */
     public function getEmergencyContact()
     {
@@ -194,15 +250,15 @@ class Member
     }
     
     /**
-     * @param mixed $emergencyContact
+     * @param string $emergencyContact
      */
-    public function setEmergencyContact($emergencyContact)
+    public function setEmergencyContact(string $emergencyContact)
     {
         $this->emergencyContact = $emergencyContact;
     }
     
     /**
-     * @return mixed
+     * @return int
      */
     public function getEmergencyPhone()
     {
@@ -210,15 +266,15 @@ class Member
     }
     
     /**
-     * @param mixed $emergencyPhone
+     * @param int $emergencyPhone
      */
-    public function setEmergencyPhone($emergencyPhone)
+    public function setEmergencyPhone(int $emergencyPhone)
     {
         $this->emergencyPhone = $emergencyPhone;
     }
     
     /**
-     * @return mixed
+     * @return int
      */
     public function getPayment()
     {
@@ -234,7 +290,7 @@ class Member
     }
     
     /**
-     * @return mixed
+     * @return string
      */
     public function getStatus()
     {
@@ -242,9 +298,9 @@ class Member
     }
     
     /**
-     * @param mixed $status
+     * @param string $status
      */
-    public function setStatus($status)
+    public function setStatus(string $status)
     {
         $this->status = $status;
     }

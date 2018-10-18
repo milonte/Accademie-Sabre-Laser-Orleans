@@ -30,8 +30,6 @@ class MemberManager extends AbstractManager
      */
     public function insert(Member $member): int
     {
-        // prepared request
-        //$statement = $this->pdo->prepare("INSERT INTO $this->table  VALUES (:firstname, :lastname, :email, :adress, :postal_code, :city, :phone, :birth_date, :age16, :emergecy_contact, :emergency_phone, :payment)");
         $statement = $this->pdo->prepare("INSERT INTO $this->table  (lastname, firstname, email, adress, postal_code, city, phone, birth_date, age16, emergency_contact, emergency_phone, payment, status)
 VALUES (:firstname, :lastname, :email, :adress, :postal_code,:city, :phone, :birth_date, :age16, :emergency_contact, :emergency_phone, :payment, 'pending')");
         $statement->bindValue('firstname', $member->getFirstname(), \PDO::PARAM_STR);
@@ -58,7 +56,7 @@ VALUES (:firstname, :lastname, :email, :adress, :postal_code,:city, :phone, :bir
      */
     public function delete(int $id): void
     {
-        // prepared request
+
         $statement = $this->pdo->prepare("DELETE FROM $this->table WHERE id=:id");
         $statement->bindValue('id', $id, \PDO::PARAM_INT);
         $statement->execute();
@@ -72,7 +70,6 @@ VALUES (:firstname, :lastname, :email, :adress, :postal_code,:city, :phone, :bir
     public function update(Item $item):int
     {
         
-        // prepared request
         $statement = $this->pdo->prepare("UPDATE $this->table SET `title` = :title WHERE id=:id");
         $statement->bindValue('id', $item->getId(), \PDO::PARAM_INT);
         $statement->bindValue('title', $item->getTitle(), \PDO::PARAM_STR);

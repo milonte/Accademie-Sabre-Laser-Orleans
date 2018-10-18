@@ -18,11 +18,6 @@ class MemberController extends AbstractController
     const MAXSIZEMEMBERFIELD = 45;
     private $id;
     
-    public function index()
-    {
-        return $this->twig->render('Member/memberForm.html.twig');
-    }
-    
     private function memberFormDataValidation():array
     {
         $errorsForm=[];
@@ -66,7 +61,7 @@ class MemberController extends AbstractController
     
     public function add()
     {
-        if (empty(self::memberFormDataValidation()) and !empty($_POST)) {
+        if (!empty($_POST) and empty(self::memberFormDataValidation())) {
             $memberAdd = new MemberManager($this->getPdo());
             $member = new Member();
             $member->setFirstName(strip_tags(stripslashes(trim($_POST['firstname']))));
@@ -83,7 +78,7 @@ class MemberController extends AbstractController
             $member->setPayment(strip_tags(stripslashes(trim($_POST['paiement']))));
             
             $this->id = $memberAdd->insert($member);
-            //header('Location:/inscription'. $id);
+
         }
     
         return $this->twig->render('Member/memberForm.html.twig', ['errors' => self::memberFormDataValidation(), 'id' => $this->id]);
