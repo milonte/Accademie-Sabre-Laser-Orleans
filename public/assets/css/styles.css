@@ -278,7 +278,12 @@ header .btn-outline-white:hover,
         margin-top: 8.5vh;
     }
 }
-
+/*css présentation de la pratique*/
+.presentationActivity {
+    padding-top: 65pt;
+    padding-bottom: 65pt;
+    font-size: 14.5pt;
+}
 /* -- FOOTER -- */
 .footer {
     background-color: black;
