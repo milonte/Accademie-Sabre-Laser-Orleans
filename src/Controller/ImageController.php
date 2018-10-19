@@ -47,7 +47,7 @@ class ImageController extends AbstractController
     public function showImages ()
     {
         $imageManager = new ImageManager($this->getPdo());
-        $images = $imageManager->selectAll('desc');
+        $images = $imageManager->selectAll();
     
         return $this->twig->render('Admin/adminGallery.html.twig', ['images' => $images]);
     }
@@ -109,12 +109,6 @@ class ImageController extends AbstractController
         return $this->twig->render('Admin/adminGalleryAddImage.html.twig');
     }
     
-    public function delete(int $id)
-    {
-        $imageManager = new ImageManager($this->getPdo());
-        $imageManager->delete($id);
-        unlink('../public/assets/images/'.$_POST["imageToDelete"]);
-        header('Location:/admin/Images');
-    }
+
     
 }

@@ -39,35 +39,6 @@ class ImageManager extends AbstractManager
         }
     }
     
-    
-    /**
-     * @param int $id
-     */
-    public function delete(int $id): void
-    {
-        // prepared request
-        $statement = $this->pdo->prepare("DELETE FROM $this->table WHERE id=:id");
-        $statement->bindValue('id', $id, \PDO::PARAM_INT);
-        $statement->execute();
-    }
-    
-    
-    /**
-     * @param Item $item
-     * @return int
-     */
-    public function update(Item $item): int
-    {
-        
-        // prepared request
-        $statement = $this->pdo->prepare("UPDATE $this->table SET `title` = :title WHERE id=:id");
-        $statement->bindValue('id', $item->getId(), \PDO::PARAM_INT);
-        $statement->bindValue('title', $item->getTitle(), \PDO::PARAM_STR);
-        
-        
-        return $statement->execute();
-    }
-    
     public function selectAll(): array
     {
         return $this->pdo->query('SELECT * FROM ' . $this->table.' order by image_date DESC', \PDO::FETCH_CLASS, $this->className)->fetchAll();

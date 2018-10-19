@@ -13,10 +13,6 @@
                     <img class="card-img-top" src="../../{{ image.image_path }}" alt="Card image cap">
                     <div class="card-body">
                         <p class="card-text">{{ image.image_name }}</p>
-                        <form action="/admin/Image/delete/{{ image.id }}" method="post">
-                            <input type="hidden" name="imageToDelete" value="{{ image.image_name }}"/>
-                            <input type="submit" id="delete" name="delete" value="delete">
-                        </form>
                     </div>
                 </div>
             {% endfor %}
