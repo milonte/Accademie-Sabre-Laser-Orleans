@@ -15,102 +15,145 @@ namespace Model;
  */
 class Address
 {
+    /**
+     * @var int
+     */
     private $id;
-    private $adresse;
-    private $ville;
-    private $cp;
-    private $date;
-    private $horaires;
+    /**
+     * @var string
+     */
+
+    private $gymName;
+    /**
+     * @var string
+     */
+    private $gymAddress;
+    /**
+     * @var string
+     */
+    private $city;
+    /**
+     * @var string
+     */
+    private $zipCode;
+    /**
+     * @var string
+     */
+    private $dateInfo;
+    /**
+     * @var string
+     */
+    private $scheduleInfo;
 
     /**
-     * @param mixed $horaires
+     * @return int
      */
-    public function setHoraires($horaires)
-    {
-        $this->horaires = $horaires;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDate()
-    {
-        return $this->date;
-    }
-
-    /**
-     * @param mixed $date
-     */
-    public function setDate($date)
-    {
-        $this->date = $date;
-    }
-
-
-    /**
-     * @return mixed
-     */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * @param mixed $id
+     * @param int $id
      */
-    public function setId($id)
+    public function setId(int $id)
     {
         $this->id = $id;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getAdresse()
+    public function getGymName(): string
     {
-        return $this->adresse;
+        return $this->gymName;
     }
 
     /**
-     * @param mixed $adresse
+     * @param string $gymName
      */
-    public function setAdresse($adresse)
+    public function setGymName(string $gymName)
     {
-        $this->adresse = $adresse;
+        $this->gymName = $gymName;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getVille()
+    public function getGymAddress(): string
     {
-        return $this->ville;
+        return $this->gymAddress;
     }
 
     /**
-     * @param mixed $ville
+     * @param string $gymAddress
      */
-    public function setVille($ville)
+    public function setGymAddress(string $gymAddress)
     {
-        $this->ville = $ville;
+        $this->gymAddress = $gymAddress;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getCp()
+    public function getCity(): string
     {
-        return $this->cp;
+        return $this->city;
     }
 
     /**
-     * @param mixed $cp
+     * @param string $city
      */
-    public function setCp($cp)
+    public function setCity(string $city)
     {
-        $this->cp = $cp;
+        $this->city = $city;
     }
 
+    /**
+     * @return string
+     */
+    public function getZipCode(): string
+    {
+        return $this->zipCode;
+    }
 
+    /**
+     * @param string $zipCode
+     */
+    public function setZipCode(string $zipCode)
+    {
+        $this->zipCode = $zipCode;
+    }
 
+    /**
+     * @return string
+     */
+    public function getDateInfo(): string
+    {
+        return $this->dateInfo;
+    }
+
+    /**
+     * @param string $dateInfo
+     */
+    public function setDateInfo(string $dateInfo)
+    {
+        $this->dateInfo = $dateInfo;
+    }
+
+    /**
+     * @return string
+     */
+    public function getScheduleInfo(): string
+    {
+        return $this->scheduleInfo;
+    }
+
+    /**
+     * @param string $scheduleInfo
+     */
+    public function setScheduleInfo(string $scheduleInfo)
+    {
+        $this->scheduleInfo = $scheduleInfo;
+    }
 }
