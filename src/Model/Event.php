@@ -10,31 +10,55 @@
 namespace Model;
 
 /**
- * Class Item
+ * Class Event
  *
  */
-class Events
+class Event
 {
+    /**
+     * @var int
+     */
     private $id;
-    private $title;
-    private $content;
-    private $imageUrl;
-    private $linkUrl;
 
     /**
-     * @return int
+     * @var string
      */
-    public function getId(): int
+    private $title;
+
+    /**
+     * @var string
+     */
+    private $content;
+
+    /**
+     * @var string
+     */
+    private $imageUrl;
+
+    /**
+     * @var string
+     */
+    private $linkUrl;
+
+
+    /**
+     * Get the value of id
+     *
+     * @return  int
+     */ 
+    public function getId():int
     {
         return $this->id;
     }
 
     /**
-     * @param mixed $id
+     * Set the value of id
      *
-     * @return Item
-     */
-    public function setId($id): Item
+     * @param  int  $id
+     *
+     * @return  self
+     */ 
+    public function setId(int $id):Event
     {
         $this->id = $id;
 
@@ -42,19 +66,23 @@ class Events
     }
 
     /**
-     * @return mixed
-     */
-    public function getTitle(): string
+     * Get the value of title
+     *
+     * @return  string
+     */ 
+    public function getTitle():string
     {
         return $this->title;
     }
 
     /**
-     * @param mixed $title
+     * Set the value of title
      *
-     * @return Item
-     */
-    public function setTitle($title):Item
+     * @param  string  $title
+     *
+     * @return  self
+     */ 
+    public function setTitle(string $title):Event
     {
         $this->title = $title;
 
@@ -64,7 +92,7 @@ class Events
     /**
      * Get the value of linkUrl
      */ 
-    public function getLinkUrl()
+    public function getLinkUrl():string
     {
         return $this->linkUrl;
     }
@@ -74,7 +102,7 @@ class Events
      *
      * @return  self
      */ 
-    public function setLinkUrl($linkUrl)
+    public function setLinkUrl(string $linkUrl):Event
     {
         $this->linkUrl = $linkUrl;
 
@@ -84,7 +112,7 @@ class Events
     /**
      * Get the value of content
      */ 
-    public function getContent()
+    public function getContent():string
     {
         return $this->content;
     }
@@ -94,7 +122,7 @@ class Events
      *
      * @return  self
      */ 
-    public function setContent($content)
+    public function setContent(string $content):Event
     {
         $this->content = $content;
 

@@ -18,7 +18,7 @@ class EventManager extends AbstractManager
     /**
      *
      */
-    const TABLE = 'events';
+    const TABLE = 'event';
 
     /**
      *  Initializes this class.

@@ -47,7 +47,7 @@ abstract class AbstractManager
      *
      * @return array
      */
-    public function selectAll() : array
+    public function selectAll(): array
     {
         return $this->pdo->query('SELECT * FROM ' . $this->table, \PDO::FETCH_CLASS, $this->className)->fetchAll();
     }
