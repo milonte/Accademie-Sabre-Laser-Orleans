@@ -7,9 +7,7 @@
  * PHP version 7
  */
 
-
 namespace Controller;
-
 
 /**
  * Class HomeController
@@ -37,21 +35,13 @@ class HomeController extends AbstractController
         $errorsForm = [];
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (strlen($_POST['lastname']) < 2) {
-                if (empty($_POST['lastname'])) {
-                    $errorsForm['lastname0'] = "Votre nom doit être indiqué";
-                } else {
-                    $errorsForm['lastname1'] = "Votre nom est trop court";
-                }
+            if (empty($_POST['lastname'])) {
+                $errorsForm['lastname0'] = "Votre nom doit être indiqué";
             } elseif (!preg_match("#[a-zA-ZÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ' ]$#", $_POST['lastname'])) {
                 $errorsForm['invalid lastname'] = "Votre nom ne doit pas contenir de caractères spéciaux";
             }
-            if (strlen($_POST['firstname']) < 2) {
-                if (empty($_POST['firstname'])) {
-                    $errorsForm['firstname0'] = "Votre prénom doit être indiqué";
-                } else {
-                    $errorsForm['firstname1'] = "Votre prénom est trop court";
-                }
+            if (empty($_POST['firstname'])) {
+                $errorsForm['firstname0'] = "Votre prénom doit être indiqué";
             } elseif (!preg_match("#[a-zA-ZÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ' ]$#", $_POST['firstname'])) {
                 $errorsForm['invalid firstname'] = "Votre prénom ne doit pas contenir de caractères spéciaux";
             }
@@ -80,11 +70,11 @@ class HomeController extends AbstractController
                     $message = new Swift_Message();
                     $message->setSubject('Message formulaire aslo45');
                     $message->setFrom([$_POST['email'] => 'sender name']);
-                    $message->addTo('projetaslo45@gmail.com', 'recipient name');
+                    $message->addTo(APP_MAIL_ADDTO, 'recipient name');
                     $message->setBody('Cet email a été envoyé par ' . $_POST['lastname'] . ' ' . $_POST['firstname'] . ' ' . ':' . ' ' . $_POST['message']);
                     $result = $mailer->send($message);
                 } catch (\Exception $exception) {
-                    echo $exception->getMessage();
+                    return $exception->getMessage();
                 }
                 header('Location: /');
                 exit;
