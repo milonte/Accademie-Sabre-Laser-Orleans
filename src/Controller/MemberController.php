@@ -12,10 +12,12 @@ use Model\AbstractManager;
 use Model\Member;
 use Model\MemberManager;
 
+
+
 class MemberController extends AbstractController
 {
-    const NUMBERMAXFIELD = 12;
-    const MAXSIZEMEMBERFIELD = 45;
+    const NUMBER_MAX_FIELD = 12;
+    const MAX_SIZE_MEMBER_FIELD = 45;
     private $id;
     
     private function memberFormDataValidation():array
@@ -33,7 +35,7 @@ class MemberController extends AbstractController
             }
             if ($emptyField == false) {
                 
-                if (count($_POST) < self::NUMBERMAXFIELD) {
+                if (count($_POST) < self::NUMBER_MAX_FIELD) {
                     $errorsForm[] = "ATTENTION, tous les champs doivent être renseigné";
                 }
     
@@ -49,11 +51,10 @@ class MemberController extends AbstractController
                     $errorsForm['invalid date'] = "le format de la date est incorrect";
                 }
                 foreach ($_POST as $value) {
-                    if (gettype($value) == "string") {
-                        if (strlen($value) > self::MAXSIZEMEMBERFIELD) {
-                            $errorsForm['sizeString'] = "le nombre de caractère utilisé est trop long";
-                        }
+                    if (mb_strlen($value) > self::MAX_SIZE_MEMBER_FIELD) {
+                        $errorsForm['sizeString'] = "le nombre de caractère utilisé ne peut pas dépasser ".self::MAX_SIZE_MEMBER_FIELD." charactères";
                     }
+                    
                 }
             }
             
