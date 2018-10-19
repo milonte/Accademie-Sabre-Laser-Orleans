@@ -27,33 +27,36 @@ class MemberController extends AbstractController
             foreach ($_POST as $value) {
                 if (empty($value)) {
                     $emptyField = true;
+                    $errorsForm[] = "ATTENTION, tous les champs doivent être renseigné";
+                    break;
                 }
             }
-            if ($emptyField == true) {
-                $errorsForm[] = "ATTENTION, tous les champs doivent être renseigné";
-            }
-            if (count($_POST) < self::NUMBERMAXFIELD) {
-                $errorsForm[] = "ATTENTION, tous les champs doivent être renseigné";
-            }
+            if ($emptyField == false) {
+                
+                if (count($_POST) < self::NUMBERMAXFIELD) {
+                    $errorsForm[] = "ATTENTION, tous les champs doivent être renseigné";
+                }
     
-            if (!preg_match(" /^.+@.+\.[a-zA-Z]{2,}$/ ", $_POST['email'])) {
-                $errorsForm['invalid email'] = "Le format de l'email n'est pas correct";
-            }
+                if (!preg_match(" /^.+@.+\.[a-zA-Z]{2,}$/ ", $_POST['email'])) {
+                    $errorsForm['invalid email'] = "Le format de l'email n'est pas correct";
+                }
     
-            if (!preg_match(" #^[0-9]{2}[-/ ]?[0-9]{2}[-/ ]?[0-9]{2}[-/ ]?[0-9]{2}[-/ ]?[0-9]{2}?$# ", $_POST['tel'])
-                || !preg_match(" #^[0-9]{2}[-/ ]?[0-9]{2}[-/ ]?[0-9]{2}[-/ ]?[0-9]{2}[-/ ]?[0-9]{2}?$# ", $_POST['EmergencyContactTel'])) {
-                $errorsForm['invalid phone'] = "Le numéro de téléphone renseigné est incorrect";
-            }
-            if (!preg_match("#([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))$# ", $_POST['birthDate'])) {
-                $errorsForm['invalid date'] = "le format de la date est incorrect";
-            }
-            foreach ($_POST as $value) {
-                if (gettype($value) == "string") {
-                    if (strlen($value) > self::MAXSIZEMEMBERFIELD) {
-                        $errorsForm['sizeString'] = "le nombre de caractère utilisé est trop long";
+                if (!preg_match(" #^[0-9]{2}[-/ ]?[0-9]{2}[-/ ]?[0-9]{2}[-/ ]?[0-9]{2}[-/ ]?[0-9]{2}?$# ", $_POST['tel'])
+                    || !preg_match(" #^[0-9]{2}[-/ ]?[0-9]{2}[-/ ]?[0-9]{2}[-/ ]?[0-9]{2}[-/ ]?[0-9]{2}?$# ", $_POST['EmergencyContactTel'])) {
+                    $errorsForm['invalid phone'] = "Le numéro de téléphone renseigné est incorrect";
+                }
+                if (!preg_match("#([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))$# ", $_POST['birthDate'])) {
+                    $errorsForm['invalid date'] = "le format de la date est incorrect";
+                }
+                foreach ($_POST as $value) {
+                    if (gettype($value) == "string") {
+                        if (strlen($value) > self::MAXSIZEMEMBERFIELD) {
+                            $errorsForm['sizeString'] = "le nombre de caractère utilisé est trop long";
+                        }
                     }
                 }
             }
+            
         }
         return $errorsForm;
     }
