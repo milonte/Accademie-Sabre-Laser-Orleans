@@ -73,9 +73,9 @@ class HomeController extends AbstractController
             if (empty($errorsForm)) {
                 try {
                     $transport = (new Swift_SmtpTransport('smtp.gmail.com', 465))
-                        ->setUsername('projetaslo45@gmail.com')
-                        ->setPassword('narutoshippu')
-                        ->setEncryption('ssl');
+                        ->setUsername(APP_MAIL_USERNAME)
+                        ->setPassword(APP_MAIL_PASSWORD)
+                        ->setEncryption(APP_MAIL_ENCRYPTION);
                     $mailer = new Swift_Mailer($transport);
                     $message = new Swift_Message();
                     $message->setSubject('Message formulaire aslo45');
