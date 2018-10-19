@@ -1,0 +1,27 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Gestion des images{% endblock %}
+
+{% block content %}
+
+    <!-- Affichage du formulaire pour ajouter des images -->
+
+    <div class="row">
+
+        <div class="col-5 offset-1">
+            <div class="pt-5">
+                <form action="" enctype="multipart/form-data" method="post">
+                    <div>
+                        <label for='images'>Add images:</label>
+                        <input id='images' name="images[]" type="file" multiple="multiple"/>
+                    </div>
+                    <p><input type="submit" name="submit" value="Add"></p>
+
+                </form>
+                <a href="/admin/Images">accès galerie admin</a>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

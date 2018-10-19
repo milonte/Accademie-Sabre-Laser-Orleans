@@ -18,5 +18,10 @@ $routes = [
     ],
     'Home' => [ // Controller
         ['index', '/', 'GET'], // action, url, method
-    ]
+    ],
+    'Image' => [ // Controller
+        ['addImage', '/admin/addImage', ['GET', 'POST']], // action, url, method
+        ['showImages', '/admin/Images', ['GET', 'POST']],
+        ['delete', '/admin/Image/delete/{id:\d+}', ['GET', 'POST']],
+    ],
 ];
