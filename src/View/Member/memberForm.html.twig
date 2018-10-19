@@ -2,125 +2,137 @@
 
 {% block content %}
 
-    <h1 class="mb-5 text-center">Rejoignez la force!!!</h1>
 
-    {% if errors is not empty %}
-        <div class="alert alert-danger">
-        {% for error in errors %}
-                <ul>
-                    <li>{{ error }}</li>
-                </ul>
-        {% endfor %}
-        </div>
+    <div class="container">
+        <h1 class="pt-5 text-center">Rejoignez la force!!!</h1>
 
-    {% endif %}
-
-    {% if id != 0 %}
-        <div class="alert alert-success">
-        Bravo, votre inscription a bien été prise en compte!
-        </div>
-    {% endif %}
-
-
-    <div class="row">
-        <div class="col-4 offset-2 ">
-            <div class="row">
-                <div class="col-10 offset-1 ">
-                    Pour rejoindre la force, remplir le formulaire sur la droite tu devras!<br>
-                    Le maitre jedi te recontacteras rapidement pour vérifier avec toi que tout est ok et convenir d'un rendez-vous pour finaliser ton inscription.<br>
-                    Nous t'invitons dans cette perspective à préparer les documents suivants, que tu devras fournir pour valider ton inscription.
-                    <br>
-
+        {% if errors is not empty %}
+            <div class="alert alert-danger">
+                {% for error in errors %}
                     <ul>
-                        <li>un certificat médical de moins de 3 mois</li>
-                        <li>votre règlement (à l'ordre de l'A.S.L.O.)</li>
-                        <li>une photographie d'identité</li>
-                        <li>une autorisation de droits à l'image</li>
+                        <li>{{ error }}</li>
                     </ul>
-
-                    Nous t'attendons avec impatience!
-                </div>
+                {% endfor %}
             </div>
 
-        </div>
-        <div class="col-4 justify">
-            <form action="#" method="POST">
-                <div class="form-group row">
-                    <div class="col-4"><label for="firstname">Prénom</label></div>
-                    <div class="col-8"><input type="text" class="form-control" id="firstname" name="firstname" placeholder="John"></div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-4"><label for="lastname">Nom</label></div>
-                    <div class="col-8"><input type="text" class="form-control" id="lastname" name="lastname" placeholder="Doe"></div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-4"><label for="email">Email</label></div>
-                    <div class="col-8"><input type="email" class="form-control" id="email" name="email" placeholder="john.doe@gmail.com"></div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-4"><label for="address">Adresse</label></div>
-                    <div class="col-8"><input type="text" class="form-control" id="address" name="address" placeholder="1 Avenue du Champ de Mars"></div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-4"><label for="postalcode">Code Postal</label></div>
-                    <div class="col-8"><input type="text" class="form-control" id="postalcode" name="postalcode" placeholder="45100"></div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-4"><label for="city">Ville</label></div>
-                    <div class="col-8"><input type="text" class="form-control" id="city" name="city" placeholder="Orléans"></div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-4"><label for="tel">Téléphone</label></div>
-                    <div class="col-8"><input type="tel" class="form-control" id="tel" name="tel" placeholder="02 38 69 80 80"></div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-4"><label for="birthDate">Date de naissance</label></div>
-                    <div class="col-8"><input type="date" class="form-control" id="birthDate" name="birthDate" placeholder="01/01/2000"></div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-4"><label>Je certifie</label></div>
-                    <div class="col-8">
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="age16" id="16+" value=16+">
-                            <label class="form-check-label" for="16+">avoir 16 ans ou plus</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="age16" id="16-" value="16-">
-                            <label class="form-check-label" for="16-">avoir moins de 16 ans</label>
-                        </div>
+        {% endif %}
+
+        {% if id != 0 %}
+            <div class="alert alert-success">
+                Bravo, votre inscription a bien été prise en compte!
+            </div>
+        {% endif %}
+        <div class="row py-5">
+            <div class="col-12 col-lg-6 pb-3">
+                <div class="row">
+                    <div class="col-12 pb-5">
+                        Pour rejoindre la force, remplir le formulaire tu devras!<br>
+                        Le maitre jedi te recontacteras rapidement pour vérifier avec toi que tout est ok et convenir
+                        d'un rendez-vous pour finaliser ton inscription.<br>
+                        Nous t'invitons dans cette perspective à préparer les documents suivants, que tu devras fournir
+                        pour valider ton inscription.
+                        <br>
+
+                        <ul>
+                            <li>un certificat médical de moins de 3 mois</li>
+                            <li>votre règlement (à l'ordre de l'A.S.L.O.)</li>
+                            <li>une photographie d'identité</li>
+                            <li>une autorisation de droits à l'image</li>
+                        </ul>
+
+                        Nous t'attendons avec impatience!
                     </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-4"><label for="EmergencyContact">Contact d'urgence</label></div>
-                    <div class="col-8"><input type="text" class="form-control" id="EmergencyContact" name="EmergencyContact" placeholder="contact urgence"></div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-4"><label for="EmergencyContactTel">Tel d'urgence</label></div>
-                    <div class="col-8"><input type="tel" class="form-control" id="EmergencyContactTel" name="EmergencyContactTel" placeholder="02 38 69 80 80"></div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-4"><label>Modalité de paiement</label></div>
-                    <div class="col-8">
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="paiement" id="1 fois" value=1">
-                            <label class="form-check-label" for="1 fois">1 fois 150€</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="paiement" id="2 fois" value=2">
-                            <label class="form-check-label" for="2 fois">2 fois 75€</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="paiement" id="3 fois" value=3">
-                            <label class="form-check-label" for="3 fois">3 fois 50€</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 d-flex justify-content-center">
-                    <button type="submit" class="btn btn-primary">Envoyer</button>
                 </div>
 
-            </form>
+            </div>
+            <div class="col-12 col-lg-6 justify">
+                <form action="#" method="POST">
+                    <div class="form-group row">
+                        <div class="col-lg-4"><label for="firstname">Prénom</label></div>
+                        <div class="col-lg-8"><input type="text" class="form-control" id="firstname" name="firstname"
+                                                     placeholder="John"></div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-4"><label for="lastname">Nom</label></div>
+                        <div class="col-lg-8"><input type="text" class="form-control" id="lastname" name="lastname"
+                                                     placeholder="Doe"></div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-4"><label for="email">Email</label></div>
+                        <div class="col-lg-8"><input type="email" class="form-control" id="email" name="email"
+                                                     placeholder="john.doe@gmail.com"></div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-4"><label for="address">Adresse</label></div>
+                        <div class="col-lg-8"><input type="text" class="form-control" id="address" name="address"
+                                                     placeholder="1 Avenue du Champ de Mars"></div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-4"><label for="postalcode">Code Postal</label></div>
+                        <div class="col-lg-8"><input type="text" class="form-control" id="postalcode" name="postalcode"
+                                                     placeholder="45100"></div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-4"><label for="city">Ville</label></div>
+                        <div class="col-lg-8"><input type="text" class="form-control" id="city" name="city"
+                                                     placeholder="Orléans"></div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-4"><label for="tel">Téléphone</label></div>
+                        <div class="col-lg-8"><input type="tel" class="form-control" id="tel" name="tel"
+                                                     placeholder="02 38 69 80 80"></div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-4"><label for="birthDate">Date de naissance</label></div>
+                        <div class="col-lg-8"><input type="date" class="form-control" id="birthDate" name="birthDate"
+                                                     placeholder="01/01/2000"></div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-4"><label>Je certifie</label></div>
+                        <div class="col-lg-8">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="age16" id="16+" value=16+">
+                                <label class="form-check-label" for="16+">avoir 16 ans ou plus</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="age16" id="16-" value="16-">
+                                <label class="form-check-label" for="16-">avoir moins de 16 ans</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-4"><label for="EmergencyContact">Contact d'urgence</label></div>
+                        <div class="col-lg-8"><input type="text" class="form-control" id="EmergencyContact"
+                                                     name="EmergencyContact" placeholder="contact urgence"></div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-4"><label for="EmergencyContactTel">Tel d'urgence</label></div>
+                        <div class="col-lg-8"><input type="tel" class="form-control" id="EmergencyContactTel"
+                                                     name="EmergencyContactTel" placeholder="02 38 69 80 80"></div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-4"><label>Modalité de paiement</label></div>
+                        <div class="col-lg-8">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="paiement" id="1 fois" value=1">
+                                <label class="form-check-label" for="1 fois">1 fois 150€</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="paiement" id="2 fois" value=2">
+                                <label class="form-check-label" for="2 fois">2 fois 75€</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="paiement" id="3 fois" value=3">
+                                <label class="form-check-label" for="3 fois">3 fois 50€</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary">Envoyer</button>
+                    </div>
+
+                </form>
+            </div>
         </div>
     </div>
-
 {% endblock %}
