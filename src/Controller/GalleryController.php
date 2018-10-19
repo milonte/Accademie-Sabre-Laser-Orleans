@@ -9,7 +9,6 @@
 namespace Controller;
 
 use Model\GalleryManager;
-use Model\Images;
 
 class GalleryController extends AbstractController
 {
