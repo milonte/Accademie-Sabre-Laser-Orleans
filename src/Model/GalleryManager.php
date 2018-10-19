@@ -13,7 +13,7 @@ namespace Model;
 class GalleryManager extends AbstractManager
 {
 
-    const TABLE = 'images';
+    const TABLE = 'image';
 
     /**
      * GalleryManager constructor.

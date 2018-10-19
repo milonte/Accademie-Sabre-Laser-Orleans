@@ -13,11 +13,17 @@ use Model\Images;
 
 class GalleryController extends AbstractController
 {
+    /**
+     * @return string
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
+     */
     public function gallery()
     {
         $galleryManager = new GalleryManager($this->getPdo());
-        $images = $galleryManager->selectAll();
+        $image = $galleryManager->selectAll();
 
-        return $this->twig->render('Gallery/gallery.html.twig', ['images' => $images]);
+        return $this->twig->render('Gallery/gallery.html.twig', ['image' => $image]);
     }
 }
