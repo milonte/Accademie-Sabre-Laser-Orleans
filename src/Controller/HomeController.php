@@ -89,7 +89,7 @@ class HomeController extends AbstractController
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function index(): array
+    public function index(): string
     {
         return $this->twig->render('Home/index.html.twig', ['errors' => self::contactForm(), 'post' => $_POST]);
     }
