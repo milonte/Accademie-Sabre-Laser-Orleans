@@ -30,7 +30,7 @@ class HomeController extends AbstractController
      */
 
 
-    private function contactForm()
+    private function contactForm(): array
     {
         $errorsForm = [];
 
@@ -89,7 +89,7 @@ class HomeController extends AbstractController
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function index()
+    public function index(): array
     {
         return $this->twig->render('Home/index.html.twig', ['errors' => self::contactForm(), 'post' => $_POST]);
     }
