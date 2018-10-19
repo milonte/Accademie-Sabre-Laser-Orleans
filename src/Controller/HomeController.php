@@ -11,7 +11,7 @@ namespace Controller;
 
 
 
-use Model\HomeAddressManager;
+use Model\AddressManager;
 
 /**
  * Class HomeController
@@ -29,7 +29,7 @@ class HomeController extends AbstractController
      */
     public function index()
     {
-        $HomeManager = new HomeAddressManager($this->getPdo());
+        $HomeManager = new AddressManager($this->getPdo());
         $addresses = $HomeManager->selectAll();
         return $this->twig->render('Home/index.html.twig', ['address'=>$addresses]);
     }

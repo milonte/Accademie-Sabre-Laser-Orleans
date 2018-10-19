@@ -4,15 +4,15 @@
 namespace Model;
 
 /**
- * Class HomeAddressManager
+ * Class AddressManager
  *
  */
-class HomeAddressManager extends AbstractManager
+class AddressManager extends AbstractManager
 {
     const TABLE = 'address';
 
         /**
-         * HomeAddressManager constructor.
+         * AddressManager constructor.
          * @param \PDO $pdo
          */
         public function __construct(\PDO $pdo)
