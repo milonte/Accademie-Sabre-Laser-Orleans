@@ -36,10 +36,10 @@ VALUES (:firstname, :lastname, :email, :adress, :postal_code,:city, :phone, :bir
         $statement->bindValue('lastname', $member->getLastname(), \PDO::PARAM_STR);
         $statement->bindValue('email', $member->getEmail(), \PDO::PARAM_STR);
         $statement->bindValue('adress', $member->getAddress(), \PDO::PARAM_STR);
-        $statement->bindValue('postal_code', $member->getPostalCode(), \PDO::PARAM_INT);
+        $statement->bindValue('postal_code', $member->getPostalCode(), \PDO::PARAM_STR);
         $statement->bindValue('city', $member->getCity(), \PDO::PARAM_STR);
         $statement->bindValue('phone', $member->getPhone(), \PDO::PARAM_INT);
-        $statement->bindValue('birth_date', $member->getBirthDate(), \PDO::PARAM_STR);
+        $statement->bindValue('birth_date', $member->getBirthDate()->format('Y-m-d'), \PDO::PARAM_STR);
         $statement->bindValue('age16', $member->getAge16(), \PDO::PARAM_STR);
         $statement->bindValue('emergency_contact', $member->getEmergencyContact(), \PDO::PARAM_STR);
         $statement->bindValue('emergency_phone', $member->getEmergencyPhone(), \PDO::PARAM_INT);

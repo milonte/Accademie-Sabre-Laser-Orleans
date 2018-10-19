@@ -75,7 +75,7 @@ class MemberController extends AbstractController
             $member->setPostalCode(strip_tags(stripslashes(trim($_POST['postalcode']))));
             $member->setCity(strip_tags(stripslashes(trim($_POST['city']))));
             $member->setPhone(strip_tags(stripslashes(trim($_POST['tel']))));
-            $member->setBirthDate(strip_tags(stripslashes(trim($_POST['birthDate']))));
+            $member->setBirthDate(\DateTime::createFromFormat('Y-m-d', strip_tags(stripslashes(trim($_POST['birthDate'])))));
             $member->setAge16(strip_tags(stripslashes(trim($_POST['age16']))));
             $member->setEmergencyContact(strip_tags(stripslashes(trim($_POST['EmergencyContact']))));
             $member->setEmergencyPhone(strip_tags(stripslashes(trim($_POST['EmergencyContactTel']))));

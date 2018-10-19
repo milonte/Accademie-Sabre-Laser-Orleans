@@ -36,7 +36,7 @@ class Member
     private $address;
     
     /**
-     * @var int
+     * @var string
      */
     private $postalCode;
     
@@ -51,7 +51,7 @@ class Member
     private $phone;
     
     /**
-     * @var string
+     * @var \DateTime
      */
     private $birthDate;
     
@@ -169,9 +169,9 @@ class Member
     }
     
     /**
-     * @param int $postalCode
+     * @param string $postalCode
      */
-    public function setPostalCode(int $postalCode)
+    public function setPostalCode(string $postalCode)
     {
         $this->postalCode = $postalCode;
     }
@@ -209,7 +209,7 @@ class Member
     }
     
     /**
-     * @return string
+     * @return \DateTime
      */
     public function getBirthDate()
     {
@@ -217,9 +217,9 @@ class Member
     }
     
     /**
-     * @param string $birthDate
+     * @param \DateTime $birthDate
      */
-    public function setBirthDate(string $birthDate)
+    public function setBirthDate(\DateTime $birthDate)
     {
         $this->birthDate = $birthDate;
     }
