@@ -11,74 +11,73 @@ namespace Model;
 class Member
 {
     /**
-     * @var
+     * @var int
      */
     private $id;
     
     /**
-     * @var
+     * @var string
      */
     private $lastName;
     
     /**
-     * @var
+     * @var string
      */
-    
     private $firstName;
-    /**
-     * @var
-     */
     
+    /**
+     * @var string
+     */
     private $email;
-    /**
-     * @var
-     */
     
+    /**
+     * @var string
+     */
     private $address;
-    /**
-     * @var
-     */
     
+    /**
+     * @var int
+     */
     private $postalCode;
-    /**
-     * @var
-     */
     
+    /**
+     * @var string
+     */
     private $city;
-    /**
-     * @var
-     */
     
+    /**
+     * @var int
+     */
     private $phone;
-    /**
-     * @var
-     */
     
+    /**
+     * @var string
+     */
     private $birthDate;
-    /**
-     * @var
-     */
     
+    /**
+     * @var string
+     */
     private $age16;
-    /**
-     * @var
-     */
     
+    /**
+     * @var string
+     */
     private $emergencyContact;
-    /**
-     * @var
-     */
     
+    /**
+     * @var int
+     */
     private $emergencyPhone;
-    /**
-     * @var
-     */
     
+    /**
+     * @var mixed
+     */
     private $payment;
-    /**
-     * @var
-     */
     
+    /**
+     * @var string
+     */
     private $status;
     
     /**
