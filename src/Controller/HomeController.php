@@ -25,7 +25,7 @@ class HomeController extends AbstractController
     /**
      * @return array
      */
-    private function sendContactForm(): array
+    private function verifContactForm(): array
     {
         $errorsForm = [];
 
@@ -83,7 +83,7 @@ class HomeController extends AbstractController
      */
     public function index()
     {
-        return $this->twig->render('Home/index.html.twig', ['errors' => self::sendContactForm(), 'post' => $_POST]);
+        return $this->twig->render('Home/index.html.twig', ['errors' => self::verifContactForm(), 'post' => $_POST]);
     }
 
 }
