@@ -13,7 +13,6 @@ use Model\Member;
 use Model\MemberManager;
 
 
-
 class MemberController extends AbstractController
 {
     const NUMBER_MAX_FIELD = 12;
