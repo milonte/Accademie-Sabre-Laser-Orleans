@@ -24,7 +24,7 @@ class ImageManager extends AbstractManager
     /**
      * @param Item $item
      * @return int
-     */
+     */_
     public function insert(Image $image): int
     {
         // prepared request
