@@ -29,8 +29,8 @@ class HomeController extends AbstractController
      */
     public function index()
     {
-        $HomeManager = new AddressManager($this->getPdo());
-        $addresses = $HomeManager->selectAll();
+        $addressManager = new addressManager($this->getPdo());
+        $addresses = $addressManager->selectAll();
         return $this->twig->render('Home/index.html.twig', ['address'=>$addresses]);
     }
 }
