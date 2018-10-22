@@ -62,7 +62,7 @@ class ImageController extends AbstractController
     {
     
         $uploaded = [];
-        
+        $errorsGlobal = [];
         if (!empty($_FILES['images']['name'][0])) {
             $files = $_FILES['images'];
             
@@ -106,7 +106,7 @@ class ImageController extends AbstractController
             }
         }
         
-        return $this->twig->render('Admin/adminGalleryAddImage.html.twig');
+        return $this->twig->render('Admin/adminGalleryAddImage.html.twig', ['errors' => $errorsGlobal]);
     }
     
 

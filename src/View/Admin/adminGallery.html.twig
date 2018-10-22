@@ -4,6 +4,14 @@
 
 {% block content %}
 
+    {% if errors is not empty %}
+
+    {% for error in errors %}
+
+
+
+    {% endfor %}
+
     <!-- Affichage des images existantes -->
     <div class="container">
         <a class="btn btn-primary mx-5 my-5 " href="/admin/addImage" role="button">Ajouter des images</a>
