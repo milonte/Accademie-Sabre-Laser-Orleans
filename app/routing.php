@@ -20,6 +20,6 @@ $routes = [
         ['index', '/', 'GET'], // action, url, method
     ],
     'Image' => [ // Controller
-        ['addImage', '/admin/addImage', ['GET', 'POST']], // action, url, method
+        ['add', '/admin/addImage', ['GET', 'POST']], // action, url, method
     ],
 ];

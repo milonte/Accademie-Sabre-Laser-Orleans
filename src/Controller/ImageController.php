@@ -58,7 +58,7 @@ class ImageController extends AbstractController
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function addImage ()
+    public function add ()
     {
     
         $uploaded = [];
