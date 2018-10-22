@@ -77,7 +77,7 @@ class ImageController extends AbstractController
                 $image->setImageTMP($files['tmp_name'][$position]);
                 $image->setImageSize($files['size'][$position]);
                 $image->setImageError($files['error'][$position]);
-                $image->setImageDate($fileDate->format('Y-m-d H:i:s'));
+                $image->setImageDate($fileDate);
                 $image->setImageExtension($fileExt);
                 
                 if (!empty(self::imageVerification($image))) {

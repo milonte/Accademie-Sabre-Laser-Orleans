@@ -11,176 +11,204 @@ namespace Model;
 
 class Image
 {
+    /**
+     * @var
+     */
     private $imageTMP;
+    /**
+     * @var
+     */
     private $id;
+    /**
+     * @var
+     */
     private $imageName;
+    /**
+     * @var
+     */
     private $imagePath;
+    /**
+     * @var
+     */
     private $imageDate;
+    /**
+     * @var
+     */
     private $imageTags;
+    /**
+     * @var
+     */
     private $imageExtension;
+    /**
+     * @var
+     */
     private $imageSize;
+    /**
+     * @var
+     */
     private $imageError;
+    /**
+     * @var
+     */
     private $imageId;
     
+    
     /**
-     * @return mixed
+     * @return int
      */
-    public function getImageId()
+    public function getImageId():int
     {
         return $this->imageId;
     }
     
     /**
-     * @param mixed $imageId
+     * @param int $imageId
      */
-    public function setImageId($imageId)
+    public function setImageId(int $imageId)
     {
         $this->imageId = $imageId;
     }
     
     /**
-     * @return mixed
+     * @return string
      */
-    public function getImageError()
+    public function getImageError():string
     {
         return $this->imageError;
     }
     
     /**
-     * @param mixed $imageError
+     * @param string $imageError
      */
-    public function setImageError($imageError)
+    public function setImageError(string $imageError)
     {
         $this->imageError = $imageError;
     }
     
     /**
-     * @return mixed
+     * @return int
      */
-    public function getImageSize()
+    public function getImageSize():int
     {
         return $this->imageSize;
     }
     
     /**
-     * @param mixed $imageSize
+     * @param int $imageSize
      */
-    public function setImageSize($imageSize)
+    public function setImageSize(int $imageSize)
     {
         $this->imageSize = $imageSize;
     }
     
-    
     /**
-     * @return mixed
+     * @return string
      */
-    public function getImageTMP()
+    public function getImageTMP():string
     {
         return $this->imageTMP;
     }
     
     /**
-     * @param mixed $imageTMP
+     * @param string $imageTMP
      */
-    public function setImageTMP($imageTMP)
+    public function setImageTMP(string $imageTMP)
     {
         $this->imageTMP = $imageTMP;
     }
     
-    
     /**
-     * @return mixed
+     * @return string
      */
-    public function getImageExtension()
+    public function getImageExtension():string
     {
         return $this->imageExtension;
     }
     
     /**
-     * @param mixed $imageExtension
+     * @param string $imageExtension
      */
-    public function setImageExtension($imageExtension)
+    public function setImageExtension(string $imageExtension)
     {
         $this->imageExtension = $imageExtension;
     }
     
-    
     /**
-     * @return mixed
+     * @return int
      */
-    public function getId()
+    public function getId():int
     {
         return $this->id;
     }
     
     /**
-     * @param mixed $id
+     * @param int $id
      */
-    public function setId($id)
+    public function setId(int $id)
     {
         $this->id = $id;
     }
     
     /**
-     * @return mixed
+     * @return string
      */
-    public function getImageName()
+    public function getImageName():string
     {
         return $this->imageName;
     }
     
     /**
-     * @param mixed $imageName
+     * @param string $imageName
      */
-    public function setImageName($imageName)
+    public function setImageName(string $imageName)
     {
         $this->imageName = $imageName;
     }
     
     /**
-     * @return mixed
+     * @return string
      */
-    public function getImagePath()
+    public function getImagePath():string
     {
         return $this->imagePath;
     }
     
     /**
-     * @param mixed $imagePath
+     * @param string $imagePath
      */
-    public function setImagePath($imagePath)
+    public function setImagePath(string $imagePath)
     {
         $this->imagePath = $imagePath;
     }
     
     /**
-     * @return mixed
+     * @return \DateTime
      */
-    public function getImageDate()
+    public function getImageDate():\DateTime
     {
         return $this->imageDate;
     }
     
     /**
-     * @param mixed $imageDate
+     * @param \DateTime $imageDate
      */
-    public function setImageDate($imageDate)
+    public function setImageDate(\DateTime $imageDate)
     {
         $this->imageDate = $imageDate;
     }
     
     /**
-     * @return mixed
+     * @return string
      */
-    public function getImageTags()
+    public function getImageTags():string
     {
         return $this->imageTags;
     }
     
     /**
-     * @param mixed $imageTags
+     * @param string $imageTags
      */
-    public function setImageTags($imageTags)
+    public function setImageTags(string $imageTags)
     {
         $this->imageTags = $imageTags;
     }
