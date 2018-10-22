@@ -8,7 +8,6 @@
  */
 
 namespace Controller;
-
 /**
  * Class HomeController
  *
@@ -20,15 +19,12 @@ use \Swift_Message;
 
 class HomeController extends AbstractController
 {
-
-
     /**
      * @return array
      */
-    private function verifContactForm(): array
+    private function sendMail(): array
     {
         $errorsForm = [];
-
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (empty($_POST['lastname'])) {
                 $errorsForm['lastname0'] = "Votre nom doit être indiqué";
@@ -55,36 +51,28 @@ class HomeController extends AbstractController
             } elseif (!preg_match(" #[a-zA-ZÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ' ]$# ", $_POST['message'])) {
                 $errorsForm['invalid message'] = "Votre message ne doit pas contenir de caractère non-autorisés";
             }
-        }
-
-        return $errorsForm;
-
-    }
-
-    private function sendMail(): string
-    {
-        if (empty(self::verifContactForm())) {
-            try {
-                $transport = (new Swift_SmtpTransport('smtp.gmail.com', 465))
-                    ->setUsername(APP_MAIL_USERNAME)
-                    ->setPassword(APP_MAIL_PASSWORD)
-                    ->setEncryption(APP_MAIL_ENCRYPTION);
-                $mailer = new Swift_Mailer($transport);
-                $message = new Swift_Message();
-                $message->setSubject('Message formulaire aslo45');
-                $message->setFrom([$_POST['email'] => $_POST['lastname'] . ' ' . $_POST['firstname'] . ' ' . $_POST['email']]);
-                $message->addTo(APP_MAIL_ADDTO, 'recipient name');
-                $message->setBody($_POST['message']);
-                $result = $mailer->send($message);
-                return $result;
-            } catch (\Exception $exception) {
-                return $exception->getMessage();
+            if (empty($errorsForm)) {
+                try {
+                    $transport = (new Swift_SmtpTransport('smtp.gmail.com', 465))
+                        ->setUsername(APP_MAIL_USERNAME)
+                        ->setPassword(APP_MAIL_PASSWORD)
+                        ->setEncryption(APP_MAIL_ENCRYPTION);
+                    $mailer = new Swift_Mailer($transport);
+                    $message = new Swift_Message();
+                    $message->setSubject('Message formulaire aslo45');
+                    $message->setFrom([$_POST['email'] => $_POST['lastname'] . ' ' . $_POST['firstname'] . ' ' . $_POST['email']]);
+                    $message->addTo(APP_MAIL_ADDTO, 'recipient name');
+                    $message->setBody($_POST['message']);
+                    $result = $mailer->send($message);
+                } catch (\Exception $exception) {
+                    $result = $exception->getMessage();
+                }
+                header('Location: /');
+                exit;
             }
         }
-        header('Location: /');
-        exit;
+        return $errorsForm;
     }
-
 
     /**
      * @return string
@@ -94,7 +82,6 @@ class HomeController extends AbstractController
      */
     public function index()
     {
-        return $this->twig->render('Home/index.html.twig', ['errors' => self::verifContactForm(), 'post' => $_POST, 'mailSend' => self::sendMail()]);
+        return $this->twig->render('Home/index.html.twig', ['errors' => self::sendMail(), 'post' => $_POST]);
     }
-
 }
