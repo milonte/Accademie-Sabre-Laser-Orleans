@@ -55,7 +55,16 @@ class HomeController extends AbstractController
             } elseif (!preg_match(" #[a-zA-ZÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ' ]$# ", $_POST['message'])) {
                 $errorsForm['invalid message'] = "Votre message ne doit pas contenir de caractère non-autorisés";
             }
-            if (empty($errorsForm)) {
+        }
+
+        return $errorsForm;
+
+    }
+
+    private function sendMail(): string
+    {
+        if (empty(self::verifContactForm())) {
+            try {
                 $transport = (new Swift_SmtpTransport('smtp.gmail.com', 465))
                     ->setUsername(APP_MAIL_USERNAME)
                     ->setPassword(APP_MAIL_PASSWORD)
@@ -63,17 +72,19 @@ class HomeController extends AbstractController
                 $mailer = new Swift_Mailer($transport);
                 $message = new Swift_Message();
                 $message->setSubject('Message formulaire aslo45');
-                $message->setFrom([$_POST['email'] => 'sender name']);
+                $message->setFrom([$_POST['email'] => $_POST['lastname'] . ' ' . $_POST['firstname'] . ' ' . $_POST['email']]);
                 $message->addTo(APP_MAIL_ADDTO, 'recipient name');
-                $message->setBody('Cet email a été envoyé par ' . $_POST['lastname'] . ' ' . $_POST['firstname'] . ' ' . ':' . ' ' . $_POST['message']);
+                $message->setBody($_POST['message']);
                 $result = $mailer->send($message);
+                return $result;
+            } catch (\Exception $exception) {
+                return $exception->getMessage();
             }
-            header('Location: /');
-            exit;
         }
-
-        return $errorsForm;
+        header('Location: /');
+        exit;
     }
+
 
     /**
      * @return string
@@ -83,7 +94,7 @@ class HomeController extends AbstractController
      */
     public function index()
     {
-        return $this->twig->render('Home/index.html.twig', ['errors' => self::verifContactForm(), 'post' => $_POST]);
+        return $this->twig->render('Home/index.html.twig', ['errors' => self::verifContactForm(), 'post' => $_POST, 'mailSend' => self::sendMail()]);
     }
 
 }
