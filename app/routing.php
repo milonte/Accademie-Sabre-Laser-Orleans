@@ -21,6 +21,5 @@ $routes = [
     ],
     'Image' => [ // Controller
         ['addImage', '/admin/addImage', ['GET', 'POST']], // action, url, method
-        ['showImages', '/admin/Images', ['GET', 'POST']],
     ],
 ];

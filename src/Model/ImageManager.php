@@ -38,9 +38,5 @@ class ImageManager extends AbstractManager
             return $this->pdo->lastInsertId();
         }
     }
-    
-    public function selectAll(): array
-    {
-        return $this->pdo->query('SELECT * FROM ' . $this->table.' order by image_date DESC', \PDO::FETCH_CLASS, $this->className)->fetchAll();
-    }
+
 }

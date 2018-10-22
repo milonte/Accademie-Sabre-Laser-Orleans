@@ -81,7 +81,9 @@ class ImageController extends AbstractController
                 $image->setImageExtension($fileExt);
                 
                 if (!empty(self::imageVerification($image))) {
-                    $errorsGlobal[$position] = self::imageVerification($image);
+                    foreach (self::imageVerification($image) as $key => $value) {
+                        $errorsGlobal[]=$value;
+                    }
                 } else {
                     
                     $fileNameNew = "image" . uniqid('', true) . '.' . $image->getImageExtension();
@@ -99,7 +101,7 @@ class ImageController extends AbstractController
                         
                         $id = $imageManager->insert($image);
                         $image->setImageId($id);
-                        header('Location:/admin/Images');
+                        header('Location:/admin/addImage');
                         
                     }
                 }
