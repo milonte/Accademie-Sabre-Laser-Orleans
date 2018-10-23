@@ -12,79 +12,79 @@ class Member
 {
     
     /**
-     * @var
+     * @var int
      */
     private $id;
     
     
     /**
-     * @var
+     * @var string
      */
     private $lastName;
     
     
     /**
-     * @var
+     * @var string
      */
     private $firstName;
     
     
     /**
-     * @var
+     * @var string
      */
     private $email;
     
     
     /**
-     * @var
+     * @var string
      */
     private $address;
     
     
     /**
-     * @var
+     * @var string
      */
     private $postalCode;
     
     
     /**
-     * @var
+     * @var string
      */
     private $city;
     
     
     /**
-     * @var
+     * @var string
      */
     private $phone;
     
     
     /**
-     * @var
+     * @var \DateTime
      */
     private $birthDate;
     
     
     /**
-     * @var
+     * @var string
      */
     private $emergencyContact;
     
     
     /**
-     * @var
+     * @var string
      */
     private $emergencyPhone;
     
     
     /**
-     * @var
+     * @var int
      */
     private $payment;
     
     
     /**
-     * @var
+     * @var string
      */
     private $status;
     
