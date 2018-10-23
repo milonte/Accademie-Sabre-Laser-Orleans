@@ -38,19 +38,6 @@ class ImageController extends AbstractController
         return $errors;
     }
     
-    /**
-     * @return string
-     * @throws \Twig_Error_Loader
-     * @throws \Twig_Error_Runtime
-     * @throws \Twig_Error_Syntax
-     */
-    public function showImages ()
-    {
-        $imageManager = new ImageManager($this->getPdo());
-        $images = $imageManager->selectAll();
-    
-        return $this->twig->render('Admin/adminGallery.html.twig', ['images' => $images]);
-    }
     
     /**
      * @return string
