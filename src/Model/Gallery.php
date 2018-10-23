@@ -12,4 +12,11 @@ namespace Model;
 class Gallery
 {
 
+    /**
+     * Gallery constructor.
+     */
+    public function __construct()
+    {
+    }
+
 }
