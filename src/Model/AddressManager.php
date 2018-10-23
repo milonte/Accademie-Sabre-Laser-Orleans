@@ -9,7 +9,7 @@ namespace Model;
  */
 class AddressManager extends AbstractManager
 {
-    const TABLE = 'address';
+        const TABLE = 'address';
 
         /**
          * AddressManager constructor.
