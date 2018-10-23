@@ -11,15 +11,31 @@ namespace Model;
 
 class Picture
 {
+    /**
+     * @var int
+     */
     private $id;
 
+    /**
+     * @var string
+     */
     private $pictureName;
 
+    /**
+     * @var string
+     */
     private $picturePath;
 
+    /**
+     * @var \DateTime
+     */
     private $pictureDate;
 
+    /**
+     * @var string
+     */
     private $pictureTag;
+
 
     /**
      * @return mixed
