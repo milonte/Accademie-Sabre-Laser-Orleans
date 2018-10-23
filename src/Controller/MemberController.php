@@ -12,10 +12,9 @@ use Model\AbstractManager;
 use Model\Member;
 use Model\MemberManager;
 
-
 class MemberController extends AbstractController
 {
-    const NUMBER_MAX_FIELD = 12;
+    const NUMBER_MAX_FIELD = 11;
     const MAX_SIZE_MEMBER_FIELD = 45;
     private $id;
     
@@ -33,7 +32,6 @@ class MemberController extends AbstractController
                 }
             }
             if ($emptyField == false) {
-                
                 if (count($_POST) < self::NUMBER_MAX_FIELD) {
                     $errorsForm[] = "ATTENTION, tous les champs doivent être renseigné";
                 }
@@ -53,10 +51,8 @@ class MemberController extends AbstractController
                     if (mb_strlen($value) > self::MAX_SIZE_MEMBER_FIELD) {
                         $errorsForm['sizeString'] = "le nombre de caractère utilisé ne peut pas dépasser ".self::MAX_SIZE_MEMBER_FIELD." charactères";
                     }
-                    
                 }
             }
-            
         }
         return $errorsForm;
     }
@@ -75,13 +71,11 @@ class MemberController extends AbstractController
             $member->setCity(strip_tags(stripslashes(trim($_POST['city']))));
             $member->setPhone(strip_tags(stripslashes(trim($_POST['tel']))));
             $member->setBirthDate(\DateTime::createFromFormat('Y-m-d', strip_tags(stripslashes(trim($_POST['birthDate'])))));
-            $member->setAge16(strip_tags(stripslashes(trim($_POST['age16']))));
             $member->setEmergencyContact(strip_tags(stripslashes(trim($_POST['EmergencyContact']))));
             $member->setEmergencyPhone(strip_tags(stripslashes(trim($_POST['EmergencyContactTel']))));
             $member->setPayment(strip_tags(stripslashes(trim($_POST['paiement']))));
             
             $this->id = $memberAdd->insert($member);
-
         }
     
         return $this->twig->render('Member/memberForm.html.twig', ['errors' => self::memberFormDataValidation(), 'id' => $this->id]);

@@ -10,83 +10,93 @@ namespace Model;
 
 class Member
 {
+    
     /**
-     * @var int
+     * @var
      */
     private $id;
     
+    
     /**
-     * @var string
+     * @var
      */
     private $lastName;
     
+    
     /**
-     * @var string
+     * @var
      */
     private $firstName;
     
+    
     /**
-     * @var string
+     * @var
      */
     private $email;
     
+    
     /**
-     * @var string
+     * @var
      */
     private $address;
     
+    
     /**
-     * @var string
+     * @var
      */
     private $postalCode;
     
+    
     /**
-     * @var string
+     * @var
      */
     private $city;
     
+    
     /**
-     * @var int
+     * @var
      */
     private $phone;
     
+    
     /**
-     * @var \DateTime
+     * @var
      */
     private $birthDate;
     
-    /**
-     * @var string
-     */
-    private $age16;
     
     /**
-     * @var string
+     * @var
      */
     private $emergencyContact;
     
+    
     /**
-     * @var int
+     * @var
      */
     private $emergencyPhone;
     
+    
     /**
-     * @var mixed
+     * @var
      */
     private $payment;
     
+    
     /**
-     * @var string
+     * @var
      */
     private $status;
+    
     
     /**
      * @return int
      */
-    public function getId()
+    public function getId() :int
     {
         return $this->id;
     }
+    
     
     /**
      * @param int $id
@@ -96,13 +106,15 @@ class Member
         $this->id = $id;
     }
     
+    
     /**
      * @return string
      */
-    public function getLastName()
+    public function getLastName() :string
     {
         return $this->lastName;
     }
+    
     
     /**
      * @param string $lastName
@@ -112,13 +124,15 @@ class Member
         $this->lastName = $lastName;
     }
     
+    
     /**
      * @return string
      */
-    public function getFirstName()
+    public function getFirstName() :string
     {
         return $this->firstName;
     }
+    
     
     /**
      * @param string $firstName
@@ -128,13 +142,15 @@ class Member
         $this->firstName = $firstName;
     }
     
+    
     /**
      * @return string
      */
-    public function getEmail()
+    public function getEmail() :string
     {
         return $this->email;
     }
+    
     
     /**
      * @param string $email
@@ -144,13 +160,15 @@ class Member
         $this->email = $email;
     }
     
+    
     /**
      * @return string
      */
-    public function getAddress()
+    public function getAddress() :string
     {
         return $this->address;
     }
+    
     
     /**
      * @param string $address
@@ -160,13 +178,15 @@ class Member
         $this->address = $address;
     }
     
+    
     /**
-     * @return int
+     * @return string
      */
-    public function getPostalCode()
+    public function getPostalCode() :string
     {
         return $this->postalCode;
     }
+    
     
     /**
      * @param string $postalCode
@@ -176,13 +196,15 @@ class Member
         $this->postalCode = $postalCode;
     }
     
+    
     /**
      * @return string
      */
-    public function getCity()
+    public function getCity() :string
     {
         return $this->city;
     }
+    
     
     /**
      * @param string $city
@@ -192,29 +214,33 @@ class Member
         $this->city = $city;
     }
     
+    
     /**
-     * @return int
+     * @return string
      */
-    public function getPhone()
+    public function getPhone() :string
     {
         return $this->phone;
     }
     
+    
     /**
-     * @param int $phone
+     * @param string $phone
      */
-    public function setPhone(int $phone)
+    public function setPhone(string $phone)
     {
         $this->phone = $phone;
     }
     
+    
     /**
      * @return \DateTime
      */
-    public function getBirthDate()
+    public function getBirthDate() :\DateTime
     {
         return $this->birthDate;
     }
+    
     
     /**
      * @param \DateTime $birthDate
@@ -224,29 +250,15 @@ class Member
         $this->birthDate = $birthDate;
     }
     
-    /**
-     * @return string
-     */
-    public function getAge16()
-    {
-        return $this->age16;
-    }
-    
-    /**
-     * @param string $age16
-     */
-    public function setAge16(string $age16)
-    {
-        $this->age16 = $age16;
-    }
     
     /**
      * @return string
      */
-    public function getEmergencyContact()
+    public function getEmergencyContact() :string
     {
         return $this->emergencyContact;
     }
+    
     
     /**
      * @param string $emergencyContact
@@ -256,45 +268,51 @@ class Member
         $this->emergencyContact = $emergencyContact;
     }
     
-    /**
-     * @return int
-     */
-    public function getEmergencyPhone()
-    {
-        return $this->emergencyPhone;
-    }
-    
-    /**
-     * @param int $emergencyPhone
-     */
-    public function setEmergencyPhone(int $emergencyPhone)
-    {
-        $this->emergencyPhone = $emergencyPhone;
-    }
-    
-    /**
-     * @return int
-     */
-    public function getPayment()
-    {
-        return $this->payment;
-    }
-    
-    /**
-     * @param mixed $payment
-     */
-    public function setPayment($payment)
-    {
-        $this->payment = $payment;
-    }
     
     /**
      * @return string
      */
-    public function getStatus()
+    public function getEmergencyPhone() :string
+    {
+        return $this->emergencyPhone;
+    }
+    
+    
+    /**
+     * @param string $emergencyPhone
+     */
+    public function setEmergencyPhone(string $emergencyPhone)
+    {
+        $this->emergencyPhone = $emergencyPhone;
+    }
+    
+    
+    /**
+     * @return int
+     */
+    public function getPayment() :int
+    {
+        return $this->payment;
+    }
+    
+    
+    /**
+     * @param int $payment
+     */
+    public function setPayment(int $payment)
+    {
+        $this->payment = $payment;
+    }
+    
+    
+    /**
+     * @return string
+     */
+    public function getStatus() :string
     {
         return $this->status;
     }
+    
     
     /**
      * @param string $status
@@ -303,7 +321,4 @@ class Member
     {
         $this->status = $status;
     }
-    
-    
-    
 }
