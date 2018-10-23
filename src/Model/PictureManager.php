@@ -10,6 +10,10 @@
 namespace Model;
 
 
+/**
+ * Class PictureManager
+ * @package Model
+ */
 class PictureManager extends AbstractManager
 {
 

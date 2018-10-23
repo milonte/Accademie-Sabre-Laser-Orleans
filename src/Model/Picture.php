@@ -9,6 +9,10 @@
 namespace Model;
 
 
+/**
+ * Class Picture
+ * @package Model
+ */
 class Picture
 {
     /**

@@ -10,6 +10,10 @@ namespace Controller;
 
 use Model\PictureManager;
 
+/**
+ * Class PictureController
+ * @package Controller
+ */
 class PictureController extends AbstractController
 {
     /**
