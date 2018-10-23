@@ -13,7 +13,7 @@
                 {%  for img in pictures %}
                     <div class="col-md-4 col-sm-12 py-1">
                         <div class="thumbnail">
-                            <a href="#" data-toggle="modal" data-target="#photo{{ img.id }}"><img class="rounded mx-auto d-block img-fluid img-thumbnail w-100 h-100" src="{{ img.image_path }}" alt="Photo 1" ></a>
+                            <a href="#" data-toggle="modal" data-target="#photo{{ img.id }}"><img class="rounded mx-auto d-block img-fluid img-thumbnail w-100 h-100" src="{{ img.picture_path }}" alt="Photo 1" ></a>
                         </div>
                     </div>
                     <div class="modal" tabindex="-1" role="dialog" id="photo{{ img.id }}">
@@ -26,7 +26,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <img src="{{ img.image_path }}" alt="Photo 1" class="mx-auto d-block img-fluid w-100 h-100">
+                                    <img src="{{ img.picture_path }}" alt="Photo 1" class="mx-auto d-block img-fluid w-100 h-100">
                                 </div>
                             </div>
                         </div>

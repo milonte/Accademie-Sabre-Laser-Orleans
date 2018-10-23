@@ -10,13 +10,13 @@
 namespace Model;
 
 
-class GalleryManager extends AbstractManager
+class PictureManager extends AbstractManager
 {
 
-    const TABLE = 'gallery';
+    const TABLE = 'picture';
 
     /**
-     * GalleryManager constructor.
+     * PictureManager constructor.
      * @param \PDO $pdo
      */
     public function __construct(\PDO $pdo)

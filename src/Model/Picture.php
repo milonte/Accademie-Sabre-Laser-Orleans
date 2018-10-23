@@ -9,7 +9,7 @@
 namespace Model;
 
 
-class Gallery
+class Picture
 {
 
     private $id;
@@ -50,7 +50,7 @@ class Gallery
 
 
     /**
-     * Gallery constructor.
+     * Picture constructor.
      */
     public function __construct()
     {

@@ -8,9 +8,9 @@
 
 namespace Controller;
 
-use Model\GalleryManager;
+use Model\PictureManager;
 
-class GalleryController extends AbstractController
+class PictureController extends AbstractController
 {
     /**
      * @return string
@@ -18,11 +18,11 @@ class GalleryController extends AbstractController
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function gallery()
+    public function show()
     {
-        $galleryManager = new GalleryManager($this->getPdo());
+        $galleryManager = new PictureManager($this->getPdo());
         $pictures = $galleryManager->selectAll();
 
-        return $this->twig->render('Gallery/gallery.html.twig', ['pictures' => $pictures]);
+        return $this->twig->render('Picture/gallery.html.twig', ['pictures' => $pictures]);
     }
 }
