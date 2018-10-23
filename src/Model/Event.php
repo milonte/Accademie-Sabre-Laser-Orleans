@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: wcs
@@ -39,14 +40,18 @@ class Event
      * @var string
      */
     private $linkUrl;
+    /**
+     * @var Datetime
+     */
+    private $date;
 
 
     /**
      * Get the value of id
      *
      * @return  int
-     */ 
-    public function getId():int
+     */
+    public function getId() : int
     {
         return $this->id;
     }
@@ -57,8 +62,8 @@ class Event
      * @param  int  $id
      *
      * @return  self
-     */ 
-    public function setId(int $id):Event
+     */
+    public function setId(int $id) : Event
     {
         $this->id = $id;
 
@@ -69,8 +74,8 @@ class Event
      * Get the value of title
      *
      * @return  string
-     */ 
-    public function getTitle():string
+     */
+    public function getTitle() : string
     {
         return $this->title;
     }
@@ -81,8 +86,8 @@ class Event
      * @param  string  $title
      *
      * @return  self
-     */ 
-    public function setTitle(string $title):Event
+     */
+    public function setTitle(string $title) : Event
     {
         $this->title = $title;
 
@@ -91,8 +96,8 @@ class Event
 
     /**
      * Get the value of linkUrl
-     */ 
-    public function getLinkUrl():string
+     */
+    public function getLinkUrl() : string
     {
         return $this->linkUrl;
     }
@@ -101,8 +106,8 @@ class Event
      * Set the value of linkUrl
      *
      * @return  self
-     */ 
-    public function setLinkUrl(string $linkUrl):Event
+     */
+    public function setLinkUrl(string $linkUrl) : Event
     {
         $this->linkUrl = $linkUrl;
 
@@ -111,8 +116,8 @@ class Event
 
     /**
      * Get the value of content
-     */ 
-    public function getContent():string
+     */
+    public function getContent() : string
     {
         return $this->content;
     }
@@ -121,12 +126,55 @@ class Event
      * Set the value of content
      *
      * @return  self
-     */ 
-    public function setContent(string $content):Event
+     */
+    public function setContent(string $content) : Event
     {
         $this->content = $content;
 
         return $this;
     }
 
+    /**
+     * Get the value of imageUrl
+     */
+    public function getImageUrl() : string
+    {
+        return $this->imageUrl;
+    }
+
+    /**
+     * Set the value of imageUrl
+     *
+     * @return  self
+     */
+    public function setImageUrl($imageUrl) : Event
+    {
+        $this->imageUrl = $imageUrl;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of date
+     *
+     * @return  date
+     */
+    public function getDate() : \DateTime
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set the value of date
+     *
+     * @param  date  $date
+     *
+     * @return  self
+     */
+    public function setDate(\DateTime $date) : Event
+    {
+        $this->date = $date;
+
+        return $this;
+    }
 }
