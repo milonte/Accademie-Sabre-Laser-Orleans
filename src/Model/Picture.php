@@ -11,15 +11,20 @@ namespace Model;
 
 class Picture
 {
-
     private $id;
 
-    private $path;
+    private $pictureName;
+
+    private $picturePath;
+
+    private $pictureDate;
+
+    private $pictureTag;
 
     /**
      * @return mixed
      */
-    public function getId()
+    public function getId() :int
     {
         return $this->id;
     }
@@ -27,7 +32,7 @@ class Picture
     /**
      * @param mixed $id
      */
-    public function setId($id)
+    public function setId(int $id)
     {
         $this->id = $id;
     }
@@ -35,25 +40,66 @@ class Picture
     /**
      * @return mixed
      */
-    public function getPath()
+    public function getPictureName() :string
     {
-        return $this->path;
+        return $this->pictureName;
     }
 
     /**
-     * @param mixed $path
+     * @param mixed $pictureName
      */
-    public function setPath($path)
+    public function setPictureName(string $pictureName)
     {
-        $this->path = $path;
+        $this->pictureName = $pictureName;
     }
-
 
     /**
-     * Picture constructor.
+     * @return mixed
      */
-    public function __construct()
+    public function getPicturePath() :string
     {
+        return $this->picturePath;
     }
+
+    /**
+     * @param mixed $picturePath
+     */
+    public function setPicturePath(string $picturePath)
+    {
+        $this->picturePath = $picturePath;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPictureDate() :\DateTime
+    {
+        return $this->pictureDate;
+    }
+
+    /**
+     * @param mixed $pictureDate
+     */
+    public function setPictureDate(\DateTime $pictureDate)
+    {
+        $this->pictureDate = $pictureDate;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPictureTag() :string
+    {
+        return $this->pictureTag;
+    }
+
+    /**
+     * @param mixed $pictureTag
+     */
+    public function setPictureTag(string $pictureTag)
+    {
+        $this->pictureTag = $pictureTag;
+    }
+
 
 }
