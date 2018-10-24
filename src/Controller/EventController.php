@@ -7,11 +7,14 @@
  * PHP version 7
  */
 namespace Controller;
+
+use Model\EventManager;
+
 /**
- * Class HomeController
+ * Class EventsController
  *
  */
-class HomeController extends AbstractController
+class EventController extends AbstractController
 {
     /**
      * Display item listing
@@ -23,6 +26,10 @@ class HomeController extends AbstractController
      */
     public function index()
     {
-        return $this->twig->render('Home/index.html.twig');
+        $eventManager = new EventManager($this->getPdo());
+        $events = $eventManager->selectAll();
+
+        return $this->twig->render('Event/events.html.twig', ['events' => $events]);
     }
+
 } 

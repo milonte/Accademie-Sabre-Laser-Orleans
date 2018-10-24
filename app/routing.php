@@ -9,6 +9,7 @@
  * @link     https://github.com/WildCodeSchool/simple-mvc
  */
 
+
 $routes = [
     'Item' => [ // Controller
         ['add', '/item/add', ['GET', 'POST']], // action, url, method
@@ -18,5 +19,12 @@ $routes = [
     ],
     'Home' => [ // Controller
         ['index', '/', 'GET'], // action, url, method
-    ]
+    ],
+    'Picture' => [ // Controller
+        ['index', '/galerie', 'GET'], // action, url, method
+        ],
+    'Event' => [
+        ['index', '/events', 'GET'],
+    ],
+
 ];
