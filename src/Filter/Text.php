@@ -8,7 +8,6 @@
 
 namespace Filter;
 
-
 class Text implements FilterInterface
 {
     /**

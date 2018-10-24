@@ -73,12 +73,11 @@ class HomeController extends AbstractController
         $message = new Swift_Message();
         $message->setSubject('Message formulaire aslo45');
         $message->setFrom([$userData['email'] => $userData['lastname'] . ' ' . $userData['firstname']]);
-        $message->addTo(APP_MAIL_ADDTO , 'recipient name');
+        $message->addTo(APP_MAIL_ADDTO, 'recipient name');
         $message->addReplyTo($userData['email'], $userData['email']);
         $message->setBody($userData['message']);
         $result = $mailer->send($message);
         return $result;
-
     }
 
 
@@ -92,7 +91,6 @@ class HomeController extends AbstractController
     {
         $errors = $userData = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
             $userData = $_POST;
             $textFilter = new Text();
             $textFilter->setTexts($userData);
@@ -106,6 +104,5 @@ class HomeController extends AbstractController
         }
 
         return $this->twig->render('Home/index.html.twig', ['errors' => $errors, 'post' => $userData]);
-
     }
 }

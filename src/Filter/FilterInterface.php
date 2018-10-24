@@ -8,8 +8,10 @@
 
 namespace Filter;
 
-
 interface FilterInterface
 {
+    /**
+     * @return array
+     */
     public function filter(): array ;
 }
