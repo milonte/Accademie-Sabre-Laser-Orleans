@@ -22,6 +22,6 @@ $routes = [
     ],
     'Event' => [
         ['index', '/events', 'GET'],
-        ['add', '/event/add', ['GET', 'POST']],
+        ['add', '/admin/event/add', ['GET', 'POST']],
     ]
 ];
