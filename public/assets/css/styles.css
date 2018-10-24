@@ -283,7 +283,9 @@ header .btn-outline-white:hover,
 .footer {
     background-color: black;
 }
-
+.footer .row {
+    margin: 0px;
+}
 .footer_logo {
     font-size: 35px;
 }
