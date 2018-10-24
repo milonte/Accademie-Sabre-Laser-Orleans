@@ -36,12 +36,6 @@ class Picture
     private $pictureDate;
 
     /**
-     * @var string
-     */
-    private $pictureTag;
-
-
-    /**
      * @return mixed
      */
     public function getId() :int
@@ -105,21 +99,6 @@ class Picture
         $this->pictureDate = $pictureDate;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getPictureTag() :string
-    {
-        return $this->pictureTag;
-    }
-
-    /**
-     * @param mixed $pictureTag
-     */
-    public function setPictureTag(string $pictureTag)
-    {
-        $this->pictureTag = $pictureTag;
-    }
 
 
 }

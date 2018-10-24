@@ -22,11 +22,11 @@ class PictureController extends AbstractController
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function show()
+    public function index()
     {
         $galleryManager = new PictureManager($this->getPdo());
         $pictures = $galleryManager->selectAll();
 
-        return $this->twig->render('Picture/gallery.html.twig', ['pictures' => $pictures]);
+        return $this->twig->render('Picture/index.html.twig', ['pictures' => $pictures]);
     }
 }
