@@ -3,3 +3,7 @@
 *.cache
 app/db.php
 .idea/
+
+/public/assets/images/gallery/*
+!public/assets/images/gallery/.gitkeep
+
