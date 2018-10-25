@@ -280,6 +280,13 @@ header .btn-outline-white:hover,
 }
 
 /* -- FOOTER -- */
+.image-footer {
+    height: 30px;
+    background-image: url("../images/aslo_footer.jpg");
+    /*background-size: cover;*/
+    background-repeat: no-repeat;
+}
+
 .footer {
     background-color: black;
 }
