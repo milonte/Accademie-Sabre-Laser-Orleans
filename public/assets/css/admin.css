@@ -4,13 +4,13 @@
 }
 
 
-#eventEdit {
+.eventEdit {
     padding-top: 40px;
     padding-bottom: 40px;
     background-color: rgba(0, 0, 0, 0.85);
 }
 
-#add_form {
+.add_form {
     background-color: rgba(255,255,255,1);
     border: 1px solid rgba(0,0,0,0.3);
 /*     box-shadow: 0 0 5px 5px linear-gradient(#e66465, #9198e5); */
@@ -18,16 +18,16 @@
     padding: 35px;
 }
 
-#add_form h2 {
+.add_form h2 {
     font-family: Starjedi;
 }
 
-#add_form label {
+.add_form label {
     font-weight: bold;
     margin: 0 0 0 15px;
 }
-#add_form input:hover,
-#add_form textarea:hover {
+.add_form input:hover,
+.add_form textarea:hover {
     box-shadow: 0 0 3px 3px rgba(1, 141, 255, 0.2);
 }
 

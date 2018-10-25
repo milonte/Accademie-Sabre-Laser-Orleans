@@ -20,8 +20,14 @@ class EventController extends AbstractController
 {
     const MIN_TITLE_LENGTH = 3;
     const MIN_CONTENT_LENGTH = 10;
-    const TEXT_REGEX = "#[a-zA-ZÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ!?,:'()\r\n ]$# ";
-    const LINK_REGEX = '/^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ ';
+    const CONTENT_FILTER = "#[a-zA-ZÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ!?,:'()\r\n ]$# ";
+    const MIME_TYPES = [
+        'png' => 'image/png',
+        'jpeg' => 'image/jpeg',
+        'jpg' => 'image/jpeg',
+        'gif' => 'image/gif',
+    ];
+    const FILE_MAX_SIZE = 2000000;
 
     /**
      * Display item listing
@@ -52,8 +58,8 @@ class EventController extends AbstractController
 
             if (!$this->formErrors()) {
 
-                $event->setTitle($_POST['title']);
-                $event->setContent($_POST['content']);
+                $event->setTitle(trim($_POST['title']));
+                $event->setContent(trim($_POST['content']));
                 $event->setDate(new \DateTime());
 
                 if (strlen($_FILES['file']['name']) > 0) {
@@ -67,8 +73,8 @@ class EventController extends AbstractController
                     $event->setImageUrl("");
                 }
 
-                if (strlen($_POST['linkUrl']) > 0) {
-                    $event->setLinkUrl($_POST['linkUrl']);
+                if (strlen(trim($_POST['linkUrl'])) > 0) {
+                    $event->setLinkUrl(trim($_POST['linkUrl']));
                 } else {
                     $event->setLinkUrl("");
                 }
@@ -93,38 +99,31 @@ class EventController extends AbstractController
 
         if (!isset($_POST['title']) || strlen($_POST['title']) < self::MIN_TITLE_LENGTH) {
             $errors['title_length'] = "Le titre doit contenir minimum " . self::MIN_TITLE_LENGTH . " caractères !";
-        } else if (!preg_match(self::TEXT_REGEX, $_POST['title'])) {
+        } else if (!preg_match(self::CONTENT_FILTER, $_POST['title'])) {
             $errors['title_regex'] = "Le titre contient des caractères spéciaux";
         }
 
         if (!isset($_POST['content']) || strlen($_POST['content']) < self::MIN_CONTENT_LENGTH) {
             $errors['content_length'] = "Le contenu doit contenir minimum " . self::MIN_CONTENT_LENGTH . " caractères !";
-        } else if (!preg_match(self::TEXT_REGEX, $_POST['content'])) {
+        } else if (!preg_match(self::CONTENT_FILTER, $_POST['content'])) {
             $errors['content_regex'] = "Le contenu contient des caractères spéciaux";
         }
 
         if (!empty($_FILES['file']['name'])) {
 
-            $mime_types = [
-                'png' => 'image/png',
-                'jpeg' => 'image/jpeg',
-                'jpg' => 'image/jpeg',
-                'gif' => 'image/gif',
-            ];
-
             $mime_content = explode('/', mime_content_type($_FILES['file']['tmp_name']))[1];
             echo $mime_content;
 
-            if (!array_key_exists($mime_content, $mime_types)) {
-                $errors['image_type'] = "Formats d'images acceptés : png, jpg, jpeg, gif";
+            if (!array_key_exists($mime_content, self::MIME_TYPES)) {
+                $errors['image_type'] = "Formats d'images acceptés : " . implode(", ", array_keys(self::MIME_TYPES));
             }
-            if (filesize($_FILES['file']['tmp_name']) > 2000000) {
+            if (filesize($_FILES['file']['tmp_name']) > self::FILE_MAX_SIZE) {
                 $errors['image_size'] = "Image trop lourde (>2Mo)";
             }
         }
 
         if ($_POST['linkUrl']) {
-            if (!preg_match(self::LINK_REGEX, $_POST['linkUrl'])) {
+            if (!(filter_var($_POST['linkUrl'], FILTER_VALIDATE_URL, FILTER_FLAG_PATH_REQUIRED))) {
                 $errors['link_regex'] = "Format non valide (format accepté : http://www.website.com)";
             }
         }
