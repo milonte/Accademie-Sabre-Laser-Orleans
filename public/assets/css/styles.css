@@ -112,9 +112,10 @@ h1 .starjedi {
 }
 
 .cover-1 p.lead {
-    color: rgba(255, 255, 255, 0.75);
+    color: rgba(255, 255, 255, 1);
     font-family: Starjedi;
     margin-top: 10%;
+    text-shadow: 1px 1px black, -1px -1px black;
 }
 
 .jumbotron-heading {
@@ -132,9 +133,9 @@ h1 .starjedi {
 }
 
 .cover-1 .bg-jedi-opa {
-    background: #2b2d34 url(../images/banniere45.jpg) center;
+    background: #2b2d34 url(../images/banniere69.jpg) center;
     background-size: cover;
-    background-blend-mode: overlay;
+    background-blend-mode: normal;
     height: 100%;
 }
 
