@@ -107,6 +107,7 @@ header .social li a:hover {
     color: rgba(255, 255, 255, 1);
     font-size : 16pt;
     text-shadow: 1px 1px black, -1px -1px black;
+    text-transform: lowercase;
 }
 
 h1 .starjedi {
