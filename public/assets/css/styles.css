@@ -65,6 +65,27 @@ header .social li a:hover {
     color: #0091ff;
     border-color: #59a0d7;
 }
+
+/*css bouton "nous contacter" */
+
+.section-button {
+    margin-top: 70pt;
+    margin-bottom: 70pt;
+}
+.btn-contact {
+    font-size: 150%;
+    height: 6vh;
+    width: 35%;
+}
+@media (max-width: 768px) {
+    .btn-contact {
+        width: 50%;
+        font-size: 128%;
+    }
+}
+.textForm {
+    text-align: center;
+}
 /* --- BANNIERE --- */
 
 .cover-1 {
@@ -278,7 +299,23 @@ header .btn-outline-white:hover,
         margin-top: 8.5vh;
     }
 }
+/*css bouton "nous contacter" */
 
+.section-button {
+    margin-top: 70pt;
+    margin-bottom: 70pt;
+}
+.btn-contact {
+    font-size: 150%;
+    height: 6vh;
+    width: 35%;
+}
+@media (max-width: 768px) {
+    .btn-contact {
+        width: 50%;
+        font-size: 128%;
+    }
+}
 /* -- FOOTER -- */
 .footer {
     background-color: black;
