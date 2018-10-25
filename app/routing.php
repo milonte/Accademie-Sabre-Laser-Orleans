@@ -26,5 +26,8 @@ $routes = [
     'Event' => [
         ['index', '/events', 'GET'],
     ],
+    'Member' => [ // Controller
+        ['add', '/inscription', ['GET', 'POST']], // action, url, method
+    ],
 
 ];
