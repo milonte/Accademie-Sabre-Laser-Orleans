@@ -34,6 +34,9 @@ class PictureController extends AbstractController
         return $this->twig->render('Picture/index.html.twig', ['pictures' => $pictures]);
     }
     
+    /**
+     * @return array
+     */
     private function pictureVerification()
     {
         $errors = [];
@@ -53,6 +56,12 @@ class PictureController extends AbstractController
         return $errors;
     }
     
+    /**
+     * @return string
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
+     */
     public function add()
     {
         $errors = [];
