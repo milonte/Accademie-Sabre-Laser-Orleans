@@ -97,15 +97,15 @@ class EventController extends AbstractController
     {
         $errors = [];
 
-        if (!isset($_POST['title']) || strlen($_POST['title']) < self::MIN_TITLE_LENGTH) {
+        if (!isset($_POST['title']) || strlen(trim($_POST['title'])) < self::MIN_TITLE_LENGTH) {
             $errors['title_length'] = "Le titre doit contenir minimum " . self::MIN_TITLE_LENGTH . " caractères !";
         } else if (!preg_match(self::CONTENT_FILTER, $_POST['title'])) {
             $errors['title_regex'] = "Le titre contient des caractères spéciaux";
         }
 
-        if (!isset($_POST['content']) || strlen($_POST['content']) < self::MIN_CONTENT_LENGTH) {
+        if (!isset($_POST['content']) || strlen(trim($_POST['content'])) < self::MIN_CONTENT_LENGTH) {
             $errors['content_length'] = "Le contenu doit contenir minimum " . self::MIN_CONTENT_LENGTH . " caractères !";
-        } else if (!preg_match(self::CONTENT_FILTER, $_POST['content'])) {
+        } else if (!preg_match(self::CONTENT_FILTER, trim($_POST['content']))) {
             $errors['content_regex'] = "Le contenu contient des caractères spéciaux";
         }
 
@@ -131,9 +131,9 @@ class EventController extends AbstractController
         if (count($errors) === 0) {
             $errors = false;
         } else {
-            $errors['title'] = $_POST['title'];
-            $errors['content'] = $_POST['content'];
-            $errors['linkUrl'] = $_POST['linkUrl'];
+            $errors['title'] = trim($_POST['title']);
+            $errors['content'] = trim($_POST['content']);
+            $errors['linkUrl'] = trim($_POST['linkUrl']);
         }
         return $errors;
 
