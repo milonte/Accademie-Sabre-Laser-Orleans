@@ -35,22 +35,23 @@ class PictureController extends AbstractController
     }
     
     /**
+     * @param $file
      * @return array
      */
-    private function pictureVerification()
+    private function pictureVerification($file)
     {
         $errors = [];
         
-        if (!in_array($_FILES['image']['type'], self::AUTH_EXT)) {
-            $errors[] = $_FILES['image']['name'] . " L'extension n'est pas autorisée. Les extensions autorisées sont les suivantes: .jpg / .jpeg / .gif and .png";
+        if (!in_array($file['image']['type'], self::AUTH_EXT)) {
+            $errors[] = $file['image']['name'] . " L'extension n'est pas autorisée. Les extensions autorisées sont les suivantes: .jpg / .jpeg / .gif and .png";
         }
         
-        if ($_FILES['image']['error'] != 0) {
-            $errors[] = $_FILES['image']['name'] . "Le système a rencontré une erreur lors de l'upload de votre image. le code de l'erreur est " . $_FILES['image']['error'];
+        if ($file['image']['error'] != 0) {
+            $errors[] = $file['image']['name'] . "Le système a rencontré une erreur lors de l'upload de votre image. le code de l'erreur est " . $file['image']['error'];
         }
         
-        if ($_FILES['image']['size'] > 2097152) {
-            $errors[] = $_FILES['image']['name'] . " La taille du fichier est trop grande.";
+        if ($file['image']['size'] > 2097152) {
+            $errors[] = $file['image']['name'] . " La taille du fichier est trop grande.";
         }
         
         return $errors;
@@ -68,10 +69,11 @@ class PictureController extends AbstractController
         $success = false;
         
         if (!empty($_FILES['image'])) {
-            $errors = $this->pictureVerification();
+            $file = $_FILES['image'];
+            $errors = $this->pictureVerification($file);
             
             if (empty($errors)) {
-                $fileNameNew = "image_" . $_FILES['image']['name'];
+                $fileNameNew = "image_" . $file['image']['name'];
                 $fileDestination = self::DIR_UPLOAD . '/' . $fileNameNew;
                 
                 if (move_uploaded_file($_FILES['image']['tmp_name'], $fileDestination)) {
@@ -84,7 +86,7 @@ class PictureController extends AbstractController
                     $picture->setPictureDate($fileDate);
                     
                     $id = $pictureManager->insert($picture);
-                    if (isset($id)) {
+                    if ($id > 0) {
                         $success = true;
                     }
                 }
