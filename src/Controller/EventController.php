@@ -52,6 +52,8 @@ class EventController extends AbstractController
      */
     public function add()
     {
+        $errors = [];
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $eventManager = new EventManager($this->getPdo());
             $event = new Event();
