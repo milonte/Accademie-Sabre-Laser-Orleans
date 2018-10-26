@@ -1,0 +1,20 @@
+<section class="content-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-8 text-center text-md-left mb-4">
+            </div>
+            <div class="col-sm-12 col-md-4 text-center text-md-left">
+                <h2 class="mb-4 mt-4">Informations pratiques</h2>
+                {% for address in addreses %}
+                    <h3 class="pt-4">{{ address.gym_name }}</h3>
+                <address>
+                    {{ address.gym_address }}<br>
+                    {{ address.zip_code }} {{ address.city }}<br>
+                </address>
+                <p>{{ address.date_info }}</p>
+                <p>{{ address.schedule_info }}</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,26 +1,22 @@
-#events {
-    padding-top: 20px;
+.events {
+    padding-top: 40px;
 }
 
-#events .card {
+.events .card {
     margin-top: 30px;
     padding: 8px;
 }
 
-#events .card-body {
+.events .card-body {
     margin: auto;
 }
 
-#events .card-text {
+.events .card-text {
     padding-top: 20px;
     padding-bottom: 20px;
 }
 
-#events .card-footer {
-   
-}
-
-#events .card img {
+.events .card img {
     padding: 0;
     margin: 0;
     max-height: 300px;

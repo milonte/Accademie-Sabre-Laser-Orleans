@@ -129,7 +129,6 @@ header .social li a:hover {
 }
 
 .cover-2 {
-    background: #2b2d34 url(../images/cover-bg-1.jpg) center;
     background: #2b2d34;
     background-size: cover;
     height: auto;
@@ -299,6 +298,13 @@ header .btn-outline-white:hover,
         margin-top: 8.5vh;
     }
 }
+
+/*--section adresse Gymnase--*/
+
+.content-2 h3 {
+    font-size: 1.65rem;
+}
+
 /*css bouton "nous contacter" */
 
 .section-button {
@@ -315,6 +321,7 @@ header .btn-outline-white:hover,
         width: 50%;
         font-size: 128%;
     }
+
 }
 /* -- FOOTER -- */
 .footer {
@@ -339,3 +346,4 @@ footer a {
         font-size: 12px;
     }
 }
+
