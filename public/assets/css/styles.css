@@ -281,12 +281,12 @@ header .btn-outline-white:hover,
 
 /* -- FOOTER -- */
 .image-footer {
-    height: 30px;
-    background-image: url("../images/aslo_footer.jpg");
-    /*background-size: cover;*/
-    background-repeat: no-repeat;
+    height: 85px;
+    width: 100%;
+    background-image: url("../images/new_footer-aslo.png");
+    background-size: 100vw 25vh;
+    min-height: 25vh;
 }
-
 .footer {
     background-color: black;
 }
