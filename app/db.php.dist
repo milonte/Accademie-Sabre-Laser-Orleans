@@ -17,3 +17,7 @@ define('APP_DB_USER', 'user');
 define('APP_DB_PWD', 'password');
 define('APP_DB_HOST', 'localhost');
 define('APP_DB_NAME', 'database_name');
+define('APP_MAIL_USERNAME', 'mail');
+define('APP_MAIL_PASSWORD', 'password_mail');
+define('APP_MAIL_ENCRYPTION', ' ');
+define('APP_MAIL_ADDTO', 'add_to_mail');
