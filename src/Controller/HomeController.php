@@ -9,16 +9,16 @@
 
 namespace Controller;
 
-/**
- * Class HomeController
- *
- */
 
+use Model\AddressManager;
 use Filter\Text;
 use \Swift_SmtpTransport;
 use \Swift_Mailer;
 use \Swift_Message;
-
+/**
+ * Class HomeController
+ *
+ */
 class HomeController extends AbstractController
 {
     /**
@@ -89,6 +89,10 @@ class HomeController extends AbstractController
      */
     public function index()
     {
+
+        $addressManager = new AddressManager($this->getPdo());
+        $addreses = $addressManager->selectAll();
+
         $errors = $userData = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $userData = $_POST;
@@ -103,6 +107,6 @@ class HomeController extends AbstractController
             }
         }
 
-        return $this->twig->render('Home/index.html.twig', ['errors' => $errors, 'post' => $userData]);
+        return $this->twig->render('Home/index.html.twig', ['errors' => $errors, 'post' => $userData, 'addreses'=>$addreses]);
     }
 }
