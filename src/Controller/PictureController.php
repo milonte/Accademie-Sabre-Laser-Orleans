@@ -75,8 +75,6 @@ class PictureController extends AbstractController
                 $fileDestination = self::DIR_UPLOAD . '/' . $fileNameNew;
                 
                 if (move_uploaded_file($_FILES['image']['tmp_name'], $fileDestination)) {
-                    $test = "blabla";
-                    var_dump($test);
                     
                     $fileDate = new \DateTime();
                     $pictureManager = new PictureManager($this->getPdo());
