@@ -65,6 +65,27 @@ header .social li a:hover {
     color: #0091ff;
     border-color: #59a0d7;
 }
+
+/*css bouton "nous contacter" */
+
+.section-button {
+    margin-top: 70pt;
+    margin-bottom: 70pt;
+}
+.btn-contact {
+    font-size: 150%;
+    height: 6vh;
+    width: 35%;
+}
+@media (max-width: 768px) {
+    .btn-contact {
+        width: 50%;
+        font-size: 128%;
+    }
+}
+.textForm {
+    text-align: center;
+}
 /* --- BANNIERE --- */
 
 .cover-1 {
@@ -108,7 +129,6 @@ header .social li a:hover {
 }
 
 .cover-2 {
-    background: #2b2d34 url(../images/cover-bg-1.jpg) center;
     background: #2b2d34;
     background-size: cover;
     height: auto;
@@ -279,6 +299,30 @@ header .btn-outline-white:hover,
     }
 }
 
+/*--section adresse Gymnase--*/
+
+.content-2 h3 {
+    font-size: 1.65rem;
+}
+
+/*css bouton "nous contacter" */
+
+.section-button {
+    margin-top: 70pt;
+    margin-bottom: 70pt;
+}
+.btn-contact {
+    font-size: 150%;
+    height: 6vh;
+    width: 35%;
+}
+@media (max-width: 768px) {
+    .btn-contact {
+        width: 50%;
+        font-size: 128%;
+    }
+
+}
 /* -- FOOTER -- */
 .footer {
     background-color: black;
@@ -302,3 +346,4 @@ footer a {
         font-size: 12px;
     }
 }
+

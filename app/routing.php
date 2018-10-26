@@ -18,13 +18,16 @@ $routes = [
         ['delete', '/item/delete/{id:\d+}', 'GET'], // action, url, method
     ],
     'Home' => [ // Controller
-        ['index', '/', 'GET'], // action, url, method
+        ['index', '/', ['GET','POST']], // action, url, method
     ],
     'Picture' => [ // Controller
         ['index', '/galerie', 'GET'], // action, url, method
-        ],
+    ],
     'Event' => [
         ['index', '/events', 'GET'],
+        ['add', '/admin/event/add', ['GET', 'POST']],
     ],
-
+    'Member' => [ // Controller
+        ['add', '/inscription', ['GET', 'POST']], // action, url, method
+    ],
 ];
