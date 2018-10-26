@@ -18,11 +18,6 @@ class MemberController extends AbstractController
     const MAX_SIZE_MEMBER_FIELD = 255;
     
     /**
-     * @var int
-     */
-    private $id;
-    
-    /**
      * @param $userData
      * @return array
      */
@@ -30,11 +25,11 @@ class MemberController extends AbstractController
     {
         $errorsForm = [];
         $emptyField=false;
-        $label = array('firstname' => 'Prénom', 'lastname' => 'Nom', 'email' => 'Email', 'address' => 'Adresse', 'postalcode' => 'Code Postal', 'city' => 'Ville', 'tel' => 'Téléphone', 'birthDate' => 'Date de naissance', 'EmergencyContact' => 'Contact d\'urgence', 'EmergencyContactTel' => 'Tel d\'urgence', 'paiement' => 'Modalité de paiement');
+        $labels = array('firstname' => 'Prénom', 'lastname' => 'Nom', 'email' => 'Email', 'address' => 'Adresse', 'postalcode' => 'Code Postal', 'city' => 'Ville', 'tel' => 'Téléphone', 'birthDate' => 'Date de naissance', 'EmergencyContact' => 'Contact d\'urgence', 'EmergencyContactTel' => 'Tel d\'urgence', 'paiement' => 'Modalité de paiement');
 
         foreach ($userData as $key => $value) {
             if (empty($value)) {
-                $errorsForm[] = "le champ " . $label[$key] . " doit être renseigné";
+                $errorsForm[] = "le champ " . $labels[$key] . " doit être renseigné";
                 $emptyField=true;
             }
         }
@@ -70,7 +65,7 @@ class MemberController extends AbstractController
             $userData = $textFilter->filter();
             $errors=$this->memberFormDataValidation($userData);
             
-            if (!empty($_POST) and empty($errors)) {
+            if (!empty($userData) and empty($errors)) {
                 $memberAdd = new MemberManager($this->getPdo());
                 $member = new Member();
                 $member->setFirstName($userData['firstname']);
@@ -85,8 +80,8 @@ class MemberController extends AbstractController
                 $member->setEmergencyPhone($userData['EmergencyContactTel']);
                 $member->setPayment($userData['paiement']);
                 
-                $this->id = $memberAdd->insert($member);
-                if (isset($this->id)) {
+                $id = $memberAdd->insert($member);
+                if ($id > 0) {
                     $success = true;
                 }
             }
