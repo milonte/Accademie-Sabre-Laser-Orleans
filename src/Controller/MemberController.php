@@ -12,7 +12,6 @@ use Model\AbstractManager;
 use Model\Member;
 use Model\MemberManager;
 use Filter\Text;
-var_dump($_POST);
 
 class MemberController extends AbstractController
 {
@@ -41,18 +40,16 @@ class MemberController extends AbstractController
         }
     
         if ($emptyField == false) {
-
             if (!filter_var($userData['email'], FILTER_VALIDATE_EMAIL)) {
                 $errorsForm['invalid email'] = "Le format de l'email n'est pas correct";
             }
 
-            $checkDate=explode("-",$userData["birthDate"]);
-            if (!checkdate($checkDate[1], $checkDate[2], $checkDate[0])){
+            $checkDate=explode("-", $userData["birthDate"]);
+            if (!checkdate($checkDate[1], $checkDate[2], $checkDate[0])) {
                 $errorsForm['invalid date'] = "le format de la date est incorrect";
             }
         }
         return $errorsForm;
-    
     }
     
     /**
@@ -89,11 +86,10 @@ class MemberController extends AbstractController
                 $member->setPayment($userData['paiement']);
                 
                 $this->id = $memberAdd->insert($member);
-                if (isset( $this->id)) {
+                if (isset($this->id)) {
                     $success = true;
                 }
             }
-            
         }
         return $this->twig->render('Member/memberForm.html.twig', ['errors' => $errors, 'success' => $success]);
     }
