@@ -28,8 +28,7 @@ class MemberManager extends AbstractManager
      */
     public function insert(Member $member): int
     {
-        $statement = $this->pdo->prepare("INSERT INTO $this->table  (lastname, firstname, email, adress, postal_code, city, phone, birth_date,emergency_contact, emergency_phone, payment, status)
-VALUES (:firstname, :lastname, :email, :adress, :postal_code,:city, :phone, :birth_date, :emergency_contact, :emergency_phone, :payment, 'pending')");
+        $statement = $this->pdo->prepare("INSERT INTO $this->table  (lastname, firstname, email, adress, postal_code, city, phone, birth_date,emergency_contact, emergency_phone, payment, status) VALUES (:firstname, :lastname, :email, :adress, :postal_code,:city, :phone, :birth_date, :emergency_contact, :emergency_phone, :payment, 'pending')");
         $statement->bindValue('firstname', $member->getFirstname(), \PDO::PARAM_STR);
         $statement->bindValue('lastname', $member->getLastname(), \PDO::PARAM_STR);
         $statement->bindValue('email', $member->getEmail(), \PDO::PARAM_STR);

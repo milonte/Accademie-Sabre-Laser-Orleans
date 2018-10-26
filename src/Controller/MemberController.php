@@ -31,7 +31,7 @@ class MemberController extends AbstractController
         $errorsForm = [];
         $emptyField=false;
         $label = array('firstname' => 'Prénom', 'lastname' => 'Nom', 'email' => 'Email', 'address' => 'Adresse', 'postalcode' => 'Code Postal', 'city' => 'Ville', 'tel' => 'Téléphone', 'birthDate' => 'Date de naissance', 'EmergencyContact' => 'Contact d\'urgence', 'EmergencyContactTel' => 'Tel d\'urgence', 'paiement' => 'Modalité de paiement');
-        var_dump($_POST);
+
         foreach ($userData as $key => $value) {
             if (empty($value)) {
                 $errorsForm[] = "le champ " . $label[$key] . " doit être renseigné";
