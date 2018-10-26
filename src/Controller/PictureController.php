@@ -42,16 +42,16 @@ class PictureController extends AbstractController
     {
         $errors = [];
         
-        if (!in_array($file['image']['type'], self::AUTH_EXT)) {
-            $errors[] = $file['image']['name'] . " L'extension n'est pas autorisée. Les extensions autorisées sont les suivantes: .jpg / .jpeg / .gif and .png";
+        if (!in_array($file['type'], self::AUTH_EXT)) {
+            $errors[] = $file['name'] . " L'extension n'est pas autorisée. Les extensions autorisées sont les suivantes: .jpg / .jpeg / .gif and .png";
         }
         
-        if ($file['image']['error'] != 0) {
-            $errors[] = $file['image']['name'] . "Le système a rencontré une erreur lors de l'upload de votre image. le code de l'erreur est " . $file['image']['error'];
+        if ($file['error'] != 0) {
+            $errors[] = $file['name'] . "Le système a rencontré une erreur lors de l'upload de votre image. le code de l'erreur est " . $file['error'];
         }
         
-        if ($file['image']['size'] > 2097152) {
-            $errors[] = $file['image']['name'] . " La taille du fichier est trop grande.";
+        if ($file['size'] > 2097152) {
+            $errors[] = $file['name'] . " La taille du fichier est trop grande.";
         }
         
         return $errors;
@@ -73,10 +73,10 @@ class PictureController extends AbstractController
             $errors = $this->pictureVerification($file);
             
             if (empty($errors)) {
-                $fileNameNew = "image_" . $file['image']['name'];
+                $fileNameNew = "image_" . $file['name'];
                 $fileDestination = self::DIR_UPLOAD . '/' . $fileNameNew;
                 
-                if (move_uploaded_file($_FILES['image']['tmp_name'], $fileDestination)) {
+                if (move_uploaded_file($file['tmp_name'], $fileDestination)) {
                     
                     $fileDate = new \DateTime();
                     $pictureManager = new PictureManager($this->getPdo());
