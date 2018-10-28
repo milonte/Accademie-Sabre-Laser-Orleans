@@ -1,15 +1,37 @@
+.separator {
+    margin-top: 20px;
+}
+
 .events {
-    padding-top: 40px;
+    padding-top: 0px;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .events .card {
-    margin-top: 30px;
-    padding: 8px;
+    padding: 0;
+    padding-top: 20px;
+    border: 0;
+    border-radius: 0;
 }
+
+.events .card:nth-child(even) {
+    background-image: url(/assets/images/even.png);
+    background-color: rgba(0,0,0,0.9);
+    color: white;
+}
+
+.events .card:nth-child(odd) {
+    background-image: url(/assets/images/odd.png);
+    background-color: rgba(255,255,255,0.9);
+    color: black;
+}
+
 
 .events .card-body {
     margin: auto;
 }
+
 
 .events .card-text {
     padding-top: 20px;
@@ -19,5 +41,5 @@
 .events .card img {
     padding: 0;
     margin: 0;
-    max-height: 300px;
+    height: 100%;
 }
