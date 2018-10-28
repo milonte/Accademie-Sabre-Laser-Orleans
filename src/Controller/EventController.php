@@ -46,6 +46,19 @@ class EventController extends AbstractController
     }
 
     /**
+     * Display admin listing events
+     *
+     * @return string
+     */
+    public function list()
+    {
+        $eventManager = new EventManager($this->getPdo());
+        $events = $eventManager->selectAll();
+
+        return $this->twig->render('Event/list.html.twig', ['events' => $events]);
+    }
+
+    /**
      * Display event creation page
      *
      * @return string
