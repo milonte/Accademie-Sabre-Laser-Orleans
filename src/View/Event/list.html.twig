@@ -8,22 +8,21 @@
     <h1>Gestion des événements</h1>
 
     {% for event in events %}
-    <div class="card text-center">
+    <div class="card">
         <div class="card-body">
-            <div class="card-text row ">
-                <div class="col-1 middle">{{ event.id }}</div>
-                <div class="col-md-7 col-11 middle">{{ event.title }}</div>
-                <div class="col-md-4 col-12">
+            <div class="card-text row">
+                <div class="col-md-8 col-11 my-auto"><h4>{{ event.title }}</h4></div>
+                <div class="col-md-4 col-12 text-center">
                     <a href="/admin/event/add" class="btn btn-link"><i class="fas fa-pen-square"></i></a>
                     <a href="/admin/event/remove" class="btn btn-link"><i class="fas fa-minus-square"></i></a>
                 </div>
             </div>
             <hr />
             <div class="eventContent row">
-                <div class="col-12 text-center">
+                <div class="col-12">
                     <i class="fas fa-angle-down" onclick="ShowContent({{ event.id }})"></i>
-
-                    <div class="hidden row">
+                
+                    <div class="hidden row" style="display: none" >
                         {% if event.image_url %}
                         <div class="col-md-8 col-sm-12 my-auto">
                         {% else %}
@@ -33,17 +32,17 @@
                         </div>
                         
                         {% if event.image_url %}
-                        <div class="col-md-4 col-sm-12">
+                        <div class="col-md-4 col-sm-12 text-center">
                             <img class="img-thumbnail" src="/assets/images/events/{{ event.image_url }}" alt="" />
                         </div>
                         {% endif %}
-                    </div>
 
-                    {% if event.link_url %}
-                    <div class="card-footer">
-                        <a class="btn btn-primary" href="{{ event.link_url }}">Lien vers la suite de l'article</a>
+                        {% if event.link_url %}
+                        <div class="col-12 text-center">
+                            <a class="btn btn-primary" href="{{ event.link_url }}">Lien vers la suite de l'article</a>
+                        </div>
+                        {% endif %}
                     </div>
-                    {% endif %}
 
                 </div>
             </div>
