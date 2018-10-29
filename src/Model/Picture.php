@@ -8,7 +8,6 @@
 
 namespace Model;
 
-
 /**
  * Class Picture
  * @package Model
@@ -98,7 +97,4 @@ class Picture
     {
         $this->pictureDate = $pictureDate;
     }
-
-
-
 }
