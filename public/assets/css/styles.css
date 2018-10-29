@@ -324,10 +324,28 @@ header .btn-outline-white:hover,
 
 }
 /* -- FOOTER -- */
+.footer a:hover {
+    text-decoration: none;
+}
+.separator {
+    height: 2px;
+    background: linear-gradient(60deg,#01fa2b,#008cff,
+    #CC00FF
+    );
+}
+.image-footer {
+    height: 85px;
+    width: 100%;
+    background-image: url("../images/new_footer-aslo.png");
+    background-size: 100vw 25vh;
+    min-height: 25vh;
+}
 .footer {
     background-color: black;
 }
-
+.footer .row {
+    margin: 0px;
+}
 .footer_logo {
     font-size: 35px;
 }
