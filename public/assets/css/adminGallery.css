@@ -1,0 +1,51 @@
+@font-face{
+    font-family: Starjedi;
+    src:url(../fonts/Starjedi.ttf)
+}
+
+.add_form {
+    background-color: rgba(255,255,255,1);
+    border: 1px solid rgba(0,0,0,0.3);
+    /* box-shadow: 0 0 5px 5px linear-gradient(#e66465, #9198E5); */
+    border-radius: 2px;
+    padding: 35px;
+}
+
+.add_form h2 {
+    font-family: Starjedi;
+}
+
+.add_form label {
+    font-weight: bold;
+    margin: 0 0 0 15px;
+}
+.add_form input:hover,
+.add_form textarea:hover {
+    box-shadow: 0 0 3px 3px rgba(1, 141, 255, 0.2);
+}
+
+.pictureAdmin {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: rgba(0, 0, 0, 0.85);
+}
+
+
+.radiant-bg {
+    background: linear-gradient(#01fa2b,#008cff, #CC00FF );
+    border: 0px solid rgba(0,0,0,0);
+    border-radius: 2px;
+    padding: 2px;
+}
+
+.btn {
+    background: rgb(0, 140, 255);
+    color: white;
+    margin-top: 10px;
+    padding: 10px 50px;
+    border: 1px solid rgba(0, 89, 255, 0.8);
+}
+
+.btn:hover {
+    background: rgb(36, 155, 252);
+}
