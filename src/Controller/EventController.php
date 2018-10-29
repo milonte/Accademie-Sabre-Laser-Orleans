@@ -63,8 +63,6 @@ class EventController extends AbstractController
             $textFilter->setTexts($userData);
             $userData = $textFilter->filter();
 
-            var_dump($userData);
-
             $eventManager = new EventManager($this->getPdo());
             $event = new Event();
 
