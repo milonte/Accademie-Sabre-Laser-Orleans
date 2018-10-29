@@ -3,7 +3,7 @@
 *.cache
 app/db.php
 .idea/
-/public/assets/images/events/*
-!public/assets/images/events/.gitkeep
 /public/assets/images/gallery/*
 !public/assets/images/gallery/.gitkeep
+/public/assets/images/events/*
+!public/assets/images/events/.gitkeep
