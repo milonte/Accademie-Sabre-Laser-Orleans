@@ -299,6 +299,16 @@ header .btn-outline-white:hover,
     }
 }
 
+/*css présentation de la pratique*/
+.presentationActivity {
+    padding-top: 65pt;
+    padding-bottom: 65pt;
+    font-size: 14.5pt;
+}
+.img-activity {
+    margin-top: 2vh;
+}
+
 /*--section adresse Gymnase--*/
 
 .content-2 h3 {
