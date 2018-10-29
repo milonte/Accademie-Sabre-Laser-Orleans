@@ -174,7 +174,6 @@ h1 .starjedi {
 }
 
 .cover-2 {
-    background: #2b2d34 url(../images/cover-bg-1.jpg) center;
     background: #2b2d34;
     background-size: cover;
     height: auto;
@@ -317,6 +316,13 @@ h1 .starjedi {
         margin-top: 8.5vh;
     }
 }
+
+/*--section adresse Gymnase--*/
+
+.content-2 h3 {
+    font-size: 1.65rem;
+}
+
 /*css bouton "nous contacter" */
 
 .section-button {
@@ -333,12 +339,31 @@ h1 .starjedi {
         width: 50%;
         font-size: 128%;
     }
+
 }
 /* -- FOOTER -- */
+.footer a:hover {
+    text-decoration: none;
+}
+.separator {
+    height: 2px;
+    background: linear-gradient(60deg,#01fa2b,#008cff,
+    #CC00FF
+    );
+}
+.image-footer {
+    height: 85px;
+    width: 100%;
+    background-image: url("../images/new_footer-aslo.png");
+    background-size: 100vw 25vh;
+    min-height: 25vh;
+}
 .footer {
     background-color: black;
 }
-
+.footer .row {
+    margin: 0px;
+}
 .footer_logo {
     font-size: 35px;
 }
@@ -357,3 +382,4 @@ footer a {
         font-size: 12px;
     }
 }
+
