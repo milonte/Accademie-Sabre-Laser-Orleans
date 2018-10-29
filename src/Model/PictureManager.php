@@ -28,6 +28,9 @@ class PictureManager extends AbstractManager
         parent::__construct(self::TABLE, $pdo);
     }
     
+    /**
+     * @return array
+     */
     public function selectAll(): array
     {
         return $this->pdo->query('SELECT * FROM ' . $this->table.' order by id DESC', \PDO::FETCH_CLASS, $this->className)->fetchAll();

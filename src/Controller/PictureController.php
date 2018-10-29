@@ -30,6 +30,12 @@ class PictureController extends AbstractController
         return $this->twig->render('Picture/index.html.twig', ['pictures' => $pictures]);
     }
     
+    /**
+     * @return string
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
+     */
     public function indexAdmin()
     {
         $galleryManager = new PictureManager($this->getPdo());
