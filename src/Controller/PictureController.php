@@ -63,6 +63,15 @@ class PictureController extends AbstractController
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
+    public function indexAdmin()
+    {
+        $galleryManager = new PictureManager($this->getPdo());
+        $pictures = $galleryManager->selectAll();
+        
+        return $this->twig->render('Admin/galerie.html.twig', ['pictures' => $pictures]);
+    }
+    
+  
     public function add()
     {
         $errors = [];
@@ -96,3 +105,4 @@ class PictureController extends AbstractController
         return $this->twig->render('Admin/adminPictureAdd.html.twig', ['errors' => $errors, 'success' => $success]);
     }
 }
+

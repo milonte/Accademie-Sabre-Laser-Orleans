@@ -7,4 +7,3 @@ app/db.php
 !public/assets/images/gallery/.gitkeep
 /public/assets/images/events/*
 !public/assets/images/events/.gitkeep
-
