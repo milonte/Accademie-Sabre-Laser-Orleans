@@ -46,4 +46,23 @@ class EventManager extends AbstractManager
         }
     }
 
+    /**
+     * Edit an event
+     *
+     * @param [int] $id
+     * @return $this->pdo->lastInsterId :int
+     */
+    public function edit($id) {
+        $statement = $this->pdo->prepare("UPDATE " . self::TABLE . " SET `title`=:title, `content`=:content, `image_url`=:imageUrl, `link_url`=:linkUrl, `date`=:date   WHERE (`id`=:id) ");
+        $statement->bindValue('id', $id, \PDO::PARAM_INT);
+        $statement->bindValue('title', $event->getTitle(), \PDO::PARAM_STR);
+        $statement->bindValue('content', $event->getContent(), \PDO::PARAM_STR);
+        $statement->bindValue('imageUrl', $event->getImageUrl(), \PDO::PARAM_STR);
+        $statement->bindValue('linkUrl', $event->getLinkUrl(), \PDO::PARAM_STR);
+        $statement->bindValue('date', $event->getDate()->format("d/m/y"), \PDO::PARAM_STR);
+        if ($statement->execute()) {
+            return $this->pdo->lastInsertId();
+        }
+    }
+
 }
