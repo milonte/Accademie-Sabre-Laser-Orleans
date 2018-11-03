@@ -5,37 +5,42 @@
 {% block content %}
 
 <div class="events container-fluid">
+    <div class="row">
 
-        {% for event in events %}
-        <div class="card text-center ">
-                <div class="card-body container">
-                    <div class="row">
-                        
-                        {% if event.image_url %}
-                        <div class="col-md-8 col-sm-12 my-auto">
-                        {% else %}
-                        <div class="col-md-12 col-sm-12">
-                        {% endif %}
-                            <h4>{{ event.title }}</h4>
-                            <p class="card-text">{{ event.content }}</p>
-                                {% if event.link_url %}
-                                <hr />
-                                <div class="text-center">
-                                    <a class="btn btn-primary" href="{{ event.link_url }}">Lien vers la suite de l'article</a>  
-                                </div>
-                                {% endif %}
-                        </div>
-                        
-                        {% if event.image_url %}
-                        <div class="col-md-4 col-sm-12">
-                            <img class="img-thumbnail" src="assets/images/events/{{ event.image_url }}" alt="" />
-                        </div>
-                        {% endif %}
+    {% for event in events %}
+         
+          <div class="card text-center col-xl-4 col-md-6 col-xs-12">
+          
+             <div class="card-body">
+             <div class="row">
+               
+                    <div class="col-12">
+                    <div class="radiant-bg"> 
+                        <img class="img-thumbnail" src={% if event.image_url %}"assets/images/events/{{ event.image_url }}"{% else %}"assets/images/photo_galerie_1.png"{% endif %}alt="" />
                     </div>
+                    </div>
+                    
+                    <div class="col-md-12 col-sm-12 my-auto">
+                        <h4>{{ event.title }}</h4>
+                        <div class="separator"></div>
+                        <p class="card-text">{{ event.content }}</p>
+                            {% if event.link_url %}
+                           <div class="separator"></div>
+                            <div class="text-center">
+                                <a class="btn btn-outline-white btn-lg" href="{{ event.link_url }}">Lien vers la suite de l'article</a>  
+                            </div>
+                            {% endif %}
+                    </div>
+                    
+
                 </div>
-            <div class="separator"></div>
-            </div>  
-        {% endfor %}
+            </div>
+
+        </div>
+    {% endfor %}
+    </div>  
     
 </div>
 {% endblock %}
+
+{% block script %}<script src="assets/scripts/events.js"></script>{% endblock %}
