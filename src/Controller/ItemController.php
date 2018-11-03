@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: root
@@ -28,12 +29,12 @@ class ItemController extends AbstractController
      * @throws \Twig_Error_Syntax
      */
     public function index()
-        {
-            $itemManager = new ItemManager($this->getPdo());
-            $items = $itemManager->selectAll();
-            return $this->twig->render('Item/index.html.twig', ['items' => $items]);
+    {
+        $itemManager = new ItemManager($this->getPdo());
+        $items = $itemManager->selectAll();
+        return $this->twig->render('Item/index.html.twig', ['items' => $items]);
 
-        }
+    }
 
 
     /**
@@ -63,7 +64,7 @@ class ItemController extends AbstractController
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function edit(int $id): string
+    public function edit(int $id) : string
     {
         $itemManager = new ItemManager($this->getPdo());
         $item = $itemManager->selectOneById($id);
