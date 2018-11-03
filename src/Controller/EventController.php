@@ -21,7 +21,7 @@ class EventController extends AbstractController
 {
     const MIN_TITLE_LENGTH = 3;
     const MIN_CONTENT_LENGTH = 10;
-    const CONTENT_FILTER = "#[a-zA-ZÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ!?,:'()\r\n ]$# ";
+    const CONTENT_FILTER = "#[a-zA-ZÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ!?,:' ()\r\n ]$# ";
     const MIME_TYPES = [
         'png' => 'image/png',
         'jpeg' => 'image/jpeg',
@@ -101,9 +101,11 @@ class EventController extends AbstractController
 
     /**
      * Check form inputs
-     * @return table of errors (or bool false if no errors)
+     * 
+     * @param array $userData
+     * @return table of errors
      */
-    private function formErrors($userData)
+    private function formErrors(array $userData) :array
     {
         $errors = [];
 
@@ -115,8 +117,6 @@ class EventController extends AbstractController
 
         if (!isset($userData['content']) || strlen($userData['content']) < self::MIN_CONTENT_LENGTH) {
             $errors['content_length'] = "Le contenu doit contenir minimum " . self::MIN_CONTENT_LENGTH . " caractères !";
-        } else if (!preg_match(self::CONTENT_FILTER, $userData['content'])) {
-            $errors['content_regex'] = "Le contenu contient des caractères spéciaux";
         }
 
         if (!empty($_FILES['file']['name'])) {
@@ -138,9 +138,7 @@ class EventController extends AbstractController
             }
         }
 
-        if (count($errors) === 0) {
-            $errors = false;
-        } else {
+        if (count($errors) !== 0) {
             $errors['title'] = $userData['title'];
             $errors['content'] = $userData['content'];
             $errors['linkUrl'] = $userData['linkUrl'];
