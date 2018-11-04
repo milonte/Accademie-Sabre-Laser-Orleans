@@ -332,6 +332,11 @@ h1 .starjedi {
 .content-2 h3 {
     font-size: 1.65rem;
 }
+/* event page accueuil */
+
+.card-event {
+    margin-top: 20vh;
+}
 
 /*css bouton "nous contacter" */
 
@@ -392,4 +397,3 @@ footer a {
         font-size: 12px;
     }
 }
-

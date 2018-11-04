@@ -11,6 +11,7 @@ namespace Controller;
 
 
 use Model\AddressManager;
+use Model\EventManager;
 use Filter\Text;
 use \Swift_SmtpTransport;
 use \Swift_Mailer;
@@ -92,6 +93,8 @@ class HomeController extends AbstractController
 
         $addressManager = new AddressManager($this->getPdo());
         $addreses = $addressManager->selectAll();
+        $eventHomes = new EventManager($this->getPdo());
+        $importantEvents = $eventHomes->selectAll();
 
         $errors = $userData = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -107,6 +110,6 @@ class HomeController extends AbstractController
             }
         }
 
-        return $this->twig->render('Home/index.html.twig', ['errors' => $errors, 'post' => $userData, 'addreses'=>$addreses]);
+        return $this->twig->render('Home/index.html.twig', ['errors' => $errors, 'post' => $userData, 'addreses'=>$addreses, 'importantEvents'=>$importantEvents]);
     }
 }

@@ -8,11 +8,20 @@
 
     {% include "Home/banner.html.twig" %}
 
-    {% include "Home/about_us.twig" %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-9 col-md-12">
+                {% include "Home/about_us.twig" %}
 
-    {%  include 'Home/GymnasiumAdressSection.html.twig' %}
+                {% include 'Home/GymnasiumAdressSection.html.twig' %}
 
-    {% include "Home/presentationActivity.html.twig" %}
+                {% include "Home/presentationActivity.html.twig" %}
+            </div>
+            <div class="col-lg-3 col-md-12">
+                {% include "Home/homeEvents.html.twig" %}
+            </div>
+        </div>
+    </div>
 
     {% include "Home/contact_form.twig" %}
 
