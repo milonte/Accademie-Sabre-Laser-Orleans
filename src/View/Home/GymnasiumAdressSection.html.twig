@@ -5,10 +5,14 @@
 <section class="content-2">
     <div class="container">
         <div class="row">
-            <div class="col-sm-12 col-md-8 text-center text-md-left mb-4">
+            <div class="col-sm-12 col-md-8 text-center text-md-left mb-4 my-auto">
             <script>
                 window.onload = function () {
-                    initMap();
+                    let coord = [];
+                    {% for coord in coords %}
+                        coord.push(["{{ coord[0] }}", "{{ coord[1] }}"]);
+                    {% endfor %}
+                    initMap(coord);
                 };
             </script>
                 <div id="map"></div>

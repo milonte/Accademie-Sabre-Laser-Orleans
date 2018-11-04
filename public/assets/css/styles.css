@@ -236,6 +236,7 @@ h1 .starjedi {
 
 #map {
     height: 400px;
+    z-index: 1;
 }
 
 

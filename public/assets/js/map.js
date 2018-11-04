@@ -1,9 +1,13 @@
-var lat = 48.852969;
-var lon = 2.349903;
-var macarte = null;
-// Fonction d'initialisation de la carte
+let lat = 48.852969;
+let lon = 2.349903;
+let macarte = null;
 
-function initMap() {
+// Initialise la map
+// @param [array] coords -> coordonées GPS des gymnases
+function initMap(coords) {
+
+    let markers = [];
+
     // Créer l'objet "macarte" et l'insèrer dans l'élément HTML qui a l'ID "map"
     macarte = L.map('map').setView([lat, lon], 11);
     // Leaflet ne récupère pas les cartes (tiles) sur un serveur par défaut. Nous devons lui préciser où nous souhaitons les récupérer. Ici, openstreetmap.fr
@@ -13,5 +17,20 @@ function initMap() {
         minZoom: 1,
         maxZoom: 20
     }).addTo(macarte);
+    // Icone des gymnases
+    let gymIcon = L.icon({
+        iconUrl: '/assets/images/gymIcon.png',
+        iconSize: [50, 50],
+        iconAnchor: [25, 50],
+        popupAnchor: [-3, -76],
+      });
+    // Ajoute un marqueur pour chaque gymnase
+    coords.forEach(coord => {
+        marker = L.marker([coord[0], coord[1]], {icon : gymIcon}).addTo(macarte);
+        markers.push(marker);
+    });
+    // Auto zoom (et auto-focus) de la carte par rapport aux marqueurs
+    let group = new L.featureGroup(markers);
+    macarte.fitBounds(group.getBounds().pad(0.5))
 }
 

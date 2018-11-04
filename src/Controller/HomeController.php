@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: root
@@ -15,6 +16,7 @@ use Filter\Text;
 use \Swift_SmtpTransport;
 use \Swift_Mailer;
 use \Swift_Message;
+use GuzzleHttp\Client;
 /**
  * Class HomeController
  *
@@ -25,7 +27,7 @@ class HomeController extends AbstractController
      * @param array $userData
      * @return array
      */
-    private function verifMail(array $userData): array
+    private function verifMail(array $userData) : array
     {
         $errorsForm = [];
         if (empty($userData['lastname'])) {
@@ -63,7 +65,7 @@ class HomeController extends AbstractController
      * @param array $userData
      * @return string
      */
-    private function sendMail(array $userData): string
+    private function sendMail(array $userData) : string
     {
         $transport = (new Swift_SmtpTransport('smtp.gmail.com', 465))
             ->setUsername(APP_MAIL_USERNAME)
@@ -92,6 +94,11 @@ class HomeController extends AbstractController
 
         $addressManager = new AddressManager($this->getPdo());
         $addreses = $addressManager->selectAll();
+        $coords = [];
+
+        foreach ($addreses as $addrese) {
+            $coords[] = $this->getCoordsGps($addrese->gym_address.' '.$addrese->zip_code);
+        }
 
         $errors = $userData = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -107,6 +114,30 @@ class HomeController extends AbstractController
             }
         }
 
-        return $this->twig->render('Home/index.html.twig', ['errors' => $errors, 'post' => $userData, 'addreses'=>$addreses]);
+        return $this->twig->render('Home/index.html.twig', ['errors' => $errors, 'post' => $userData, 'addreses' => $addreses, 'coords' => $coords]);
+    }
+
+    /**
+     * Get longitude & latitude of adress
+     *
+     * @param [string] $input
+     * @return [array] $this->coord
+     */
+    public function getCoordsGps(string $input) :array
+    {
+        $uri = 'https://api-adresse.data.gouv.fr/search/?q=' . urlencode($input) . '&autocomplete=0';
+
+        $client = new Client();
+
+        $response = $client->request('GET', $uri);
+
+        $body = $response->getBody();
+        $json = json_decode($body->getContents(), true);
+        $coords = $json["features"][0]["geometry"]["coordinates"];
+        $lonPos = $coords[0];
+        $latPos = $coords[1];
+        $this->coord = [$latPos, $lonPos];
+
+        return $this->coord;
     }
 }
