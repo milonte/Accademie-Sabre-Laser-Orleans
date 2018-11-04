@@ -36,7 +36,7 @@ class PictureManager extends AbstractManager
         return $this->pdo->query('SELECT * FROM ' . $this->table.' order by id DESC', \PDO::FETCH_CLASS, $this->className)->fetchAll();
     }
     
-
+     /*
      * @param Picture $picture
      * @return int
      */
