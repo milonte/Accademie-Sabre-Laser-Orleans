@@ -18,7 +18,7 @@ class AddressManager extends AbstractManager
      */
     public function __construct(\PDO $pdo)
     {
-    parent::__construct(self::TABLE, $pdo);
+        parent::__construct(self::TABLE, $pdo);
     }
 
 
@@ -37,6 +37,5 @@ class AddressManager extends AbstractManager
         $addresses = json_decode($body->getContents(), true);
 
         return $addresses;
-        
     }
 }

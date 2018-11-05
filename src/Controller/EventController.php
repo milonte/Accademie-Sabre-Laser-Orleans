@@ -11,7 +11,7 @@ namespace Controller;
 
 use Model\EventManager;
 use Model\Event;
-use Filter\Text;    
+use Filter\Text;
 
 /**
  * Class EventsController
@@ -81,7 +81,6 @@ class EventController extends AbstractController
             $errors = $this->formErrors($userData);
 
             if (count($errors) === 0) {
-
                 $event->setTitle($userData['title']);
                 $event->setContent($userData['content']);
                 $event->setDate(new \DateTime());
@@ -106,7 +105,6 @@ class EventController extends AbstractController
                 $eventManager->insert($event);
                 header('Location:/events');
             }
-
         }
 
         return $this->twig->render('Event/add.html.twig', ['errors' => $errors]);
@@ -114,7 +112,7 @@ class EventController extends AbstractController
 
     /**
      * Check form inputs
-     * 
+     *
      * @param array $userData
      * @return table of errors
      */

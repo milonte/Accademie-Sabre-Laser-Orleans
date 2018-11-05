@@ -118,5 +118,4 @@ class HomeController extends AbstractController
 
         return $this->twig->render('Home/index.html.twig', ['errors' => $errors, 'post' => $userData, 'addreses' => $addreses, 'coords' => $coords, 'pictures' => $pictures]);
     }
-
 }
