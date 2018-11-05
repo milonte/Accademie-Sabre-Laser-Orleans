@@ -13,6 +13,7 @@ namespace Controller;
 
 use Model\AddressManager;
 use Filter\Text;
+use Model\PictureManager;
 use \Swift_SmtpTransport;
 use \Swift_Mailer;
 use \Swift_Message;
@@ -93,13 +94,15 @@ class HomeController extends AbstractController
 
         $addressManager = new AddressManager($this->getPdo());
         $addreses = $addressManager->selectAll();
+        $pictureManager = new PictureManager($this->getPdo());
+        $pictures = $pictureManager->selectPictureHomeAll();
         $coords = [];
         
         foreach ($addreses as $address) {
             $addressInfos = $addressManager->getAdressInfos($address->gym_address.' '.$address->zip_code)["features"][0]["geometry"]["coordinates"];
             $coords[] = [$addressInfos[1], $addressInfos[0]];
         }
- 
+
         $errors = $userData = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $userData = $_POST;
@@ -114,7 +117,7 @@ class HomeController extends AbstractController
             }
         }
 
-        return $this->twig->render('Home/index.html.twig', ['errors' => $errors, 'post' => $userData, 'addreses' => $addreses, 'coords' => $coords]);
+        return $this->twig->render('Home/index.html.twig', ['errors' => $errors, 'post' => $userData, 'addreses' => $addreses, 'coords' => $coords, 'pictures' => $pictures]);
     }
 
 }
