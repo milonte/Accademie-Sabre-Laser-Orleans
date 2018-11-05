@@ -66,7 +66,9 @@ class EventController extends AbstractController
             $eventManager = new EventManager($this->getPdo());
             $event = new Event();
 
-            if (!$this->formErrors($userData)) {
+            $errors = $this->formErrors($userData);
+
+            if (count($errors) === 0) {
 
                 $event->setTitle($userData['title']);
                 $event->setContent($userData['content']);
@@ -93,7 +95,6 @@ class EventController extends AbstractController
                 header('Location:/events');
             }
 
-            $errors = $this->formErrors($userData);
         }
 
         return $this->twig->render('Event/add.html.twig', ['errors' => $errors]);
