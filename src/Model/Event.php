@@ -184,7 +184,9 @@ class Event
         return $this;
     }
 
+
     /**
+     * @param int $event
      * @return bool
      */
     public function isViewed(): bool

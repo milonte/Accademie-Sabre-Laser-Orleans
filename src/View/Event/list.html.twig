@@ -16,24 +16,10 @@
                     <a href="/admin/event/add" class="btn btn-link"><i class="fas fa-pen-square"></i></a>
                     <a href="/admin/event/remove" class="btn btn-link"><i class="fas fa-minus-square"></i></a>
                     {% if event.viewed == 1 %}
-                        <form method="post">
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" value="0" id="test">
-                                <label class="form-check-label" for="test">cochez et valider pour enlever l'évènement de la page d'accueuil</label>
-                            </div>
-                            <input type="hidden" value="" name="" id="">
-                            <button type="submit" class="btn btn-primary">Je valide</button>
-                        </form>
+                            <a class="btn btn-primary" href="/admin/events/viewed/{{ event.id }}">Ne plus mettre en avant</a>
                     {% endif %}
                     {% if event.viewed == 0 %}
-                        <form method="post">
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" value="1" id="test2">
-                                <label class="form-check-label" for="test2">cochez et valider pour ajouter l'évènement à la page d'accueuil</label>
-                            </div>
-                            <input type="hidden" value="" name="" id="">
-                            <button type="submit" class="btn btn-primary">Je valide</button>
-                        </form>
+                            <a class="btn btn-primary" href="/admin/events/viewed/{{ event.id }}">Mettre en avant</a>
                     {% endif %}
 
                 </div>

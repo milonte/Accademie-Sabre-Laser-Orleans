@@ -41,17 +41,31 @@ class EventManager extends AbstractManager
         $statement->bindValue('imageUrl', $event->getImageUrl(), \PDO::PARAM_STR);
         $statement->bindValue('linkUrl', $event->getLinkUrl(), \PDO::PARAM_STR);
         $statement->bindValue('date', $event->getDate()->format("d/m/y"), \PDO::PARAM_STR);
-        $statement->bindValue('viewed', $event->getViewed(), \PDO::PARAM_INT);
+        $statement->bindValue('viewed', $event->isViewed(), \PDO::PARAM_INT);
         if ($statement->execute()) {
             return $this->pdo->lastInsertId();
         }
     }
+
+    /**
+     * @param Event $event
+     * @return int
+     */
     public function updateViewed(Event $event): int
     {
-        $statement = $this->pdo->prepare("UPDATE $this->table SET viewed = :viewed WHERE id= :id");
+        $statement = $this->pdo->prepare("UPDATE $this->table SET `viewed` = :viewed WHERE id= :id");
         $statement->bindValue('id', $event->getId(), \PDO::PARAM_INT);
-        $statement->bindValue('viewed', $event->getViewed(), \PDO::PARAM_BOOL);
+        $statement->bindValue('viewed', !$event->isViewed(), \PDO::PARAM_BOOL);
         return $statement->execute();
     }
 
+    /**
+     * @return array
+     */
+    public function selectViewed() :array
+    {
+        $statement = $this->pdo->query("SELECT * FROM $this->table WHERE viewed = 1");
+        $statement->setFetchMode(\PDO::FETCH_CLASS, $this->className);
+        return $statement->fetchAll();
+    }
 }

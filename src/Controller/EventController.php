@@ -19,6 +19,7 @@ use Model\Event;
 class EventController extends AbstractController
 {
     const MIN_TITLE_LENGTH = 3;
+    const MAX_EVENTS = 3;
     const MIN_CONTENT_LENGTH = 10;
     const CONTENT_FILTER = "#[a-zA-ZÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ!?,:'()\r\n ]$# ";
     const MIME_TYPES = [
@@ -44,15 +45,23 @@ class EventController extends AbstractController
 
         return $this->twig->render('Event/events.html.twig', ['events' => $events]);
     }
-    public function updateEvent (int $id): string
+
+    /**
+     * @param int $id
+     */
+    public function updateEvent(int $id)
     {
         $eventManager = new EventManager($this->getPdo());
         $event = $eventManager->selectOneById($id);
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            var_dump($_POST);
-            //$eventData = $_POST;
-            //$event->setViewed($eventData['']);
+        $events = $eventManager->selectViewed();
+        $length = count($events);
+        if (($length >= self::MAX_EVENTS) && ($event->isViewed()== false)) {
+            $error = "?error=Vous_ne_pouvez_pas_mettre_plus_de_" . self::MAX_EVENTS . "_events_en_avant";
+        } else {
+            $eventManager->updateViewed($event);
         }
+        header("Location:/admin/events");
+        exit();
     }
 
     /**
@@ -63,7 +72,6 @@ class EventController extends AbstractController
      */
     public function list()
     {
-        var_dump($_POST);
         $eventManager = new EventManager($this->getPdo());
         $events = $eventManager->selectAll();
 
@@ -80,13 +88,11 @@ class EventController extends AbstractController
     public function add()
     {
         $errors = [];
-
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $eventManager = new EventManager($this->getPdo());
             $event = new Event();
 
             if (!$this->formErrors()) {
-
                 $event->setTitle(trim($_POST['title']));
                 $event->setContent(trim($_POST['content']));
                 $event->setDate(new \DateTime());
@@ -128,18 +134,17 @@ class EventController extends AbstractController
 
         if (!isset($_POST['title']) || strlen(trim($_POST['title'])) < self::MIN_TITLE_LENGTH) {
             $errors['title_length'] = "Le titre doit contenir minimum " . self::MIN_TITLE_LENGTH . " caractères !";
-        } else if (!preg_match(self::CONTENT_FILTER, $_POST['title'])) {
+        } elseif (!preg_match(self::CONTENT_FILTER, $_POST['title'])) {
             $errors['title_regex'] = "Le titre contient des caractères spéciaux";
         }
 
         if (!isset($_POST['content']) || strlen(trim($_POST['content'])) < self::MIN_CONTENT_LENGTH) {
-            $errors['content_length'] = "Le contenu doit contenir minimum " . self::MIN_CONTENT_LENGTH . " caractères !";
-        } else if (!preg_match(self::CONTENT_FILTER, trim($_POST['content']))) {
+            $errors['content_length'] = "Le contenu doit contenir minimum" . self::MIN_CONTENT_LENGTH . " caractères !";
+        } elseif (!preg_match(self::CONTENT_FILTER, trim($_POST['content']))) {
             $errors['content_regex'] = "Le contenu contient des caractères spéciaux";
         }
 
         if (!empty($_FILES['file']['name'])) {
-
             $mime_content = explode('/', mime_content_type($_FILES['file']['tmp_name']))[1];
             echo $mime_content;
 
@@ -165,6 +170,5 @@ class EventController extends AbstractController
             $errors['linkUrl'] = trim($_POST['linkUrl']);
         }
         return $errors;
-
     }
-} 
+}
