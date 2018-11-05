@@ -63,6 +63,15 @@ class PictureController extends AbstractController
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
+    public function indexAdmin()
+    {
+        $galleryManager = new PictureManager($this->getPdo());
+        $pictures = $galleryManager->selectAll();
+        
+        return $this->twig->render('Admin/galerie.html.twig', ['pictures' => $pictures]);
+    }
+    
+  
     public function add()
     {
         $errors = [];
@@ -77,7 +86,6 @@ class PictureController extends AbstractController
                 $fileDestination = self::DIR_UPLOAD . '/' . $fileNameNew;
                 
                 if (move_uploaded_file($file['tmp_name'], $fileDestination)) {
-                    
                     $fileDate = new \DateTime();
                     $pictureManager = new PictureManager($this->getPdo());
                     $picture = new Picture();
