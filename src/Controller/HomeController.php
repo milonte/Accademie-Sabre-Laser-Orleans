@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: root
@@ -26,7 +27,7 @@ class HomeController extends AbstractController
      * @param array $userData
      * @return array
      */
-    private function verifMail(array $userData): array
+    private function verifMail(array $userData) : array
     {
         $errorsForm = [];
         if (empty($userData['lastname'])) {
@@ -64,7 +65,7 @@ class HomeController extends AbstractController
      * @param array $userData
      * @return string
      */
-    private function sendMail(array $userData): string
+    private function sendMail(array $userData) : string
     {
         $transport = (new Swift_SmtpTransport('smtp.gmail.com', 465))
             ->setUsername(APP_MAIL_USERNAME)
@@ -93,9 +94,14 @@ class HomeController extends AbstractController
 
         $addressManager = new AddressManager($this->getPdo());
         $addreses = $addressManager->selectAll();
-
         $pictureManager = new PictureManager($this->getPdo());
         $pictures = $pictureManager->selectPictureHomeAll();
+        $coords = [];
+        
+        foreach ($addreses as $address) {
+            $addressInfos = $addressManager->getAdressInfos($address->gym_address.' '.$address->zip_code)["features"][0]["geometry"]["coordinates"];
+            $coords[] = [$addressInfos[1], $addressInfos[0]];
+        }
 
         $errors = $userData = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -111,6 +117,7 @@ class HomeController extends AbstractController
             }
         }
 
-        return $this->twig->render('Home/index.html.twig', ['errors' => $errors, 'post' => $userData, 'addreses'=>$addreses, 'pictures' => $pictures]);
+        return $this->twig->render('Home/index.html.twig', ['errors' => $errors, 'post' => $userData, 'addreses' => $addreses, 'coords' => $coords, 'pictures' => $pictures]);
     }
+
 }

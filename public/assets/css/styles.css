@@ -232,6 +232,14 @@ h1 .starjedi {
     max-width: 100vw;
 }
 
+
+/* MAP */
+
+#map {
+    height: 400px;
+    z-index: 1;
+}
+
 /* PADDING PAGE */
 
 body {
