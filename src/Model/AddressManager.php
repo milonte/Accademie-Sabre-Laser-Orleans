@@ -26,7 +26,7 @@ class AddressManager extends AbstractManager
             $statement->bindValue('id', $address->getId(), \PDO::PARAM_INT);
             $statement->bindValue('gym_name', $address->getGymName(), \PDO::PARAM_STR);
             $statement->bindValue('gym_address', $address->getGymAddress(), \PDO::PARAM_STR);
-            $statement->bindValue('city', $address->getCity(), \PDO::PARAM_INT);
+            $statement->bindValue('city', $address->getCity(), \PDO::PARAM_STR);
             $statement->bindValue('zip_code', $address->getZipCode(), \PDO::PARAM_STR);
             $statement->bindValue('date_info', $address->getDateInfo(), \PDO::PARAM_STR);
             $statement->bindValue('schedule_info', $address->getScheduleInfo(), \PDO::PARAM_STR);

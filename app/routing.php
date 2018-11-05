@@ -19,8 +19,7 @@ $routes = [
     ],
     'Home' => [ // Controller
         ['index', '/', ['GET','POST']], // action, url, method
-        ['listAddress', '/admin/addresses', 'GET'],
-        ['editAddress', '/admin/address/{id:\d+}', ['GET','POST']],
+        ['editAddress', '/admin/addresses', ['GET', 'POST']],
     ],
     'Picture' => [ // Controller
         ['index', '/galerie', 'GET'], // action, url, method
