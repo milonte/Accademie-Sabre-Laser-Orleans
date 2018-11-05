@@ -4,19 +4,27 @@
 
 {% block content %}
 
+<h1 class="text-center">Evénements</h1>
+
 <div class="events container-fluid">
     <div class="row">
 
     {% for event in events %}
          
-          <div class="card text-center col-xl-4 col-md-6 col-xs-12">
+          <div class="card text-center col-xl-4 col-ms-6 col-xs-12">
           
              <div class="card-body">
              <div class="row">
                
                     <div class="col-12">
                     <div class="radiant-bg"> 
-                        <img class="img-thumbnail" src={% if event.image_url %}"assets/images/events/{{ event.image_url }}"{% else %}"assets/images/photo_galerie_1.png"{% endif %}alt="" />
+                        <img class="img-thumbnail" src=
+                        {% if event.image_url %}
+                                "assets/images/events/{{ event.image_url }}"
+                            {% else %}
+                                "assets/images/photo_galerie_1.png"
+                            {% endif %}
+                        alt="" />
                     </div>
                     </div>
                     
