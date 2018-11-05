@@ -34,9 +34,9 @@ class AddressManager extends AbstractManager
         $client = new Client();
         $response = $client->request('GET', $uri);
         $body = $response->getBody();
-        $json = json_decode($body->getContents(), true);
+        $addresses = json_decode($body->getContents(), true);
 
-        return $json;
+        return $addresses;
         
     }
 }

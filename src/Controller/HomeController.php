@@ -96,8 +96,7 @@ class HomeController extends AbstractController
         $coords = [];
         
         foreach ($addreses as $address) {
-            $infosManager = new AddressManager($this->getPdo());
-            $addressInfos = $infosManager->getAdressInfos($address->gym_address.' '.$address->zip_code)["features"][0]["geometry"]["coordinates"];
+            $addressInfos = $addressManager->getAdressInfos($address->gym_address.' '.$address->zip_code)["features"][0]["geometry"]["coordinates"];
             $coords[] = [$addressInfos[1], $addressInfos[0]];
         }
  
