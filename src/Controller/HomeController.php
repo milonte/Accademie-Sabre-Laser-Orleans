@@ -98,7 +98,8 @@ class HomeController extends AbstractController
         $coords = [];
         
         foreach ($addreses as $address) {
-            $addressInfos = $addressManager->getAdressInfos($address->gym_address.' '.$address->zip_code)["features"][0]["geometry"]["coordinates"];
+            $addressInfos = $addressManager->getAdressInfos($address->gym_address.' '.
+            $address->zip_code)["features"][0]["geometry"]["coordinates"];
             $coords[] = [$addressInfos[1], $addressInfos[0]];
         }
 
@@ -116,6 +117,7 @@ class HomeController extends AbstractController
             }
         }
 
-        return $this->twig->render('Home/index.html.twig', ['errors' => $errors, 'post' => $userData, 'addreses' => $addreses, 'coords' => $coords, 'pictures' => $pictures]);
+        return $this->twig->render('Home/index.html.twig', ['errors' => $errors, 'post' => $userData,
+        'addreses' => $addreses, 'coords' => $coords, 'pictures' => $pictures]);
     }
 }
