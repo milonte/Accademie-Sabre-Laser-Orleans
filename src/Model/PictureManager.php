@@ -28,6 +28,17 @@ class PictureManager extends AbstractManager
     }
     
     /**
+     *
+     * @return array
+     */
+    public function selectAll(): array
+    {
+        return $this->pdo->query('SELECT * FROM ' . $this->table.' order by id DESC', \PDO::FETCH_CLASS, $this->className)->fetchAll();
+    }
+    
+    /**
+     * Insert picture into database
+     *
      * @param Picture $picture
      * @return int
      */
@@ -42,5 +53,13 @@ class PictureManager extends AbstractManager
         if ($statement->execute()) {
             return $this->pdo->lastInsertId();
         }
+    }
+
+    /**
+     * @return array
+     */
+    public function selectPictureHomeAll(): array
+    {
+        return $this->pdo->query("SELECT * FROM $this->table ORDER BY picture_date DESC LIMIT 3", \PDO::FETCH_CLASS, $this->className)->fetchAll();
     }
 }

@@ -46,7 +46,7 @@ class EventManager extends AbstractManager
             return $this->pdo->lastInsertId();
         }
     }
-
+  
     /**
      * @param Event $event
      * @return int
