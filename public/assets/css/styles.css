@@ -365,10 +365,16 @@ h1 .starjedi {
 .importantEvents .text-event {
     text-overflow: ellipsis;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 990px) {
     .importantEvents .btn {
         margin-top: 20px;
-        max-width: 65vw;
+        max-width: 28vw;
+    }
+}
+@media screen and (max-width: 567px) {
+    .importantEvents .btn {
+        margin-top: 10px;
+        max-width: 50vw;
     }
 }
 
