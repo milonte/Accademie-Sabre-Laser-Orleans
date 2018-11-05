@@ -15,12 +15,18 @@ use Filter\Text;
 use \Swift_SmtpTransport;
 use \Swift_Mailer;
 use \Swift_Message;
+use Model\Address;
 /**
  * Class HomeController
  *
  */
 class HomeController extends AbstractController
 {
+
+    const MIN_TITLE_LENGTH = 3;
+    const MIN_CONTENT_LENGTH = 10;
+    const CONTENT_FILTER = "#[a-zA-ZÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ!?,:'()\r\n ]$# ";
+
     /**
      * @param array $userData
      * @return array
@@ -110,13 +116,80 @@ class HomeController extends AbstractController
         return $this->twig->render('Home/index.html.twig', ['errors' => $errors, 'post' => $userData, 'addreses'=>$addreses]);
     }
 
-    public function addressEdit() 
+    public function listAddress() 
     {
 
         $addressManager = new AddressManager($this->getPdo());
         $addreses = $addressManager->selectAll();
 
+        
         return $this->twig->render('Home/_address_form.html.twig', ['addreses' => $addreses]);
+    }
+    
+    public function editAddress(int $id) 
+    {
+
+        $addressManager = new AddressManager($this->getPdo());
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    
+            $userData = $_POST;
+            $textFilter = new Text();
+            $textFilter->setTexts($userData);
+            $userData = $textFilter->filter();
+    
+            //if (count($this->formErrors()) === 0) {
+                $address = new Address();
+                $address->setId($id);
+                $address->setGymName($userData['name']);
+                $address->setGymAddress($userData['address']);
+                $address->setZipCode($userData['zip_code']);
+                $address->setCity($userData['city']);
+                $address->setDateInfo($userData['date']);
+                $address->setScheduleInfo($userData['schedule']);
+    
+                $addressManager->update($address);
+            //}
+    
+            header('Location:/admin/addresses');
+        }
+
+    }
+
+     /**
+     * Check form inputs
+     * @return table of errors (or bool false if no errors)
+     */
+    private function formErrors()
+    {
+        $errors = [];
+
+        if (!isset($_POST['title']) || strlen(trim($_POST['title'])) < self::MIN_TITLE_LENGTH) {
+            $errors['title_length'] = "Le titre doit contenir minimum " . self::MIN_TITLE_LENGTH . " caractères !";
+        } else if (!preg_match(self::CONTENT_FILTER, $_POST['title'])) {
+            $errors['title_regex'] = "Le titre contient des caractères spéciaux";
+        }
+
+        if (!isset($_POST['content']) || strlen(trim($_POST['content'])) < self::MIN_CONTENT_LENGTH) {
+            $errors['content_length'] = "Le contenu doit contenir minimum " . self::MIN_CONTENT_LENGTH . " caractères !";
+        } else if (!preg_match(self::CONTENT_FILTER, trim($_POST['content']))) {
+            $errors['content_regex'] = "Le contenu contient des caractères spéciaux";
+        }
+
+
+        if ($_POST['linkUrl']) {
+            if (!(filter_var($_POST['linkUrl'], FILTER_VALIDATE_URL, FILTER_FLAG_PATH_REQUIRED))) {
+                $errors['link_regex'] = "Format non valide (format accepté : http://www.website.com)";
+            }
+        }
+
+        if (count($errors) !== 0) {
+            $errors['title'] = trim($_POST['title']);
+            $errors['content'] = trim($_POST['content']);
+            $errors['linkUrl'] = trim($_POST['linkUrl']);
+        }
+        return $errors;
+
     }
 
 }

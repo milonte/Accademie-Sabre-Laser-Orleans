@@ -9,10 +9,10 @@
     
         <h2 class="text-center">éditer les adresses</h2>
 
-        <form method="post" action="edit" enctype="multipart/form-data">
 
 {% for address in addreses %}
 
+        <form method="post" action="address/{{ address.id }}" enctype="multipart/form-data">
             <input type="hidden" value="{{ address.id }}" name="id" />
 
             <h4>Adresse {{ address.id }}</h4>
@@ -39,12 +39,12 @@
             
             <div class="form-group row">
                 <div class="col-md-6 col-ms-12">
-                    <label for="address_zipcode">Code Postal</label>
-                    <input id="address_zipcode" class="form-control" type="text" value="{{ address.zip_code }}{% if errors %}{{ errors.zipcode }}{% endif %}" name="zipcode" required />
-                    {% if errors.zipcode_length %}
-                        <div class="alert alert-danger">{{ errors.zipcode_length }}</div>
-                    {% elseif errors.zipcode_regex %}
-                        <div class="alert alert-danger">{{ errors.zipcode_regex }}</div>
+                    <label for="address_zip_code">Code Postal</label>
+                    <input id="address_zip_code" class="form-control" type="text" value="{{ address.zip_code }}{% if errors %}{{ errors.zip_code }}{% endif %}" name="zip_code" required />
+                    {% if errors.zip_code_length %}
+                        <div class="alert alert-danger">{{ errors.zip_code_length }}</div>
+                    {% elseif errors.zip_code_regex %}
+                        <div class="alert alert-danger">{{ errors.zip_code_regex }}</div>
                     {% endif %}
                 </div>
                 <div class="col-md-6 col-ms-12">
@@ -60,11 +60,11 @@
 
             <div class="form-group">
                 <label for="address_date">Dates</label>
-                <input id="address_date" class="form-control" type="text" value="{{ address.date_info }}{% if errors %}{{ errors.city }}{% endif %}" name="date" required />
+                <input id="address_date" class="form-control" type="text" value="{{ address.date_info }}{% if errors %}{{ errors.date }}{% endif %}" name="date" required />
                     {% if errors.date_length %}
-                        <div class="alert alert-danger">{{ errors.city_length }}</div>
+                        <div class="alert alert-danger">{{ errors.date_length }}</div>
                     {% elseif errors.date_regex %}
-                        <div class="alert alert-danger">{{ errors.city_regex }}</div>
+                        <div class="alert alert-danger">{{ errors.date_regex }}</div>
                     {% endif %}
             </div>
 
@@ -78,13 +78,13 @@
                     {% endif %}
             </div>
             <br />
-{% endfor %}
 
             <div class="text-center">
                 <input type="submit" class="btn" value="Valider">
             </div>
 
         </form>
+{% endfor %}
     </div>
 </div>
 
