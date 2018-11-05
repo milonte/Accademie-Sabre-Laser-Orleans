@@ -49,15 +49,13 @@ class EventController extends AbstractController
     /**
      * @param int $id
      */
-    public function updateEvent(int $id)
+    public function updateEvent(int $id):void
     {
         $eventManager = new EventManager($this->getPdo());
         $event = $eventManager->selectOneById($id);
         $events = $eventManager->selectViewed();
         $length = count($events);
-        if (($length >= self::MAX_EVENTS) && ($event->isViewed()== false)) {
-            $error = "?error=Vous_ne_pouvez_pas_mettre_plus_de_" . self::MAX_EVENTS . "_events_en_avant";
-        } else {
+        if (($length <= self::MAX_EVENTS) && ($event->isViewed()== true)) {
             $eventManager->updateViewed($event);
         }
         header("Location:/admin/events");

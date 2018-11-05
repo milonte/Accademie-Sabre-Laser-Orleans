@@ -197,7 +197,7 @@ class Event
     /**
      * @param bool $viewed
      */
-    public function setViewed(bool $viewed)
+    public function setViewed(bool $viewed): void
     {
         $this->viewed = $viewed;
     }
