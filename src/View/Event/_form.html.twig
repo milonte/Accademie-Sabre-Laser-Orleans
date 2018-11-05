@@ -20,8 +20,6 @@
                 <textarea id="event_content" class="form-control" type="text" name="content" required>{% if errors %}{{ errors.content }}{% endif %}</textarea>
                 {% if errors.content_length %}
                 <div class="alert alert-danger">{{ errors.content_length }}</div>
-                {% elseif errors.content_regex %}
-                <div class="alert alert-danger">{{ errors.content_regex }}</div>
                 {% endif %}
             </div>
 
