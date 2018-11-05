@@ -1,7 +1,8 @@
 <div class="importantEvents container-fluid">
     <div class="row justify-content-around">
         {% for importantEvent in importantEvents %}
-            <div class="card card-event text-center col-lg-12 col-md-3">
+            {% if importantEvent.viewed == 1 %}
+            <div class="card card-event text-center col-lg-12">
 
                 <div class="card-body">
                     <div class="row">
@@ -27,6 +28,7 @@
                     </div>
                 </div>
             </div>
+            {% endif %}
         {% endfor %}
     </div>
 </div>

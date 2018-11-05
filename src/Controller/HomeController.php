@@ -11,8 +11,9 @@ namespace Controller;
 
 
 use Model\AddressManager;
-use Model\EventManager;
+use Model\Event;
 use Filter\Text;
+use Model\EventManager;
 use \Swift_SmtpTransport;
 use \Swift_Mailer;
 use \Swift_Message;

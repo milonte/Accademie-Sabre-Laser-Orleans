@@ -31,6 +31,7 @@ class Event
      */
     private $content;
 
+
     /**
      * @var string
      */
@@ -44,6 +45,11 @@ class Event
      * @var Datetime
      */
     private $date;
+
+    /**
+     * @var int
+     */
+    private $viewed;
 
 
     /**
@@ -176,5 +182,20 @@ class Event
         $this->date = $date;
 
         return $this;
+    }
+    /**
+     * @return int
+     */
+    public function getViewed()
+    {
+        return $this->viewed;
+    }
+
+    /**
+     * @param int $viewed
+     */
+    public function setViewed($viewed)
+    {
+        $this->viewed = $viewed;
     }
 }
