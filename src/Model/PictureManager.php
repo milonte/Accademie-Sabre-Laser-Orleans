@@ -28,7 +28,7 @@ class PictureManager extends AbstractManager
     }
     
     /**
-
+     * 
      * @return array
      */
     public function selectAll(): array
@@ -36,7 +36,9 @@ class PictureManager extends AbstractManager
         return $this->pdo->query('SELECT * FROM ' . $this->table.' order by id DESC', \PDO::FETCH_CLASS, $this->className)->fetchAll();
     }
     
-     /*
+    /**
+     * Insert picture into database
+     * 
      * @param Picture $picture
      * @return int
      */
