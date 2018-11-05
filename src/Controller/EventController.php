@@ -155,4 +155,4 @@ class EventController extends AbstractController
         }
         return $errors;
     }
-} 
+}
