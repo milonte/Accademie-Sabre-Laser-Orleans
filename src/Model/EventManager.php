@@ -46,5 +46,12 @@ class EventManager extends AbstractManager
             return $this->pdo->lastInsertId();
         }
     }
+    public function updateViewed(Event $event): int
+    {
+        $statement = $this->pdo->prepare("UPDATE $this->table SET viewed = :viewed WHERE id= :id");
+        $statement->bindValue('id', $event->getId(), \PDO::PARAM_INT);
+        $statement->bindValue('viewed', $event->getViewed(), \PDO::PARAM_BOOL);
+        return $statement->execute();
+    }
 
 }

@@ -44,24 +44,38 @@ class EventController extends AbstractController
 
         return $this->twig->render('Event/events.html.twig', ['events' => $events]);
     }
+    public function updateEvent (int $id): string
+    {
+        $eventManager = new EventManager($this->getPdo());
+        $event = $eventManager->selectOneById($id);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            var_dump($_POST);
+            //$eventData = $_POST;
+            //$event->setViewed($eventData['']);
+        }
+    }
 
     /**
-     * Display admin listing events
-     *
      * @return string
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
     public function list()
     {
+        var_dump($_POST);
         $eventManager = new EventManager($this->getPdo());
         $events = $eventManager->selectAll();
 
         return $this->twig->render('Event/list.html.twig', ['events' => $events]);
     }
 
+
     /**
-     * Display event creation page
-     *
      * @return string
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
     public function add()
     {
@@ -104,9 +118,9 @@ class EventController extends AbstractController
         return $this->twig->render('Event/add.html.twig', ['errors' => $errors]);
     }
 
+
     /**
-     * Check form inputs
-     * @return table of errors (or bool false if no errors)
+     * @return array
      */
     private function formErrors()
     {
