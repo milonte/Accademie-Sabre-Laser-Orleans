@@ -58,7 +58,7 @@ class PictureManager extends AbstractManager
     /**
      * @param int $id
      */
-    public function delete(int $id): void
+    public function delete(int $id)
     {
         // prepared request
         $statement = $this->pdo->prepare("DELETE FROM $this->table WHERE id=:id");
