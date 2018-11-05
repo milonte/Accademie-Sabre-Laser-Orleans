@@ -70,7 +70,6 @@ class EventController extends AbstractController
         $userData = [];
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
             $userData = $_POST;
             $textFilter = new Text();
             $textFilter->setTexts($userData);
@@ -134,7 +133,6 @@ class EventController extends AbstractController
         }
 
         if (!empty($_FILES['file']['name'])) {
-
             $mime_content = explode('/', mime_content_type($_FILES['file']['tmp_name']))[1];
             echo $mime_content;
 
@@ -158,6 +156,5 @@ class EventController extends AbstractController
             $errors['linkUrl'] = $userData['linkUrl'];
         }
         return $errors;
-
     }
 } 

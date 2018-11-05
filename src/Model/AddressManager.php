@@ -12,7 +12,6 @@ use GuzzleHttp\Client;
 class AddressManager extends AbstractManager
 {
     const TABLE = 'address';
-
     /**
      * AddressManager constructor.
      * @param \PDO $pdo
@@ -21,6 +20,7 @@ class AddressManager extends AbstractManager
     {
     parent::__construct(self::TABLE, $pdo);
     }
+
 
     /**
      * Get adresse informations
