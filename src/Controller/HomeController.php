@@ -16,7 +16,6 @@ use Filter\Text;
 use \Swift_SmtpTransport;
 use \Swift_Mailer;
 use \Swift_Message;
-use GuzzleHttp\Client;
 /**
  * Class HomeController
  *
@@ -95,11 +94,13 @@ class HomeController extends AbstractController
         $addressManager = new AddressManager($this->getPdo());
         $addreses = $addressManager->selectAll();
         $coords = [];
-
-        foreach ($addreses as $addrese) {
-            $coords[] = $this->getCoordsGps($addrese->gym_address.' '.$addrese->zip_code);
+        
+        foreach ($addreses as $address) {
+            $infosManager = new AddressManager($this->getPdo());
+            $addressInfos = $infosManager->getAdressInfos($address->gym_address.' '.$address->zip_code)["features"][0]["geometry"]["coordinates"];
+            $coords[] = [$addressInfos[1], $addressInfos[0]];
         }
-
+ 
         $errors = $userData = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $userData = $_POST;
@@ -117,27 +118,4 @@ class HomeController extends AbstractController
         return $this->twig->render('Home/index.html.twig', ['errors' => $errors, 'post' => $userData, 'addreses' => $addreses, 'coords' => $coords]);
     }
 
-    /**
-     * Get longitude & latitude of adress
-     *
-     * @param [string] $input
-     * @return [array] $this->coord
-     */
-    public function getCoordsGps(string $input) :array
-    {
-        $uri = 'https://api-adresse.data.gouv.fr/search/?q=' . urlencode($input) . '&autocomplete=0';
-
-        $client = new Client();
-
-        $response = $client->request('GET', $uri);
-
-        $body = $response->getBody();
-        $json = json_decode($body->getContents(), true);
-        $coords = $json["features"][0]["geometry"]["coordinates"];
-        $lonPos = $coords[0];
-        $latPos = $coords[1];
-        $this->coord = [$latPos, $lonPos];
-
-        return $this->coord;
-    }
 }
