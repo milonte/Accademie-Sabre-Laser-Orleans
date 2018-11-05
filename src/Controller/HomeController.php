@@ -96,7 +96,7 @@ class HomeController extends AbstractController
         $addressManager = new AddressManager($this->getPdo());
         $addreses = $addressManager->selectAll();
         $eventHomes = new EventManager($this->getPdo());
-        $importantEvents = $eventHomes->selectAll();
+        $importantEvents = $eventHomes->selectViewed();
         $pictureManager = new PictureManager($this->getPdo());
         $pictures = $pictureManager->selectPictureHomeAll();
         $coords = [];
