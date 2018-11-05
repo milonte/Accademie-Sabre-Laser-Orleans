@@ -30,9 +30,9 @@ class ItemController extends AbstractController
      */
     public function index()
     {
-        $itemManager = new ItemManager($this->getPdo());
-        $items = $itemManager->selectAll();
-        return $this->twig->render('Item/index.html.twig', ['items' => $items]);
+            $itemManager = new ItemManager($this->getPdo());
+            $items = $itemManager->selectAll();
+            return $this->twig->render('Item/index.html.twig', ['items' => $items]);
     }
 
 
