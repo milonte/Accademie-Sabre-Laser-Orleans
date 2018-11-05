@@ -1,0 +1,91 @@
+{% extends 'layout.html.twig' %}
+
+{% block style %} /assets/css/admin.css {% endblock %}
+
+{% block content %}
+
+<div class="radiant-bg container">
+    <div class="add_form">
+    
+        <h2 class="text-center">éditer les adresses</h2>
+
+        <form method="post" action="edit" enctype="multipart/form-data">
+
+{% for address in addreses %}
+
+            <input type="hidden" value="{{ address.id }}" name="id" />
+
+            <h4>Adresse {{ address.id }}</h4>
+
+            <div class="form-group">
+                <label for="address_name">Nom du gymnase</label>
+                <input id="address_name" class="form-control" type="text" value="{{ address.gym_name }}{% if errors %}{{ errors.name }}{% endif %}" name="name" required />
+                {% if errors.name_length %}
+                    <div class="alert alert-danger">{{ errors.name_length }}</div>
+                {% elseif errors.name_regex %}
+                    <div class="alert alert-danger">{{ errors.name_regex }}</div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="address_address">Adresse</label>
+                <input id="address_address" class="form-control" type="text" value="{{ address.gym_address }}{% if errors %}{{ errors.address }}{% endif %}" name="address" required />
+                {% if errors.address_length %}
+                    <div class="alert alert-danger">{{ errors.address_length }}</div>
+                {% elseif errors.address_regex %}
+                    <div class="alert alert-danger">{{ errors.address_regex }}</div>
+                {% endif %}
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-6 col-ms-12">
+                    <label for="address_zipcode">Code Postal</label>
+                    <input id="address_zipcode" class="form-control" type="text" value="{{ address.zip_code }}{% if errors %}{{ errors.zipcode }}{% endif %}" name="zipcode" required />
+                    {% if errors.zipcode_length %}
+                        <div class="alert alert-danger">{{ errors.zipcode_length }}</div>
+                    {% elseif errors.zipcode_regex %}
+                        <div class="alert alert-danger">{{ errors.zipcode_regex }}</div>
+                    {% endif %}
+                </div>
+                <div class="col-md-6 col-ms-12">
+                    <label for="address_city">Ville</label>
+                    <input id="address_city" class="form-control" type="text" value="{{ address.city }}{% if errors %}{{ errors.city }}{% endif %}" name="city" required />
+                    {% if errors.city_length %}
+                        <div class="alert alert-danger">{{ errors.city_length }}</div>
+                    {% elseif errors.city_regex %}
+                        <div class="alert alert-danger">{{ errors.city_regex }}</div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="address_date">Dates</label>
+                <input id="address_date" class="form-control" type="text" value="{{ address.date_info }}{% if errors %}{{ errors.city }}{% endif %}" name="date" required />
+                    {% if errors.date_length %}
+                        <div class="alert alert-danger">{{ errors.city_length }}</div>
+                    {% elseif errors.date_regex %}
+                        <div class="alert alert-danger">{{ errors.city_regex }}</div>
+                    {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="address_schedule">Dates</label>
+                <input id="address_schedule" class="form-control" type="text" value="{{ address.schedule_info }}{% if errors %}{{ errors.city }}{% endif %}" name="schedule" required />
+                    {% if errors.schedule_length %}
+                        <div class="alert alert-danger">{{ errors.schedule_length }}</div>
+                    {% elseif errors.schedule_regex %}
+                        <div class="alert alert-danger">{{ errors.schedule_regex }}</div>
+                    {% endif %}
+            </div>
+            <br />
+{% endfor %}
+
+            <div class="text-center">
+                <input type="submit" class="btn" value="Valider">
+            </div>
+
+        </form>
+    </div>
+</div>
+
+{% endblock %}

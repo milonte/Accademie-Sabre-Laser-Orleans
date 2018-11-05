@@ -109,4 +109,14 @@ class HomeController extends AbstractController
 
         return $this->twig->render('Home/index.html.twig', ['errors' => $errors, 'post' => $userData, 'addreses'=>$addreses]);
     }
+
+    public function addressEdit() 
+    {
+
+        $addressManager = new AddressManager($this->getPdo());
+        $addreses = $addressManager->selectAll();
+
+        return $this->twig->render('Home/_address_form.html.twig', ['addreses' => $addreses]);
+    }
+
 }
