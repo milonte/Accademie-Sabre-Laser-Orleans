@@ -12,15 +12,15 @@ use GuzzleHttp\Client;
 class AddressManager extends AbstractManager
 {
     const TABLE = 'address';
-
     /**
      * AddressManager constructor.
      * @param \PDO $pdo
      */
     public function __construct(\PDO $pdo)
     {
-    parent::__construct(self::TABLE, $pdo);
+        parent::__construct(self::TABLE, $pdo);
     }
+
 
     /**
      * Get adresse informations
@@ -37,6 +37,5 @@ class AddressManager extends AbstractManager
         $addresses = json_decode($body->getContents(), true);
 
         return $addresses;
-        
     }
 }

@@ -7,9 +7,7 @@
  * Time: 16:07
  * PHP version 7
  */
-
 namespace Controller;
-
 
 use Model\AddressManager;
 use Filter\Text;
@@ -17,6 +15,7 @@ use Model\PictureManager;
 use \Swift_SmtpTransport;
 use \Swift_Mailer;
 use \Swift_Message;
+
 /**
  * Class HomeController
  *
@@ -119,5 +118,4 @@ class HomeController extends AbstractController
 
         return $this->twig->render('Home/index.html.twig', ['errors' => $errors, 'post' => $userData, 'addreses' => $addreses, 'coords' => $coords, 'pictures' => $pictures]);
     }
-
 }

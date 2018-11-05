@@ -86,7 +86,6 @@ class PictureController extends AbstractController
                 $fileDestination = self::DIR_UPLOAD . '/' . $fileNameNew;
                 
                 if (move_uploaded_file($file['tmp_name'], $fileDestination)) {
-                    
                     $fileDate = new \DateTime();
                     $pictureManager = new PictureManager($this->getPdo());
                     $picture = new Picture();
@@ -105,4 +104,3 @@ class PictureController extends AbstractController
         return $this->twig->render('Admin/adminPictureAdd.html.twig', ['errors' => $errors, 'success' => $success]);
     }
 }
-
