@@ -45,7 +45,6 @@ class EventController extends AbstractController
         $events = $eventManager->selectAll();
 
         foreach ($events as $event) {
-            //var_dump(substr($event->getContent(), 0, 400));
             if (strlen($event->getContent()) > self::EVENT_MAX_CONTENT_SIZE) {
                 $event->setContent(substr($event->getContent(), 0, self::EVENT_MAX_CONTENT_SIZE-5) . "[...]");
             }
