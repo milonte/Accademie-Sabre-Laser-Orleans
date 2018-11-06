@@ -25,7 +25,10 @@ class MemberController extends AbstractController
     {
         $errorsForm = [];
         $emptyField=false;
-        $labels = array('firstname' => 'Prénom', 'lastname' => 'Nom', 'email' => 'Email', 'address' => 'Adresse', 'postalcode' => 'Code Postal', 'city' => 'Ville', 'tel' => 'Téléphone', 'birthDate' => 'Date de naissance', 'EmergencyContact' => 'Contact d\'urgence', 'EmergencyContactTel' => 'Tel d\'urgence', 'paiement' => 'Modalité de paiement');
+        $labels = array('firstname' => 'Prénom', 'lastname' => 'Nom', 'email' => 'Email', 'address' => 'Adresse',
+        'postalcode' => 'Code Postal', 'city' => 'Ville', 'tel' => 'Téléphone', 'birthDate' => 'Date de naissance',
+        'EmergencyContact' => 'Contact d\'urgence', 'EmergencyContactTel' => 'Tel d\'urgence',
+        'paiement' => 'Modalité de paiement');
 
         foreach ($userData as $key => $value) {
             if (empty($value)) {

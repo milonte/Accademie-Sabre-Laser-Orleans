@@ -2,18 +2,28 @@
 
 {% block title %} {% endblock %}
 
-{% block style %} {% endblock %}
+{% block style %} 
+https://unpkg.com/leaflet@1.3.1/dist/leaflet.css
+{% endblock %}
 
 {% block content %}
 
+    {% include "Home/banner.html.twig" %}
+
     {% include "Home/about_us.twig" %}
 
-    {%  include 'Home/GymnasiumAdressSection.html.twig' %}
+    {%  include 'Home/gymnasiumAdressSection.html.twig' %}
+
+    {% include "Home/presentationActivity.html.twig" %}
 
     {% include "Home/contact_form.twig" %}
-    
+
     {% include "Home/video.html.twig" %}
 
     {% include 'Home/galleryPhotosHome.html.twig' %}
 
+{% endblock %}
+
+{% block script %}
+    
 {% endblock %}
