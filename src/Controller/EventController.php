@@ -7,6 +7,7 @@
  * Time: 16:07
  * PHP version 7
  */
+
 namespace Controller;
 
 use Model\EventManager;
@@ -50,13 +51,15 @@ class EventController extends AbstractController
     /**
      * @param int $id
      */
-    public function updateEvent(int $id):void
+    public function updateEvent(int $id): void
     {
         $eventManager = new EventManager($this->getPdo());
         $event = $eventManager->selectOneById($id);
         $events = $eventManager->selectViewed();
         $length = count($events);
-        if (($length <= self::MAX_EVENTS) && ($event->isViewed()== true)) {
+        if (($length < self::MAX_EVENTS)) {
+            $eventManager->updateViewed($event);
+        } elseif (($length == self::MAX_EVENTS) && ($event->isViewed() == true)) {
             $eventManager->updateViewed($event);
         }
         header("Location:/admin/events");
@@ -88,7 +91,7 @@ class EventController extends AbstractController
     {
         $errors = [];
         $userData = [];
-      
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $userData = $_POST;
             $textFilter = new Text();
@@ -137,7 +140,7 @@ class EventController extends AbstractController
      * @param array $userData
      * @return table of errors
      */
-    private function formErrors(array $userData) :array
+    private function formErrors(array $userData): array
     {
         $errors = [];
 
@@ -148,8 +151,8 @@ class EventController extends AbstractController
         }
 
         if (!isset($userData['content']) || strlen($userData['content']) < self::MIN_CONTENT_LENGTH) {
-            $errors['content_length'] = "Le contenu doit contenir minimum " . self::MIN_CONTENT_LENGTH . " caractères !"
-            ;
+            $errors['content_length'] =
+                "Le contenu doit contenir minimum " . self::MIN_CONTENT_LENGTH . " caractères !";
         }
 
         if (!empty($_FILES['file']['name'])) {
