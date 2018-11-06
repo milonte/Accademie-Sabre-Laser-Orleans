@@ -27,11 +27,14 @@ $routes = [
         ['index', '/galerie', 'GET'], // action, url, method
         ['indexAdmin', '/admin/galerie', 'GET'],
         ['add', '/admin/galerie/add', ['GET', 'POST']],
+        ['delete', '/admin/galerie/delete/{id:\d+}','POST'],
     ],
     'Event' => [
         ['index', '/events', 'GET'],
         ['list', '/admin/events', 'GET'],
         ['add', '/admin/event/add', ['GET', 'POST']],
+        ['updateEvent', '/admin/events/viewed/{id:\d+}', ['GET', 'POST']],
+        ['remove', '/admin/event/remove', 'POST'],
     ],
     'Member' => [ // Controller
         ['add', '/inscription', ['GET', 'POST']], // action, url, method

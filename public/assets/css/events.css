@@ -9,6 +9,7 @@
 
 .events .card-body {
     margin: auto;
+    padding: 10px;
 }
 
 .events .card-text {

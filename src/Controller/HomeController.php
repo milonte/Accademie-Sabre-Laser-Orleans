@@ -9,9 +9,10 @@
  */
 namespace Controller;
 
-use Filter\Text;
-use Model\Address;
 use Model\AddressManager;
+use Model\Event;
+use Filter\Text;
+use Model\EventManager;
 use Model\PictureManager;
 use \Swift_Mailer;
 use \Swift_Message;
@@ -93,6 +94,8 @@ class HomeController extends AbstractController
 
         $addressManager = new AddressManager($this->getPdo());
         $addreses = $addressManager->selectAll();
+        $eventHomes = new EventManager($this->getPdo());
+        $importantEvents = $eventHomes->selectViewed();
         $pictureManager = new PictureManager($this->getPdo());
         $pictures = $pictureManager->selectPictureHomeAll();
         $coords = [];
@@ -128,6 +131,7 @@ class HomeController extends AbstractController
                 'addreses' => $addreses,
                 'coords' => $coords,
                 'pictures' => $pictures,
+                'importantEvents'=>$importantEvents
             ]
         );
     }
