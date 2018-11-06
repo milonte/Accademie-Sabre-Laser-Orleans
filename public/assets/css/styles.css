@@ -417,17 +417,20 @@ body {
     transition: .3s ease-in-out;
 }
 .effect:hover {
-    opacity: .5;
+    opacity: .3;
 }
 
 div .thumbnail:hover .text_effect{
     font-family : arial;
     font-weight : bolder;
     color : #2439cd;
-    position : absolute;
-    margin-top: -150pt;
-    margin-left: 70pt;
-    font-size : 18pt;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    font-size : 19pt;
     background-color : transparent;
     height : 50pt;
     width : 120pt;
