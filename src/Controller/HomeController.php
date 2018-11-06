@@ -36,14 +36,16 @@ class HomeController extends AbstractController
     private function verifMail(array $userData) : array
     {
         $errorsForm = [];
+        $carConformity = "#[a-zA-ZÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ' ]$#";
+        $numberConformity = " #^[0-9]{2}[-/ ]?[0-9]{2}[-/ ]?[0-9]{2}[-/ ]?[0-9]{2}[-/ ]?[0-9]{2}?$# ";
         if (empty($userData['lastname'])) {
             $errorsForm['lastname'] = "Votre nom doit être indiqué";
-        } elseif (!preg_match("#[a-zA-ZÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ' ]$#", $userData['lastname'])) {
+        } elseif (!preg_match($carConformity, $userData['lastname'])) {
             $errorsForm['lastname'] = "Votre nom ne doit pas contenir de caractères spéciaux";
         }
         if (empty($userData['firstname'])) {
             $errorsForm['firstname'] = "Votre prénom doit être indiqué";
-        } elseif (!preg_match("#[a-zA-ZÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ' ]$#", $userData['firstname'])) {
+        } elseif (!preg_match($carConformity, $userData['firstname'])) {
             $errorsForm['firstname'] = "Votre prénom ne doit pas contenir de caractères spéciaux";
         }
         if (empty($userData['email'])) {
@@ -53,12 +55,12 @@ class HomeController extends AbstractController
         }
         if (empty($userData['num'])) {
             $errorsForm['num'] = "Votre numéro de téléphone doit être indiqué";
-        } elseif (!preg_match(" #^[0-9]{2}[-/ ]?[0-9]{2}[-/ ]?[0-9]{2}[-/ ]?[0-9]{2}[-/ ]?[0-9]{2}?$# ", $userData['num'])) {
+        } elseif (!preg_match($numberConformity, $userData['num'])) {
             $errorsForm['num'] = "Le numéro de téléphone renseigné est incorrect";
         }
         if (empty($userData['message'])) {
             $errorsForm['message'] = "Vous devez écrire un message";
-        } elseif (!preg_match(" #[a-zA-ZÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ' ]$# ", $userData['message'])) {
+        } elseif (!preg_match($carConformity, $userData['message'])) {
             $errorsForm['message'] = "Votre message ne doit pas contenir de caractère non-autorisés";
         }
 
@@ -105,7 +107,8 @@ class HomeController extends AbstractController
         $coords = [];
         
         foreach ($addreses as $address) {
-            $addressInfos = $addressManager->getAdressInfos($address->gym_address.' '.$address->zip_code)["features"][0]["geometry"]["coordinates"];
+            $addressInfos = $addressManager->getAdressInfos($address->gym_address.' '.
+            $address->zip_code)["features"][0]["geometry"]["coordinates"];
             $coords[] = [$addressInfos[1], $addressInfos[0]];
         }
 
@@ -123,7 +126,8 @@ class HomeController extends AbstractController
             }
         }
 
-        return $this->twig->render('Home/index.html.twig', ['errors' => $errors, 'post' => $userData, 'addreses' => $addreses, 'coords' => $coords, 'pictures' => $pictures]);
+        return $this->twig->render('Home/index.html.twig', ['errors' => $errors, 'post' => $userData,
+        'addreses' => $addreses, 'coords' => $coords, 'pictures' => $pictures]);
     }
 
     /** 
