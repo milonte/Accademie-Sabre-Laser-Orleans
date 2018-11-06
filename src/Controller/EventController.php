@@ -7,6 +7,7 @@
  * Time: 16:07
  * PHP version 7
  */
+
 namespace Controller;
 
 use Model\EventManager;
@@ -20,6 +21,7 @@ use Filter\Text;
 class EventController extends AbstractController
 {
     const MIN_TITLE_LENGTH = 3;
+    const MAX_EVENTS = 3;
     const MIN_CONTENT_LENGTH = 10;
     const CONTENT_FILTER = "#[a-zA-ZÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ!?,:' ()\r\n ]$# ";
     const MIME_TYPES = [
@@ -47,9 +49,28 @@ class EventController extends AbstractController
     }
 
     /**
-     * Display admin listing events
-     *
+     * @param int $id
+     */
+    public function updateEvent(int $id): void
+    {
+        $eventManager = new EventManager($this->getPdo());
+        $event = $eventManager->selectOneById($id);
+        $events = $eventManager->selectViewed();
+        $length = count($events);
+        if (($length < self::MAX_EVENTS)) {
+            $eventManager->updateViewed($event);
+        } elseif (($length == self::MAX_EVENTS) && ($event->isViewed() == true)) {
+            $eventManager->updateViewed($event);
+        }
+        header("Location:/admin/events");
+        exit();
+    }
+
+    /**
      * @return string
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
     public function list()
     {
@@ -59,10 +80,12 @@ class EventController extends AbstractController
         return $this->twig->render('Event/list.html.twig', ['events' => $events]);
     }
 
+
     /**
-     * Display event creation page
-     *
      * @return string
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
     public function add()
     {
@@ -110,6 +133,7 @@ class EventController extends AbstractController
         return $this->twig->render('Event/add.html.twig', ['errors' => $errors]);
     }
 
+
     /**
      * Remove an event
      *
@@ -131,7 +155,7 @@ class EventController extends AbstractController
      * @param array $userData
      * @return table of errors
      */
-    private function formErrors(array $userData) :array
+    private function formErrors(array $userData): array
     {
         $errors = [];
 
@@ -142,8 +166,8 @@ class EventController extends AbstractController
         }
 
         if (!isset($userData['content']) || strlen($userData['content']) < self::MIN_CONTENT_LENGTH) {
-            $errors['content_length'] = "Le contenu doit contenir minimum " . self::MIN_CONTENT_LENGTH . " caractères !"
-            ;
+            $errors['content_length'] =
+                "Le contenu doit contenir minimum " . self::MIN_CONTENT_LENGTH . " caractères !";
         }
 
         if (!empty($_FILES['file']['name'])) {

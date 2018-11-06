@@ -10,7 +10,9 @@
 namespace Controller;
 
 use Model\AddressManager;
+use Model\Event;
 use Filter\Text;
+use Model\EventManager;
 use Model\PictureManager;
 use \Swift_SmtpTransport;
 use \Swift_Mailer;
@@ -95,6 +97,8 @@ class HomeController extends AbstractController
 
         $addressManager = new AddressManager($this->getPdo());
         $addreses = $addressManager->selectAll();
+        $eventHomes = new EventManager($this->getPdo());
+        $importantEvents = $eventHomes->selectViewed();
         $pictureManager = new PictureManager($this->getPdo());
         $pictures = $pictureManager->selectPictureHomeAll();
         $coords = [];
@@ -118,8 +122,7 @@ class HomeController extends AbstractController
                 exit();
             }
         }
-
         return $this->twig->render('Home/index.html.twig', ['errors' => $errors, 'post' => $userData,
-        'addreses' => $addreses, 'coords' => $coords, 'pictures' => $pictures]);
+        'addreses' => $addreses, 'coords' => $coords, 'pictures' => $pictures, 'importantEvents'=>$importantEvents]);
     }
 }

@@ -46,6 +46,28 @@ class EventManager extends AbstractManager
             return $this->pdo->lastInsertId();
         }
     }
+  
+    /**
+     * @param Event $event
+     * @return int
+     */
+    public function updateViewed(Event $event): int
+    {
+        $statement = $this->pdo->prepare("UPDATE $this->table SET `viewed` = :viewed WHERE id= :id");
+        $statement->bindValue('id', $event->getId(), \PDO::PARAM_INT);
+        $statement->bindValue('viewed', !$event->isViewed(), \PDO::PARAM_BOOL);
+        return $statement->execute();
+    }
+
+    /**
+     * @return array
+     */
+    public function selectViewed() :array
+    {
+        $statement = $this->pdo->query("SELECT * FROM $this->table WHERE viewed = 1");
+        $statement->setFetchMode(\PDO::FETCH_CLASS, $this->className);
+        return $statement->fetchAll();
+    }
 
     /**
      * Remove an event into database
