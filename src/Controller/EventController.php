@@ -29,7 +29,7 @@ class EventController extends AbstractController
         'gif' => 'image/gif',
     ];
     const FILE_MAX_SIZE = 2000000;
-    CONST EVENT_MAX_CONTENT_SIZE = 500;
+    const EVENT_MAX_CONTENT_SIZE = 500;
 
     /**
      * Display item listing
@@ -59,7 +59,8 @@ class EventController extends AbstractController
      *
      * @return string
      */
-    function list() {
+    public function list()
+    {
         $eventManager = new EventManager($this->getPdo());
         $events = $eventManager->selectAll();
 
