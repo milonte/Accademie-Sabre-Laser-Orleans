@@ -6,6 +6,10 @@
 https://unpkg.com/leaflet@1.3.1/dist/leaflet.css
 {% endblock %}
 
+{% block css %}
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"/>
+{% endblock %}
+
 {% block content %}
 
     {% include "Home/banner.html.twig" %}
@@ -34,6 +38,16 @@ https://unpkg.com/leaflet@1.3.1/dist/leaflet.css
 
 {% endblock %}
 
-{% block script %}
-    
+{% block js %}
+    <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+    <script src="/assets/js/map.js"></script>
+    <script>
+        window.onload = function () {
+            let coord = [];
+            {% for coord in coords %}
+            coord.push(["{{ coord[0] }}", "{{ coord[1] }}"]);
+            {% endfor %}
+            initMap(coord);
+        };
+    </script>
 {% endblock %}
