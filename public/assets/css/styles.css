@@ -2,7 +2,43 @@
     font-family: 'Starjedi';
     src: url('/assets/fonts/Starjedi.ttf');
 }
+.radiant-bg {
+    border: 0px solid rgba(0,0,0,0);
+    border-radius: 2px;
+    padding: 2px;
+    margin-bottom: 75px;
+    margin-top: 60px;
+}
+.section-pad {
+    padding-bottom: 75px;
+    padding-top: 60px;
+    background-color: rgba(255,255,255,0.2);
+    border-radius: 3px;
+    color:white;
+}
+.section-img {
+    margin-bottom: 75px;
+    padding-bottom: 75px;
+    margin-top: 60px;
+    padding-top: 60px;
+}
+.section-btn {
+    margin-bottom: 75px;
+    margin-top: 60px;
+}
 
+@media all and (max-width: 980px) {
+    .section-pad {
+        padding-bottom: 80px;
+        padding-top: 60px;
+    }
+}
+body {
+    background-color: #28292e;
+    background-image: url(/assets/images/stardust-1920x1080.png);
+    background-size: cover;
+    background-attachment: fixed;
+}
 .separator {
     height:3px;
     background: linear-gradient(60deg,#01fa2b,#008cff,#CC00FF);
@@ -78,10 +114,7 @@ header .social li a:hover {
 
 /*css bouton "nous contacter" */
 
-.section-button {
-    margin-top: 70pt;
-    margin-bottom: 70pt;
-}
+
 .btn-contact {
     font-size: 150%;
     height: 6vh;
@@ -134,7 +167,6 @@ header .social li a:hover {
 h1 .starjedi {
     font-size: 50px;
     color: rgb(255, 208, 0);
-    text-shadow: 2px 2px 1px black, -2px -2px 1px black;
 }
 
 .cover-1 p.lead {
@@ -169,7 +201,7 @@ h1 .starjedi {
     max-width: 100vw;
 }
 
-.content-1 .btn-outline-secondary {
+.content-1 .btn-about-us {
     font-size: 1.5em;
 }
 
@@ -315,12 +347,18 @@ body {
 /*css Présentation de l'asso */
 
 .about_us {
-    padding-top: 65pt;
     font-size: 14.5pt;
 }
 .titleabout_us {
+    font-family: Starjedi;
+    color: rgb(255, 208, 0);
     text-align: center;
-    padding-bottom: 20pt;
+    padding-bottom: 70px;
+    font-size: 28pt;
+}
+.minititleabout-us {
+    font-family: Starjedi;
+    font-size: 20pt;
 }
 
 @media (max-width: 992px) {
@@ -331,37 +369,59 @@ body {
 
 /*css présentation de la pratique*/
 .presentationActivity {
-    padding-top: 65pt;
-    padding-bottom: 65pt;
     font-size: 14.5pt;
 }
 .img-activity {
     margin-top: 2vh;
 }
+.title-presentation {
+    font-family: Starjedi;
+    color: rgb(255, 208, 0);
+    font-size: 28pt;
+}
 
 /*--section adresse Gymnase--*/
-
+.title-adress {
+    font-family: Starjedi;
+    color: rgb(255, 208, 0);
+    font-size: 28pt;
+}
+.minititle-adress {
+    font-family: StarJedi;
+}
 .content-2 h3 {
     font-size: 1.65rem;
+}
+.text-map {
+    padding-left: 65px;
+}
+@media all and (max-width: 980px){
+    .text-map {
+        padding-left: 0px;
+        text-align: center;
+    }
 }
 /* event page accueuil */
 
 .card-event {
-    margin-top: 12vh;
     margin-left: 1px;
     margin-right: 1px;
+    background-color: rgba(255,255,255,0.2);
+    color: white;
 }
 .separator-event {
     height: 1px;
     background: linear-gradient(60deg, #01fa2b, #008cff, #cc00ff);
 }
 .importantEvents h4 {
-    padding-top : 20px;
+    padding-top : 5px;
     font-size: 16pt;
+    font-family: Starjedi;
+
 }
 .importantEvents .card-text {
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 .importantEvents .card img {
     padding: 0;
@@ -371,7 +431,7 @@ body {
     width: 100%;
 }
 .importantEvents .btn {
-    margin-top: 20px;
+    margin-top: 5px;
     max-width: 15vw;
 }
 .importantEvents .text-event {
@@ -392,16 +452,13 @@ body {
 
 /*css bouton "nous contacter" */
 
-.section-button {
-    margin-top: 70pt;
-    margin-bottom: 70pt;
-}
 .btn-contact {
     font-size: 150%;
     height: 6vh;
     width: 35%;
+    margin-top: -90px;
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .btn-contact {
         width: 50%;
         font-size: 128%;
@@ -468,8 +525,17 @@ div .thumbnail:hover .text_effect{
     background-size: 100vw 25vh;
     min-height: 25vh;
 }
+
+@media (max-width: 767px) {
+    .image-footer {
+        display: none;
+    }
+}
 .footer {
     background-color: black;
+}
+.logo-wild {
+    padding-top: 25px;
 }
 .footer .row {
     margin: 0px;
