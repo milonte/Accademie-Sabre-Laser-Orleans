@@ -107,7 +107,7 @@ class EventController extends AbstractController
     /**
      * Remove an event
      *
-     * @param [in] $id
+     * @param integer $id
      * @return void
      */
     public function remove() :void
@@ -121,7 +121,8 @@ class EventController extends AbstractController
 
     /**
      * Check form inputs
-     * @return table of errors (or bool false if no errors)
+     * 
+     * @return table $errors
      */
     private function formErrors()
     {
