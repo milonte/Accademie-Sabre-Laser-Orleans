@@ -4,8 +4,8 @@
 }
 
 .separator {
-    height: 2px;
-    background: linear-gradient(60deg,#01fa2b,#008cff, #cc00ff );
+    height:3px;
+    background: linear-gradient(60deg,#01fa2b,#008cff,#CC00FF);
 }
 
 /* --- NAVBAR ---  */
@@ -232,6 +232,14 @@ h1 .starjedi {
     max-width: 100vw;
 }
 
+
+/* MAP */
+
+#map {
+    height: 400px;
+    z-index: 1;
+}
+
 /* PADDING PAGE */
 
 body {
@@ -336,6 +344,51 @@ body {
 .content-2 h3 {
     font-size: 1.65rem;
 }
+/* event page accueuil */
+
+.card-event {
+    margin-top: 12vh;
+    margin-left: 1px;
+    margin-right: 1px;
+}
+.separator-event {
+    height: 1px;
+    background: linear-gradient(60deg, #01fa2b, #008cff, #cc00ff);
+}
+.importantEvents h4 {
+    padding-top : 20px;
+    font-size: 16pt;
+}
+.importantEvents .card-text {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.importantEvents .card img {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    max-height: 280px;
+    width: 100%;
+}
+.importantEvents .btn {
+    margin-top: 20px;
+    max-width: 15vw;
+}
+.importantEvents .text-event {
+    text-overflow: ellipsis;
+}
+@media screen and (max-width: 990px) {
+    .importantEvents .btn {
+        margin-top: 20px;
+        max-width: 28vw;
+    }
+}
+@media screen and (max-width: 567px) {
+    .importantEvents .btn {
+        margin-top: 10px;
+        max-width: 50vw;
+    }
+}
 
 /*css bouton "nous contacter" */
 
@@ -396,4 +449,3 @@ footer a {
         font-size: 12px;
     }
 }
-

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: root
@@ -6,15 +7,17 @@
  * Time: 16:07
  * PHP version 7
  */
-
 namespace Controller;
 
-
 use Model\AddressManager;
+use Model\Event;
 use Filter\Text;
-use \Swift_SmtpTransport;
+use Model\EventManager;
+use Model\PictureManager;
 use \Swift_Mailer;
 use \Swift_Message;
+use \Swift_SmtpTransport;
+
 /**
  * Class HomeController
  *
@@ -28,14 +31,16 @@ class HomeController extends AbstractController
     private function verifMail(array $userData): array
     {
         $errorsForm = [];
+        $carConformity = "#[a-zA-ZÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ' ]$#";
+        $numberConformity = " #^[0-9]{2}[-/ ]?[0-9]{2}[-/ ]?[0-9]{2}[-/ ]?[0-9]{2}[-/ ]?[0-9]{2}?$# ";
         if (empty($userData['lastname'])) {
             $errorsForm['lastname'] = "Votre nom doit être indiqué";
-        } elseif (!preg_match("#[a-zA-ZÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ' ]$#", $userData['lastname'])) {
+        } elseif (!preg_match($carConformity, $userData['lastname'])) {
             $errorsForm['lastname'] = "Votre nom ne doit pas contenir de caractères spéciaux";
         }
         if (empty($userData['firstname'])) {
             $errorsForm['firstname'] = "Votre prénom doit être indiqué";
-        } elseif (!preg_match("#[a-zA-ZÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ' ]$#", $userData['firstname'])) {
+        } elseif (!preg_match($carConformity, $userData['firstname'])) {
             $errorsForm['firstname'] = "Votre prénom ne doit pas contenir de caractères spéciaux";
         }
         if (empty($userData['email'])) {
@@ -45,19 +50,17 @@ class HomeController extends AbstractController
         }
         if (empty($userData['num'])) {
             $errorsForm['num'] = "Votre numéro de téléphone doit être indiqué";
-        } elseif (!preg_match(" #^[0-9]{2}[-/ ]?[0-9]{2}[-/ ]?[0-9]{2}[-/ ]?[0-9]{2}[-/ ]?[0-9]{2}?$# ", $userData['num'])) {
+        } elseif (!preg_match($numberConformity, $userData['num'])) {
             $errorsForm['num'] = "Le numéro de téléphone renseigné est incorrect";
         }
         if (empty($userData['message'])) {
             $errorsForm['message'] = "Vous devez écrire un message";
-        } elseif (!preg_match(" #[a-zA-ZÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ' ]$# ", $userData['message'])) {
+        } elseif (!preg_match($carConformity, $userData['message'])) {
             $errorsForm['message'] = "Votre message ne doit pas contenir de caractère non-autorisés";
         }
 
-
         return $errorsForm;
     }
-
 
     /**
      * @param array $userData
@@ -80,7 +83,6 @@ class HomeController extends AbstractController
         return $result;
     }
 
-
     /**
      * @return string
      * @throws \Twig_Error_Loader
@@ -92,6 +94,20 @@ class HomeController extends AbstractController
 
         $addressManager = new AddressManager($this->getPdo());
         $addreses = $addressManager->selectAll();
+        $eventHomes = new EventManager($this->getPdo());
+        $importantEvents = $eventHomes->selectViewed();
+        $pictureManager = new PictureManager($this->getPdo());
+        $pictures = $pictureManager->selectPictureHomeAll();
+        $coords = [];
+
+        foreach ($addreses as $address) {
+            $addressInfos = $addressManager->getAdressInfos(
+                $address->gym_address
+                . ' '
+                . $address->zip_code
+            )["features"][0]["geometry"]["coordinates"];
+            $coords[] = [$addressInfos[1], $addressInfos[0]];
+        }
 
         $errors = $userData = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -107,6 +123,16 @@ class HomeController extends AbstractController
             }
         }
 
-        return $this->twig->render('Home/index.html.twig', ['errors' => $errors, 'post' => $userData, 'addreses'=>$addreses]);
+        return $this->twig->render(
+            'Home/index.html.twig',
+            [
+                'errors' => $errors,
+                'post' => $userData,
+                'addreses' => $addreses,
+                'coords' => $coords,
+                'pictures' => $pictures,
+                'importantEvents'=>$importantEvents
+            ]
+        );
     }
 }

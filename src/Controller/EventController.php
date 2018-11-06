@@ -7,10 +7,12 @@
  * Time: 16:07
  * PHP version 7
  */
+
 namespace Controller;
 
-use Model\EventManager;
+use Filter\Text;
 use Model\Event;
+use Model\EventManager;
 
 /**
  * Class EventsController
@@ -19,8 +21,9 @@ use Model\Event;
 class EventController extends AbstractController
 {
     const MIN_TITLE_LENGTH = 3;
+    const MAX_EVENTS = 3;
     const MIN_CONTENT_LENGTH = 10;
-    const CONTENT_FILTER = "#[a-zA-ZÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ!?,:'()\r\n ]$# ";
+    const CONTENT_FILTER = "#[a-zA-ZÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ!?,:' ()\r\n ]$# ";
     const MIME_TYPES = [
         'png' => 'image/png',
         'jpeg' => 'image/jpeg',
@@ -28,6 +31,7 @@ class EventController extends AbstractController
         'gif' => 'image/gif',
     ];
     const FILE_MAX_SIZE = 2000000;
+    const EVENT_MAX_CONTENT_SIZE = 500;
 
     /**
      * Display item listing
@@ -42,13 +46,38 @@ class EventController extends AbstractController
         $eventManager = new EventManager($this->getPdo());
         $events = $eventManager->selectAll();
 
+        foreach ($events as $event) {
+            if (strlen($event->getContent()) > self::EVENT_MAX_CONTENT_SIZE) {
+                $event->setContent(substr($event->getContent(), 0, self::EVENT_MAX_CONTENT_SIZE-5) . "[...]");
+            }
+        }
+
         return $this->twig->render('Event/events.html.twig', ['events' => $events]);
     }
 
     /**
-     * Display admin listing events
-     *
+     * @param int $id
+     */
+    public function updateEvent(int $id): void
+    {
+        $eventManager = new EventManager($this->getPdo());
+        $event = $eventManager->selectOneById($id);
+        $events = $eventManager->selectViewed();
+        $length = count($events);
+        if (($length < self::MAX_EVENTS)) {
+            $eventManager->updateViewed($event);
+        } elseif (($length == self::MAX_EVENTS) && ($event->isViewed() == true)) {
+            $eventManager->updateViewed($event);
+        }
+        header("Location:/admin/events");
+        exit();
+    }
+
+    /**
      * @return string
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
     public function list()
     {
@@ -58,23 +87,32 @@ class EventController extends AbstractController
         return $this->twig->render('Event/list.html.twig', ['events' => $events]);
     }
 
+
     /**
-     * Display event creation page
-     *
      * @return string
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
     public function add()
     {
         $errors = [];
+        $userData = [];
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $userData = $_POST;
+            $textFilter = new Text();
+            $textFilter->setTexts($userData);
+            $userData = $textFilter->filter();
+
             $eventManager = new EventManager($this->getPdo());
             $event = new Event();
 
-            if (!$this->formErrors()) {
+            $errors = $this->formErrors($userData);
 
-                $event->setTitle(trim($_POST['title']));
-                $event->setContent(trim($_POST['content']));
+            if (count($errors) === 0) {
+                $event->setTitle($userData['title']);
+                $event->setContent($userData['content']);
                 $event->setDate(new \DateTime());
 
                 if (strlen($_FILES['file']['name']) > 0) {
@@ -88,8 +126,8 @@ class EventController extends AbstractController
                     $event->setImageUrl("");
                 }
 
-                if (strlen(trim($_POST['linkUrl'])) > 0) {
-                    $event->setLinkUrl(trim($_POST['linkUrl']));
+                if (strlen($userData['linkUrl']) > 0) {
+                    $event->setLinkUrl($userData['linkUrl']);
                 } else {
                     $event->setLinkUrl("");
                 }
@@ -97,35 +135,49 @@ class EventController extends AbstractController
                 $eventManager->insert($event);
                 header('Location:/events');
             }
-
-            $errors = $this->formErrors();
         }
 
         return $this->twig->render('Event/add.html.twig', ['errors' => $errors]);
     }
 
+
+    /**
+     * Remove an event
+     *
+     * @param integer $id
+     * @return void
+     */
+    public function remove() :void
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $eventManager = new EventManager($this->getPdo());
+            $eventManager->delete($_POST['id']);
+        }
+        header('Location: /admin/events');
+    }
+
     /**
      * Check form inputs
-     * @return table of errors (or bool false if no errors)
+     *
+     * @param array $userData
+     * @return table of errors
      */
-    private function formErrors()
+    private function formErrors(array $userData): array
     {
         $errors = [];
 
-        if (!isset($_POST['title']) || strlen(trim($_POST['title'])) < self::MIN_TITLE_LENGTH) {
+        if (!isset($userData['title']) || strlen($userData['title']) < self::MIN_TITLE_LENGTH) {
             $errors['title_length'] = "Le titre doit contenir minimum " . self::MIN_TITLE_LENGTH . " caractères !";
-        } else if (!preg_match(self::CONTENT_FILTER, $_POST['title'])) {
+        } elseif (!preg_match(self::CONTENT_FILTER, $userData['title'])) {
             $errors['title_regex'] = "Le titre contient des caractères spéciaux";
         }
 
-        if (!isset($_POST['content']) || strlen(trim($_POST['content'])) < self::MIN_CONTENT_LENGTH) {
-            $errors['content_length'] = "Le contenu doit contenir minimum " . self::MIN_CONTENT_LENGTH . " caractères !";
-        } else if (!preg_match(self::CONTENT_FILTER, trim($_POST['content']))) {
-            $errors['content_regex'] = "Le contenu contient des caractères spéciaux";
+        if (!isset($userData['content']) || strlen($userData['content']) < self::MIN_CONTENT_LENGTH) {
+            $errors['content_length'] =
+                "Le contenu doit contenir minimum " . self::MIN_CONTENT_LENGTH . " caractères !";
         }
 
         if (!empty($_FILES['file']['name'])) {
-
             $mime_content = explode('/', mime_content_type($_FILES['file']['tmp_name']))[1];
             echo $mime_content;
 
@@ -137,20 +189,17 @@ class EventController extends AbstractController
             }
         }
 
-        if ($_POST['linkUrl']) {
-            if (!(filter_var($_POST['linkUrl'], FILTER_VALIDATE_URL, FILTER_FLAG_PATH_REQUIRED))) {
+        if ($userData['linkUrl']) {
+            if (!(filter_var($userData['linkUrl'], FILTER_VALIDATE_URL, FILTER_FLAG_PATH_REQUIRED))) {
                 $errors['link_regex'] = "Format non valide (format accepté : http://www.website.com)";
             }
         }
 
-        if (count($errors) === 0) {
-            $errors = false;
-        } else {
-            $errors['title'] = trim($_POST['title']);
-            $errors['content'] = trim($_POST['content']);
-            $errors['linkUrl'] = trim($_POST['linkUrl']);
+        if (count($errors) !== 0) {
+            $errors['title'] = $userData['title'];
+            $errors['content'] = $userData['content'];
+            $errors['linkUrl'] = $userData['linkUrl'];
         }
         return $errors;
-
     }
-} 
+}

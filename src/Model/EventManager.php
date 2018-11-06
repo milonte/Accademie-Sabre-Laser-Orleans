@@ -27,15 +27,16 @@ class EventManager extends AbstractManager
     {
         parent::__construct(self::TABLE, $pdo);
     }
- 
+
     /**
      * Insert an event into database
      * @param $event :Event
      * @return $this->pdo->lastInsterId :int
      */
-    public function insert(Event $event): int
+    public function insert(Event $event) : int
     {
-        $statement = $this->pdo->prepare("INSERT INTO " . self::TABLE . " (title,content,image_url,link_url,date) VALUES (:title, :content, :imageUrl, :linkUrl, :date)");
+        $statement = $this->pdo->prepare("INSERT INTO " .
+        self::TABLE . " (title,content,image_url,link_url,date) VALUES (:title, :content, :imageUrl, :linkUrl, :date)");
         $statement->bindValue('title', $event->getTitle(), \PDO::PARAM_STR);
         $statement->bindValue('content', $event->getContent(), \PDO::PARAM_STR);
         $statement->bindValue('imageUrl', $event->getImageUrl(), \PDO::PARAM_STR);
@@ -45,5 +46,39 @@ class EventManager extends AbstractManager
             return $this->pdo->lastInsertId();
         }
     }
+  
+    /**
+     * @param Event $event
+     * @return int
+     */
+    public function updateViewed(Event $event): int
+    {
+        $statement = $this->pdo->prepare("UPDATE $this->table SET `viewed` = :viewed WHERE id= :id");
+        $statement->bindValue('id', $event->getId(), \PDO::PARAM_INT);
+        $statement->bindValue('viewed', !$event->isViewed(), \PDO::PARAM_BOOL);
+        return $statement->execute();
+    }
 
+    /**
+     * @return array
+     */
+    public function selectViewed() :array
+    {
+        $statement = $this->pdo->query("SELECT * FROM $this->table WHERE viewed = 1");
+        $statement->setFetchMode(\PDO::FETCH_CLASS, $this->className);
+        return $statement->fetchAll();
+    }
+
+    /**
+     * Remove an event into database
+     *
+     * @param integer $id
+     * @return void
+     */
+    public function delete(int $id) : void
+    {
+        $statement = $this->pdo->prepare("DELETE FROM $this->table WHERE id=:id");
+        $statement->bindValue('id', $id, \PDO::PARAM_INT);
+        $statement->execute();
+    }
 }
