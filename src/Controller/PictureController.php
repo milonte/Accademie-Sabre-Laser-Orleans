@@ -106,4 +106,16 @@ class PictureController extends AbstractController
         return $this->twig->render('Admin/adminPictureAdd.html.twig', ['errors' => $errors,
         'success' => $success]);
     }
+    
+    
+    /**
+     * @param int $id
+     */
+    public function delete(int $id)
+    {
+        $pictureManager = new PictureManager($this->getPdo());
+        $pictureManager->delete($id);
+        unlink('../public/assets/images/'.$_POST["imageToDelete"]);
+        header('Location:/admin/galerie');
+    }
 }

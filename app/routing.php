@@ -24,6 +24,7 @@ $routes = [
         ['index', '/galerie', 'GET'], // action, url, method
         ['indexAdmin', '/admin/galerie', 'GET'],
         ['add', '/admin/galerie/add', ['GET', 'POST']],
+        ['delete', '/admin/galerie/delete/{id:\d+}','POST'],
     ],
     'Event' => [
         ['index', '/events', 'GET'],
