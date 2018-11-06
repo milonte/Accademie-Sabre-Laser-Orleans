@@ -465,8 +465,18 @@ body {
     }
 
 }
-
-
+.modal {
+    background-color: rgba(10, 10, 10, 0.6);
+}
+.modal-content {
+    background-color: rgba(10, 10, 10, 0);
+    color:white;
+}
+.modal-title {
+    color: rgb(255, 208, 0);
+    font-family: StarJedi;
+    text-shadow: 1px 1px black, -1px -1px black;
+}
 /* -- Galerie -- */
 #titreGalerie {
     font-family: 'Starjedi';
