@@ -20,6 +20,9 @@ $routes = [
     'Home' => [ // Controller
         ['index', '/', ['GET','POST']], // action, url, method
     ],
+    'Address' => [
+        ['editAddress', '/admin/addresses', ['GET', 'POST']],
+    ],
     'Picture' => [ // Controller
         ['index', '/galerie', 'GET'], // action, url, method
         ['indexAdmin', '/admin/galerie', 'GET'],

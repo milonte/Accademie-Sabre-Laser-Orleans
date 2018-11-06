@@ -1,0 +1,87 @@
+{% extends 'Admin/admin_layout.html.twig' %}
+
+{% block style %} /assets/css/admin.css {% endblock %}
+
+{% block content %}
+
+<div class="radiant-bg container">
+    <div class="add_form">
+    
+        <h2 class="text-center">éditer les adresses</h2>
+
+
+{% for address in addreses %}
+
+        <form method="post" action="addresses">
+            <input type="hidden" value="{{ address.id }}" name="id" />
+
+            <h4>Adresse {{ address.id }}</h4>
+
+            <div class="form-group">
+                <label for="address_name">Nom du gymnase</label>
+                <input id="address_name" class="form-control" type="text" value="{% if errors %}{{ errors.name }}{% else %}{{ address.gym_name }}{% endif %}" name="name" required />
+                {% if errors.name_length %}
+                    <div class="alert alert-danger">{{ errors.name_length }}</div>
+                {% elseif errors.name_regex %}
+                    <div class="alert alert-danger">{{ errors.name_regex }}</div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="address_address">Adresse</label>
+                <input id="address_address" class="form-control" type="text" value="{% if errors %}{{ errors.address }}{% else %}{{ address.gym_address }}{% endif %}" name="address" required />
+                {% if errors.address_length %}
+                    <div class="alert alert-danger">{{ errors.address_length }}</div>
+                {% elseif errors.address_regex %}
+                    <div class="alert alert-danger">{{ errors.address_regex }}</div>
+                {% endif %}
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-6 col-ms-12">
+                    <label for="address_zip_code">Code Postal</label>
+                    <input id="address_zip_code" class="form-control" type="number" value="{% if errors %}{{ errors.zip_code }}{% else %}{{ address.zip_code }}{% endif %}" name="zip_code" required />
+                    {% if errors.zip_code_length %}
+                        <div class="alert alert-danger">{{ errors.zip_code_length }}</div>
+                    {% elseif errors.zip_code_regex %}
+                        <div class="alert alert-danger">{{ errors.zip_code_regex }}</div>
+                    {% endif %}
+                </div>
+                <div class="col-md-6 col-ms-12">
+                    <label for="address_city">Ville</label>
+                    <input id="address_city" class="form-control" type="text" value="{% if errors %}{{ errors.city }}{% else %}{{ address.city }}{% endif %}" name="city" required />
+                    {% if errors.city_length %}
+                        <div class="alert alert-danger">{{ errors.city_length }}</div>
+                    {% elseif errors.city_regex %}
+                        <div class="alert alert-danger">{{ errors.city_regex }}</div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="address_date">Dates</label>
+                <input id="address_date" class="form-control" type="text" value="{% if errors %}{{ errors.date }}{% else %}{{ address.date_info }}{% endif %}" name="date" required />
+                    {% if errors.date_length %}
+                        <div class="alert alert-danger">{{ errors.date_length }}</div>
+                    {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="address_schedule">Jours</label>
+                <input id="address_schedule" class="form-control" type="text" value="{% if errors %}{{ errors.schedule }}{% else %}{{ address.schedule_info }}{% endif %}" name="schedule" required />
+                    {% if errors.schedule_length %}
+                        <div class="alert alert-danger">{{ errors.schedule_length }}</div>
+                    {% endif %}
+            </div>
+            <br />
+
+            <div class="text-center">
+                <input type="submit" class="btn" value="Valider">
+            </div>
+
+        </form>
+{% endfor %}
+    </div>
+</div>
+
+{% endblock %}
