@@ -33,7 +33,8 @@ class PictureManager extends AbstractManager
      */
     public function selectAll(): array
     {
-        return $this->pdo->query('SELECT * FROM ' . $this->table.' order by id DESC', \PDO::FETCH_CLASS, $this->className)->fetchAll();
+        return $this->pdo->query('SELECT * FROM ' . $this->table.'
+        order by id DESC', \PDO::FETCH_CLASS, $this->className)->fetchAll();
     }
     
     /**
@@ -45,7 +46,8 @@ class PictureManager extends AbstractManager
     public function insert(Picture $picture): int
     {
         // prepared request
-        $statement = $this->pdo->prepare("INSERT INTO $this->table (picture_name, picture_path, picture_date) VALUES (:picture_name, :picture_path, :picture_date)");
+        $statement = $this->pdo->prepare("INSERT INTO $this->table (picture_name, picture_path, picture_date)
+        VALUES (:picture_name, :picture_path, :picture_date)");
         $statement->bindValue('picture_name', $picture->getPictureName(), \PDO::PARAM_STR);
         $statement->bindValue('picture_path', $picture->getPicturePath(), \PDO::PARAM_STR);
         $statement->bindValue('picture_date', $picture->getPictureDate()->format('Y-m-d H:i:s'), \PDO::PARAM_STR);
@@ -60,6 +62,7 @@ class PictureManager extends AbstractManager
      */
     public function selectPictureHomeAll(): array
     {
-        return $this->pdo->query("SELECT * FROM $this->table ORDER BY picture_date DESC LIMIT 3", \PDO::FETCH_CLASS, $this->className)->fetchAll();
+        return $this->pdo->query("SELECT * FROM $this->table ORDER BY
+        picture_date DESC LIMIT 3", \PDO::FETCH_CLASS, $this->className)->fetchAll();
     }
 }
