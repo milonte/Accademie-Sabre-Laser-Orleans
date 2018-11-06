@@ -36,13 +36,12 @@ class EventManager extends AbstractManager
     public function insert(Event $event): int
     {
         $statement = $this->pdo->prepare("INSERT INTO " .
-        self::TABLE . " (title,content,image_url,link_url,date, viewed) VALUES (:title, :content, :imageUrl, :linkUrl, :date, :viewed)");
+        self::TABLE . " (title,content,image_url,link_url,date) VALUES (:title, :content, :imageUrl, :linkUrl, :date)");
         $statement->bindValue('title', $event->getTitle(), \PDO::PARAM_STR);
         $statement->bindValue('content', $event->getContent(), \PDO::PARAM_STR);
         $statement->bindValue('imageUrl', $event->getImageUrl(), \PDO::PARAM_STR);
         $statement->bindValue('linkUrl', $event->getLinkUrl(), \PDO::PARAM_STR);
         $statement->bindValue('date', $event->getDate()->format("d/m/y"), \PDO::PARAM_STR);
-        $statement->bindValue('viewed', $event->isViewed(), \PDO::PARAM_INT);
         if ($statement->execute()) {
             return $this->pdo->lastInsertId();
         }
