@@ -408,6 +408,19 @@ body {
     }
 
 }
+
+
+/* -- Galerie -- */
+.effet {
+    opacity: 1;
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+}
+.effet:hover {
+    opacity: .5;
+}
+
+
 /* -- FOOTER -- */
 .footer a:hover {
     text-decoration: none;
