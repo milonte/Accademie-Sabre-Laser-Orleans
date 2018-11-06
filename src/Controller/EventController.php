@@ -9,9 +9,9 @@
  */
 namespace Controller;
 
-use Model\EventManager;
-use Model\Event;
 use Filter\Text;
+use Model\Event;
+use Model\EventManager;
 
 /**
  * Class EventsController
@@ -29,6 +29,7 @@ class EventController extends AbstractController
         'gif' => 'image/gif',
     ];
     const FILE_MAX_SIZE = 2000000;
+    CONST EVENT_MAX_CONTENT_SIZE = 500;
 
     /**
      * Display item listing
@@ -43,6 +44,13 @@ class EventController extends AbstractController
         $eventManager = new EventManager($this->getPdo());
         $events = $eventManager->selectAll();
 
+        foreach ($events as $event) {
+            //var_dump(substr($event->getContent(), 0, 400));
+            if (strlen($event->getContent()) > self::EVENT_MAX_CONTENT_SIZE) {
+                $event->setContent(substr($event->getContent(), 0, self::EVENT_MAX_CONTENT_SIZE-5) . "[...]");
+            }
+        }
+
         return $this->twig->render('Event/events.html.twig', ['events' => $events]);
     }
 
@@ -51,8 +59,7 @@ class EventController extends AbstractController
      *
      * @return string
      */
-    public function list()
-    {
+    function list() {
         $eventManager = new EventManager($this->getPdo());
         $events = $eventManager->selectAll();
 
@@ -116,7 +123,7 @@ class EventController extends AbstractController
      * @param array $userData
      * @return table of errors
      */
-    private function formErrors(array $userData) :array
+    private function formErrors(array $userData): array
     {
         $errors = [];
 
