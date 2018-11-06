@@ -22,9 +22,13 @@ $routes = [
     ],
     'Picture' => [ // Controller
         ['index', '/galerie', 'GET'], // action, url, method
+        ['indexAdmin', '/admin/galerie', 'GET'],
+        ['add', '/admin/galerie/add', ['GET', 'POST']],
+        ['delete', '/admin/galerie/delete/{id:\d+}','POST'],
     ],
     'Event' => [
         ['index', '/events', 'GET'],
+        ['list', '/admin/events', 'GET'],
         ['add', '/admin/event/add', ['GET', 'POST']],
     ],
     'Member' => [ // Controller

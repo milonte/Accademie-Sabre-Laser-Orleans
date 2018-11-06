@@ -73,3 +73,44 @@ h1 {
     font-family: Starjedi;
     margin-top: 20px;
 }
+
+.listEvents {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.listEvents h4 {
+    padding-left: 20px;
+}
+
+.listEvents .card {
+    margin-top : 20px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(0,0,0,0.2);
+    box-shadow: 0 0 2px 2px rgba(0,0,0,0.15);
+}
+
+.listEvents .card-body {
+    padding-bottom: 5px;
+}
+
+.listEvents .card-body hr {
+    margin-bottom: 5px;
+}
+
+.listEvents .card-text i {
+    font-size: 60px;
+}
+
+.listEvents .eventContent {
+    padding: 0;
+}
+
+.listEvents .eventContent i {
+    font-size: 30px;
+    color: darkcyan;
+}
+
+.listEvents .hidden {
+    padding-bottom: 20px;
+}
