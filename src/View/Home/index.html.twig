@@ -10,11 +10,21 @@ https://unpkg.com/leaflet@1.3.1/dist/leaflet.css
 
     {% include "Home/banner.html.twig" %}
 
-    {% include "Home/about_us.twig" %}
+    <div class="container-fluid">
+        <div class="row justify-content-around">
+            <div class="col-lg-3 col-md-12 order-lg-last">
+                {% include "Home/homeEvents.html.twig" %}
+            </div>
+            <div class="col-lg-8 col-md-12 order-lg-first">
+                {% include "Home/about_us.twig" %}
 
-    {%  include 'Home/gymnasiumAdressSection.html.twig' %}
+                {% include 'Home/gymnasiumAdressSection.html.twig' %}
 
-    {% include "Home/presentationActivity.html.twig" %}
+                {% include "Home/presentationActivity.html.twig" %}
+
+            </div>
+        </div>
+    </div>
 
     {% include "Home/contact_form.twig" %}
 

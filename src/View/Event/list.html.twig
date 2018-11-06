@@ -14,7 +14,16 @@
                 <div class="col-md-8 col-11 my-auto"><h4>{{ event.title }}</h4></div>
                 <div class="col-md-4 col-12 text-center">
                     <a href="/admin/event/add" class="btn btn-link"><i class="fas fa-pen-square"></i></a>
-                    <a href="/admin/event/remove" class="btn btn-link"><i class="fas fa-minus-square"></i></a>
+                    <form method="post" action="/admin/event/remove" onSubmit="return confirm('Confirmer suppression ?')">
+                        <input type="hidden" value="{{ event.id }}" name="id">
+                        <button type="submit" class="btn btn-link" ><i class="fas fa-minus-square"></i></button>
+                    </form>
+                    {% if event.viewed == 1 %}
+                            <a class="btn btn-primary" href="/admin/events/viewed/{{ event.id }}">Ne plus mettre en avant</a>
+                    {% endif %}
+                    {% if event.viewed == 0 %}
+                            <a class="btn btn-primary" href="/admin/events/viewed/{{ event.id }}">Mettre en avant</a>
+                    {% endif %}
                 </div>
             </div>
             <hr />

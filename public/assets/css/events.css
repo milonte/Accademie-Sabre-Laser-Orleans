@@ -52,6 +52,8 @@ body {
     padding-top : 20px;
     font-family: Starjedi;
     font-size: 16pt;
+    margin: auto;
+    padding: 10px;
 }
 
 .events .card-text {
