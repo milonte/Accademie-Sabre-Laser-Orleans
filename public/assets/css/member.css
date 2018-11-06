@@ -4,15 +4,17 @@
 }
 
 .add_form {
-    background-color: rgba(255,255,255,1);
+    background-color: rgba(255,255,255,0.2);
     border: 1px solid rgba(0,0,0,0.3);
     /* box-shadow: 0 0 5px 5px linear-gradient(#e66465, #9198E5); */
     border-radius: 2px;
     padding: 35px;
+    color: #fff;
 }
 
 .add_form h2 {
     font-family: Starjedi;
+    color: rgb(255, 208, 0);
 }
 
 .add_form label {
