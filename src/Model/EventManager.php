@@ -27,13 +27,13 @@ class EventManager extends AbstractManager
     {
         parent::__construct(self::TABLE, $pdo);
     }
- 
+
     /**
      * Insert an event into database
      * @param $event :Event
      * @return $this->pdo->lastInsterId :int
      */
-    public function insert(Event $event): int
+    public function insert(Event $event) : int
     {
         $statement = $this->pdo->prepare("INSERT INTO " .
         self::TABLE . " (title,content,image_url,link_url,date) VALUES (:title, :content, :imageUrl, :linkUrl, :date)");
@@ -67,5 +67,18 @@ class EventManager extends AbstractManager
         $statement = $this->pdo->query("SELECT * FROM $this->table WHERE viewed = 1");
         $statement->setFetchMode(\PDO::FETCH_CLASS, $this->className);
         return $statement->fetchAll();
+    }
+
+    /**
+     * Remove an event into database
+     *
+     * @param integer $id
+     * @return void
+     */
+    public function delete(int $id) : void
+    {
+        $statement = $this->pdo->prepare("DELETE FROM $this->table WHERE id=:id");
+        $statement->bindValue('id', $id, \PDO::PARAM_INT);
+        $statement->execute();
     }
 }

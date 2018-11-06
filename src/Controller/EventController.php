@@ -135,6 +135,21 @@ class EventController extends AbstractController
 
 
     /**
+     * Remove an event
+     *
+     * @param integer $id
+     * @return void
+     */
+    public function remove() :void
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $eventManager = new EventManager($this->getPdo());
+            $eventManager->delete($_POST['id']);
+        }
+        header('Location: /admin/events');
+    }
+
+    /**
      * Check form inputs
      *
      * @param array $userData
