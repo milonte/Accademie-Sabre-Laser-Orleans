@@ -8,10 +8,10 @@
 
     <!-- Photos home -->
     <section>
-        <div class="container">
+        <div class="container p-3">
             <div class="row">
                 {%  for img in pictures %}
-                    <div class="col-md-4 col-sm-12 py-1">
+                    <div class="col-md-4 col-sm-12 p-2">
                         <div class="thumbnail">
                             <a href="#" data-toggle="modal" data-target="#photo{{ img.id }}"><img class="effet rounded mx-auto d-block img-fluid img-thumbnail w-100 h-100" src="{{ img.picture_path }}" alt="Photo 1" ></a>
                             <p class="text_effect">Cliquez pour agrandir</p>
