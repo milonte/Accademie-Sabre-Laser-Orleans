@@ -9,13 +9,13 @@
  */
 namespace Controller;
 
-use Model\AddressManager;
-use Model\Address;
 use Filter\Text;
+use Model\Address;
+use Model\AddressManager;
 use Model\PictureManager;
-use \Swift_SmtpTransport;
 use \Swift_Mailer;
 use \Swift_Message;
+use \Swift_SmtpTransport;
 
 /**
  * Class HomeController
@@ -33,7 +33,7 @@ class HomeController extends AbstractController
      * @param array $userData
      * @return array
      */
-    private function verifMail(array $userData) : array
+    private function verifMail(array $userData): array
     {
         $errorsForm = [];
         $carConformity = "#[a-zA-ZÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ' ]$#";
@@ -64,16 +64,14 @@ class HomeController extends AbstractController
             $errorsForm['message'] = "Votre message ne doit pas contenir de caractère non-autorisés";
         }
 
-
         return $errorsForm;
     }
-
 
     /**
      * @param array $userData
      * @return string
      */
-    private function sendMail(array $userData) : string
+    private function sendMail(array $userData): string
     {
         $transport = (new Swift_SmtpTransport('smtp.gmail.com', 465))
             ->setUsername(APP_MAIL_USERNAME)
@@ -90,7 +88,6 @@ class HomeController extends AbstractController
         return $result;
     }
 
-
     /**
      * @return string
      * @throws \Twig_Error_Loader
@@ -105,10 +102,13 @@ class HomeController extends AbstractController
         $pictureManager = new PictureManager($this->getPdo());
         $pictures = $pictureManager->selectPictureHomeAll();
         $coords = [];
-        
+
         foreach ($addreses as $address) {
-            $addressInfos = $addressManager->getAdressInfos($address->gym_address.' '.
-            $address->zip_code)["features"][0]["geometry"]["coordinates"];
+            $addressInfos = $addressManager->getAdressInfos(
+                $address->gym_address
+                . ' '
+                . $address->zip_code
+            )["features"][0]["geometry"]["coordinates"];
             $coords[] = [$addressInfos[1], $addressInfos[0]];
         }
 
@@ -126,28 +126,34 @@ class HomeController extends AbstractController
             }
         }
 
-        return $this->twig->render('Home/index.html.twig', ['errors' => $errors, 'post' => $userData,
-        'addreses' => $addreses, 'coords' => $coords, 'pictures' => $pictures]);
+        return $this->twig->render(
+            'Home/index.html.twig', [
+                'errors' => $errors,
+                'post' => $userData,
+                'addreses' => $addreses,
+                'coords' => $coords,
+                'pictures' => $pictures,
+            ]
+        );
     }
 
-    /** 
+    /**
      * Edit addresses
-     * 
+     *
      * @return string
      */
-    public function editAddress() 
+    public function editAddress()
     {
         $addressManager = new AddressManager($this->getPdo());
-        
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            
+
             $userData = $_POST;
             $textFilter = new Text();
             $textFilter->setTexts($userData);
             $userData = $textFilter->filter();
-            $errors = $this->_formErrors($userData);
-            
-            
+            $errors = $this->formErrors($userData);
+
             if (count($errors) === 0) {
                 $address = new Address();
                 $address->setId($userData['id']);
@@ -157,46 +163,46 @@ class HomeController extends AbstractController
                 $address->setCity($userData['city']);
                 $address->setDateInfo($userData['date']);
                 $address->setScheduleInfo($userData['schedule']);
-                
+
                 $addressManager->update($address);
             }
         }
-        
+
         $addreses = $addressManager->selectAll();
         return $this->twig->render('Home/_address_form.html.twig', ['addreses' => $addreses, 'errors' => $errors]);
     }
 
     /**
      * Check form inputs
-     * 
+     *
      * @param table $data
      * @return table $errors
      */
-    private function _formErrors($data)
+    private function formErrors($data)
     {
         $errors = [];
 
         if (!isset($data['name']) || mb_strlen($data['name']) < self::MIN_GYM_NAME_LENGTH) {
             $errors['name_length'] = "Le nom doit contenir minimum " . self::MIN_GYM_NAME_LENGTH . " caractères !";
-        } else if (!preg_match(self::CONTENT_FILTER, $data['name'])) {
+        } elseif (!preg_match(self::CONTENT_FILTER, $data['name'])) {
             $errors['name_regex'] = "Le nom contient des caractères spéciaux";
         }
 
         if (!isset($data['address']) || mb_strlen($data['address']) < self::MIN_GYM_ADDRESS_LENGTH) {
             $errors['address_length'] = "L'adresse' doit contenir minimum " . self::MIN_GYM_ADDRESS_LENGTH . " caractères !";
-        } else if (!preg_match(self::CONTENT_FILTER, $data['address'])) {
+        } elseif (!preg_match(self::CONTENT_FILTER, $data['address'])) {
             $errors['address_regex'] = "L'adresse contient des caractères spéciaux";
         }
 
         if (!isset($data['zip_code']) || mb_strlen($data['zip_code']) !== 5) {
             $errors['zip_code_length'] = "Le code postal doit contenir 5 chiffres";
-        } else if (!preg_match("/^(([0-8][0-9])|(9[0-5]))[0-9]{3}$/ ", $data['zip_code'])) {
+        } elseif (!preg_match("/^(([0-8][0-9])|(9[0-5]))[0-9]{3}$/ ", $data['zip_code'])) {
             $errors['zip_code_regex'] = "Code postal: format non valide";
         }
 
         if (!isset($data['city']) || mb_strlen($data['city']) < 3) {
             $errors['city_length'] = "La ville doit contenir minimum 3 caractères";
-        } else if (!preg_match(self::CITY_FILTER, $data['city'])) {
+        } elseif (!preg_match(self::CITY_FILTER, $data['city'])) {
             $errors['city_regex'] = "La ville contient des caractères spéciaux";
         }
 
@@ -216,8 +222,7 @@ class HomeController extends AbstractController
             $errors['date'] = $data['date'];
             $errors['schedule'] = $data['schedule'];
         }
+
         return $errors;
-
     }
-
 }
