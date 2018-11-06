@@ -30,6 +30,8 @@ $routes = [
         ['index', '/events', 'GET'],
         ['list', '/admin/events', 'GET'],
         ['add', '/admin/event/add', ['GET', 'POST']],
+        ['remove', '/admin/event/remove', 'POST'],
+
     ],
     'Member' => [ // Controller
         ['add', '/inscription', ['GET', 'POST']], // action, url, method
