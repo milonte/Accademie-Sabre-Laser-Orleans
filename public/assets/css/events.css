@@ -80,16 +80,20 @@ h1 {
 .listEvents {
     padding-top: 40px;
     padding-bottom: 40px;
+    color:white;
 }
 
 .listEvents h4 {
     padding-left: 20px;
+    text-transform: lowercase;
+    font-family: Starjedi;
 }
 
 .listEvents .card {
     margin-top : 20px;
     margin-bottom: 20px;
     border: 1px solid rgba(0,0,0,0.2);
+    background-color: rgba(255,255,255,0.2); 
     box-shadow: 0 0 2px 2px rgba(0,0,0,0.15);
 }
 
@@ -99,6 +103,11 @@ h1 {
 
 .listEvents .card-body hr {
     margin-bottom: 5px;
+}
+
+.listEvents .card-text {
+    font-size: 20px;
+    padding: 10px;
 }
 
 .listEvents .card-text i {
