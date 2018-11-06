@@ -233,6 +233,18 @@ h1 .starjedi {
 }
 
 
+/* MAP */
+
+#map {
+    height: 400px;
+    z-index: 1;
+}
+
+/* PADDING PAGE */
+
+body {
+    padding-top: 7.8vh;
+}
 
 /* VIDEO */
 .video-responsive
