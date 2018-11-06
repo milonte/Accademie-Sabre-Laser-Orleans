@@ -43,11 +43,13 @@ class PictureController extends AbstractController
         $errors = [];
         
         if (!in_array($file['type'], self::AUTH_EXT)) {
-            $errors[] = $file['name'] . " L'extension n'est pas autorisée. Les extensions autorisées sont les suivantes: .jpg / .jpeg / .gif and .png";
+            $errors[] = $file['name'] . " L'extension n'est pas autorisée. Les extensions autorisées sont les suivantes:
+            .jpg / .jpeg / .gif and .png";
         }
         
         if ($file['error'] != 0) {
-            $errors[] = $file['name'] . "Le système a rencontré une erreur lors de l'upload de votre image. le code de l'erreur est " . $file['error'];
+            $errors[] = $file['name'] . "Le système a rencontré une erreur lors de l'upload de votre image. le code de
+            l'erreur est " . $file['error'];
         }
         
         if ($file['size'] > 2097152) {
@@ -101,6 +103,7 @@ class PictureController extends AbstractController
             }
         }
         
-        return $this->twig->render('Admin/adminPictureAdd.html.twig', ['errors' => $errors, 'success' => $success]);
+        return $this->twig->render('Admin/adminPictureAdd.html.twig', ['errors' => $errors,
+        'success' => $success]);
     }
 }

@@ -143,12 +143,13 @@ class EventController extends AbstractController
 
         if (!isset($userData['title']) || strlen($userData['title']) < self::MIN_TITLE_LENGTH) {
             $errors['title_length'] = "Le titre doit contenir minimum " . self::MIN_TITLE_LENGTH . " caractères !";
-        } else if (!preg_match(self::CONTENT_FILTER, $userData['title'])) {
+        } elseif (!preg_match(self::CONTENT_FILTER, $userData['title'])) {
             $errors['title_regex'] = "Le titre contient des caractères spéciaux";
         }
 
         if (!isset($userData['content']) || strlen($userData['content']) < self::MIN_CONTENT_LENGTH) {
-            $errors['content_length'] = "Le contenu doit contenir minimum " . self::MIN_CONTENT_LENGTH . " caractères !";
+            $errors['content_length'] = "Le contenu doit contenir minimum " . self::MIN_CONTENT_LENGTH . " caractères !"
+            ;
         }
 
         if (!empty($_FILES['file']['name'])) {
