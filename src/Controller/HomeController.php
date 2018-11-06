@@ -127,7 +127,8 @@ class HomeController extends AbstractController
         }
 
         return $this->twig->render(
-            'Home/index.html.twig', [
+            'Home/index.html.twig',
+            [
                 'errors' => $errors,
                 'post' => $userData,
                 'addreses' => $addreses,
@@ -147,7 +148,6 @@ class HomeController extends AbstractController
         $addressManager = new AddressManager($this->getPdo());
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
             $userData = $_POST;
             $textFilter = new Text();
             $textFilter->setTexts($userData);
@@ -189,7 +189,9 @@ class HomeController extends AbstractController
         }
 
         if (!isset($data['address']) || mb_strlen($data['address']) < self::MIN_GYM_ADDRESS_LENGTH) {
-            $errors['address_length'] = "L'adresse' doit contenir minimum " . self::MIN_GYM_ADDRESS_LENGTH . " caractères !";
+            $errors['address_length'] = "L'adresse' doit contenir minimum "
+            . self::MIN_GYM_ADDRESS_LENGTH
+            . " caractères !";
         } elseif (!preg_match(self::CONTENT_FILTER, $data['address'])) {
             $errors['address_regex'] = "L'adresse contient des caractères spéciaux";
         }
