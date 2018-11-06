@@ -10,11 +10,13 @@
 namespace Controller;
 
 use Model\AddressManager;
+use Model\Event;
 use Filter\Text;
+use Model\EventManager;
 use Model\PictureManager;
-use \Swift_SmtpTransport;
 use \Swift_Mailer;
 use \Swift_Message;
+use \Swift_SmtpTransport;
 
 /**
  * Class HomeController
@@ -26,7 +28,7 @@ class HomeController extends AbstractController
      * @param array $userData
      * @return array
      */
-    private function verifMail(array $userData) : array
+    private function verifMail(array $userData): array
     {
         $errorsForm = [];
         $carConformity = "#[a-zA-ZÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ' ]$#";
@@ -57,16 +59,14 @@ class HomeController extends AbstractController
             $errorsForm['message'] = "Votre message ne doit pas contenir de caractère non-autorisés";
         }
 
-
         return $errorsForm;
     }
-
 
     /**
      * @param array $userData
      * @return string
      */
-    private function sendMail(array $userData) : string
+    private function sendMail(array $userData): string
     {
         $transport = (new Swift_SmtpTransport('smtp.gmail.com', 465))
             ->setUsername(APP_MAIL_USERNAME)
@@ -83,7 +83,6 @@ class HomeController extends AbstractController
         return $result;
     }
 
-
     /**
      * @return string
      * @throws \Twig_Error_Loader
@@ -95,13 +94,18 @@ class HomeController extends AbstractController
 
         $addressManager = new AddressManager($this->getPdo());
         $addreses = $addressManager->selectAll();
+        $eventHomes = new EventManager($this->getPdo());
+        $importantEvents = $eventHomes->selectViewed();
         $pictureManager = new PictureManager($this->getPdo());
         $pictures = $pictureManager->selectPictureHomeAll();
         $coords = [];
-        
+
         foreach ($addreses as $address) {
-            $addressInfos = $addressManager->getAdressInfos($address->gym_address.' '.
-            $address->zip_code)["features"][0]["geometry"]["coordinates"];
+            $addressInfos = $addressManager->getAdressInfos(
+                $address->gym_address
+                . ' '
+                . $address->zip_code
+            )["features"][0]["geometry"]["coordinates"];
             $coords[] = [$addressInfos[1], $addressInfos[0]];
         }
 
@@ -119,7 +123,16 @@ class HomeController extends AbstractController
             }
         }
 
-        return $this->twig->render('Home/index.html.twig', ['errors' => $errors, 'post' => $userData,
-        'addreses' => $addreses, 'coords' => $coords, 'pictures' => $pictures]);
+        return $this->twig->render(
+            'Home/index.html.twig',
+            [
+                'errors' => $errors,
+                'post' => $userData,
+                'addreses' => $addreses,
+                'coords' => $coords,
+                'pictures' => $pictures,
+                'importantEvents'=>$importantEvents
+            ]
+        );
     }
 }

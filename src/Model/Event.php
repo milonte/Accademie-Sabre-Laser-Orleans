@@ -31,6 +31,7 @@ class Event
      */
     private $content;
 
+
     /**
      * @var string
      */
@@ -45,13 +46,18 @@ class Event
      */
     private $date;
 
+    /**
+     * @var bool
+     */
+    private $viewed;
+
 
     /**
      * Get the value of id
      *
      * @return  int
      */
-    public function getId() : int
+    public function getId(): int
     {
         return $this->id;
     }
@@ -59,11 +65,11 @@ class Event
     /**
      * Set the value of id
      *
-     * @param  int  $id
+     * @param  int $id
      *
      * @return  self
      */
-    public function setId(int $id) : Event
+    public function setId(int $id): Event
     {
         $this->id = $id;
 
@@ -75,7 +81,7 @@ class Event
      *
      * @return  string
      */
-    public function getTitle() : string
+    public function getTitle(): string
     {
         return $this->title;
     }
@@ -83,11 +89,11 @@ class Event
     /**
      * Set the value of title
      *
-     * @param  string  $title
+     * @param  string $title
      *
      * @return  self
      */
-    public function setTitle(string $title) : Event
+    public function setTitle(string $title): Event
     {
         $this->title = $title;
 
@@ -97,7 +103,7 @@ class Event
     /**
      * Get the value of linkUrl
      */
-    public function getLinkUrl() : string
+    public function getLinkUrl(): string
     {
         return $this->linkUrl;
     }
@@ -107,7 +113,7 @@ class Event
      *
      * @return  self
      */
-    public function setLinkUrl(string $linkUrl) : Event
+    public function setLinkUrl(string $linkUrl): Event
     {
         $this->linkUrl = $linkUrl;
 
@@ -117,7 +123,7 @@ class Event
     /**
      * Get the value of content
      */
-    public function getContent() : string
+    public function getContent(): string
     {
         return $this->content;
     }
@@ -127,7 +133,7 @@ class Event
      *
      * @return  self
      */
-    public function setContent(string $content) : Event
+    public function setContent(string $content): Event
     {
         $this->content = $content;
 
@@ -137,7 +143,7 @@ class Event
     /**
      * Get the value of imageUrl
      */
-    public function getImageUrl() : string
+    public function getImageUrl(): string
     {
         return $this->imageUrl;
     }
@@ -147,7 +153,7 @@ class Event
      *
      * @return  self
      */
-    public function setImageUrl($imageUrl) : Event
+    public function setImageUrl($imageUrl): Event
     {
         $this->imageUrl = $imageUrl;
 
@@ -159,7 +165,7 @@ class Event
      *
      * @return  date
      */
-    public function getDate() : \DateTime
+    public function getDate(): \DateTime
     {
         return $this->date;
     }
@@ -167,14 +173,32 @@ class Event
     /**
      * Set the value of date
      *
-     * @param  date  $date
+     * @param  date $date
      *
      * @return  self
      */
-    public function setDate(\DateTime $date) : Event
+    public function setDate(\DateTime $date): Event
     {
         $this->date = $date;
 
         return $this;
+    }
+
+
+    /**
+     * @param int $event
+     * @return bool
+     */
+    public function isViewed(): bool
+    {
+        return $this->viewed;
+    }
+
+    /**
+     * @param bool $viewed
+     */
+    public function setViewed(bool $viewed): void
+    {
+        $this->viewed = $viewed;
     }
 }

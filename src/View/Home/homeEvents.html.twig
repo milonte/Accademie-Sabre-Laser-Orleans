@@ -1,0 +1,32 @@
+<div class="importantEvents container-fluid">
+    <div class="row justify-content-around">
+        {% for importantEvent in importantEvents %}
+                <div class="card card-event text-center col-lg-12 col-md-5 col-sm-5">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="radiant-bg">
+                                    <img class="img-thumbnail"
+                                         src={% if importantEvent.image_url %}"assets/images/events/{{ importantEvent.image_url }}"{% else %}"assets/images/photo_galerie_1.png"{% endif %}
+                                    alt="" />
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 my-auto">
+                                <h4>{{ importantEvent.title }}</h4>
+                                <div class="separator-event"></div>
+                                <p class="card-text">{{ importantEvent.content }}</p>
+                                {% if importantEvent.link_url %}
+                                    <div class="separator-event"></div>
+                                    <div class="text-center">
+                                        <a class="btn btn-primary" target="_blank" href="{{ importantEvent.link_url }}">
+                                            <div class="text-event">Lien vers la suite de l'article</div>
+                                        </a>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        {% endfor %}
+    </div>
+</div>
