@@ -5,10 +5,11 @@
 {% block style %}/assets/css/style.css {% endblock %}
 
 {% block content %}
-    <h1>Gestion des événements</h1>
+
     <!-- Photos home -->
     <section>
         <div class="container p-3">
+            <h1 class="text-center p-2" id="titreGalerie">Galerie</h1>
             <div class="row">
                 {%  for img in pictures %}
                     <div class="col-md-4 col-sm-12 p-2">

@@ -411,6 +411,12 @@ body {
 
 
 /* -- Galerie -- */
+#titreGalerie {
+    font-family: 'Starjedi';
+    font-weight : bolder;
+    color : white;
+}
+
 .effect {
     opacity: 1;
     -webkit-transition: .3s ease-in-out;
