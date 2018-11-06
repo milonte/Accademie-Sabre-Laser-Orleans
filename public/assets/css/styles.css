@@ -411,31 +411,35 @@ body {
 
 
 /* -- Galerie -- */
-.effet {
+.effect {
     opacity: 1;
     -webkit-transition: .3s ease-in-out;
     transition: .3s ease-in-out;
 }
-.effet:hover {
-    opacity: .7;
+.effect:hover {
+    opacity: .5;
 }
 
-.text_effect {
+div .thumbnail:hover .text_effect{
     font-family : arial;
     font-weight : bolder;
-    color : white;
+    color : #2439cd;
     position : absolute;
     margin-top: -150pt;
     margin-left: 70pt;
-    font-size : 16pt;
+    font-size : 18pt;
     background-color : transparent;
     height : 50pt;
     width : 120pt;
     border-radius : 15px;
     text-align: center;
     vertical-align: middle;
+    visibility: visible;
 }
 
+.text_effect {
+    visibility: hidden;
+}
 
 /* -- FOOTER -- */
 .footer a:hover {
