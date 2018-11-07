@@ -1,10 +1,17 @@
 {% extends "layout.html.twig" %}
 
+{% block style %} /assets/css/member.css {% endblock %}
+
 {% block content %}
 
 
-    <div class="container">
-        <h1 class="pt-5 text-center">Rejoignez la force!!!</h1>
+
+    <!--<div class="container">-->
+    <div class="pictureAdmin">
+    <div class="radiant-bg container">
+
+    <div class="add_form">
+        <h2 class="pt-5 text-center">Rejoignez la force!!!</h2>
 
         {% if errors is not empty %}
             <div class="alert alert-danger">
@@ -26,8 +33,9 @@
             <div class="col-12 col-lg-6 pb-3">
                 <div class="row">
                     <div class="col-12 pb-5">
+                        <p>
                         Pour rejoindre la force, remplir le formulaire tu devras!<br>
-                        Le maitre jedi te recontacteras rapidement pour vérifier avec toi que tout est ok et convenir
+                        Le maitre jedi te recontactera rapidement pour vérifier avec toi que tout est ok et convenir
                         d'un rendez-vous pour finaliser ton inscription.<br>
                         Nous t'invitons dans cette perspective à préparer les documents suivants, que tu devras fournir
                         pour valider ton inscription.
@@ -41,6 +49,7 @@
                         </ul>
 
                         Nous t'attendons avec impatience!
+                        </p>
                     </div>
                 </div>
 
@@ -116,11 +125,14 @@
                         </div>
                     </div>
                     <div class="col-12 d-flex justify-content-center">
-                        <button type="submit" class="btn btn-primary">Envoyer</button>
+                        <button type="submit" class="btn-member btn-primary">Envoyer</button>
                     </div>
 
                 </form>
             </div>
         </div>
     </div>
+    </div>
+    </div>
+
 {% endblock %}

@@ -17,7 +17,6 @@
     background: linear-gradient(60deg, #01fa2b, #008cff, #cc00ff);
 }
 
-
 .events {
     padding-top: 0px;
     padding-left: 0;
@@ -33,14 +32,12 @@
 }
 
 .events .card-body {
-    border: 1px solid rgba(255,255,255,0.5);
-    border-radius: 5px;
+    border-radius: 3px;
     box-shadow: 0 0 4px 4px rgba(0,0,0,0.4);
 }
 
 .events .card .card-body  {
-    background-image: url(/assets/images/even.png);
-    background-color: rgba(0,0,0,0.9);
+    background-color: rgba(255,255,255,0.2); 
     color: white;
 }
 
@@ -60,7 +57,6 @@
 .events .card img {
     padding: 0;
     margin: 0;
-    border: 0;
     max-height: 280px;
     width: 100%;
 }
@@ -80,16 +76,20 @@ h1 {
 .listEvents {
     padding-top: 40px;
     padding-bottom: 40px;
+    color:white;
 }
 
 .listEvents h4 {
     padding-left: 20px;
+    text-transform: lowercase;
+    font-family: Starjedi;
 }
 
 .listEvents .card {
     margin-top : 20px;
     margin-bottom: 20px;
     border: 1px solid rgba(0,0,0,0.2);
+    background-color: rgba(255,255,255,0.2); 
     box-shadow: 0 0 2px 2px rgba(0,0,0,0.15);
 }
 
@@ -99,6 +99,11 @@ h1 {
 
 .listEvents .card-body hr {
     margin-bottom: 5px;
+}
+
+.listEvents .card-text {
+    font-size: 20px;
+    padding: 10px;
 }
 
 .listEvents .card-text i {
