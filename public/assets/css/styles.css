@@ -466,10 +466,10 @@ body {
     }
 
 }
-.modal-form {
+.modal {
     background-color: rgba(10, 10, 10, 0.6);
 }
-.modal-content-form {
+.modal-content {
     background-color: rgba(10, 10, 10, 0);
     color:white;
 }
