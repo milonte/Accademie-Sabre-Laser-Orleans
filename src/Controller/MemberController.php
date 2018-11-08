@@ -8,47 +8,18 @@
 
 namespace Controller;
 
+use Form\Form;
 use Model\AbstractManager;
 use Model\Member;
 use Model\MemberManager;
 use Filter\Text;
+use Validator\Date;
+use Validator\Email;
+use Validator\NotEmpty;
 
 class MemberController extends AbstractController
 {
     const MAX_SIZE_MEMBER_FIELD = 255;
-    
-    /**
-     * @param $userData
-     * @return array
-     */
-    private function memberFormDataValidation($userData): array
-    {
-        $errorsForm = [];
-        $emptyField=false;
-        $labels = array('firstname' => 'Prénom', 'lastname' => 'Nom', 'email' => 'Email', 'address' => 'Adresse',
-        'postalcode' => 'Code Postal', 'city' => 'Ville', 'tel' => 'Téléphone', 'birthDate' => 'Date de naissance',
-        'EmergencyContact' => 'Contact d\'urgence', 'EmergencyContactTel' => 'Tel d\'urgence',
-        'paiement' => 'Modalité de paiement');
-
-        foreach ($userData as $key => $value) {
-            if (empty($value)) {
-                $errorsForm[] = "le champ " . $labels[$key] . " doit être renseigné";
-                $emptyField=true;
-            }
-        }
-    
-        if ($emptyField == false) {
-            if (!filter_var($userData['email'], FILTER_VALIDATE_EMAIL)) {
-                $errorsForm['invalid email'] = "Le format de l'email n'est pas correct";
-            }
-
-            $checkDate=explode("-", $userData["birthDate"]);
-            if (!checkdate($checkDate[1], $checkDate[2], $checkDate[0])) {
-                $errorsForm['invalid date'] = "le format de la date est incorrect";
-            }
-        }
-        return $errorsForm;
-    }
     
     /**
      * @return string
@@ -60,15 +31,31 @@ class MemberController extends AbstractController
     {
         $errors=[];
         $success = false;
-        
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+        if ('POST' === $_SERVER['REQUEST_METHOD']) {
             $userData = $_POST;
             $textFilter = new Text();
             $textFilter->setTexts($userData);
             $userData = $textFilter->filter();
-            $errors=$this->memberFormDataValidation($userData);
-            
-            if (!empty($userData) and empty($errors)) {
+
+//            $notEmptyValidator = new NotEmpty();
+//            foreach ($userData as $key => $data) {
+//                $notEmptyValidator->setValue($data);
+//                if (false === $notEmptyValidator->validate()) {
+//                    $errors[] = array($key => $notEmptyValidator->getError());
+//                }
+//            }
+
+            $validators = [
+                'email' => (new Email())->setValue($userData['email']),
+                'birthDate' => (new Date())->setValue($userData['birthDate'])
+            ];
+
+            $form =  new Form();
+            $form->setValidators($validators);
+            $valid = $form->validate();
+
+            if ($valid) {
                 $memberAdd = new MemberManager($this->getPdo());
                 $member = new Member();
                 $member->setFirstName($userData['firstname']);
@@ -89,6 +76,9 @@ class MemberController extends AbstractController
                 }
             }
         }
-        return $this->twig->render('Member/memberForm.html.twig', ['errors' => $errors, 'success' => $success]);
+        return $this->twig->render(
+            'Member/memberForm.html.twig',
+            ['errors' => $errors, 'success' => $success, 'validators' => $validators]
+        );
     }
 }

@@ -68,8 +68,10 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-lg-4"><label for="email">Email</label></div>
-                        <div class="col-lg-8"><input type="email" class="form-control" id="email" name="email"
-                                                     placeholder="john.doe@gmail.com"></div>
+                        <div class="col-lg-8">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="john.doe@gmail.com">
+                            {% if validators.email.error is not empty %}<div class="text-danger">{{ validators.email.error }}</div>{% endif %}
+                        </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-lg-4"><label for="address">Adresse</label></div>
@@ -93,8 +95,10 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-lg-4"><label for="birthDate">Date de naissance</label></div>
-                        <div class="col-lg-8"><input type="date" class="form-control" id="birthDate" name="birthDate"
-                                                     placeholder="01/01/2000"></div>
+                        <div class="col-lg-8">
+                            <input type="date" class="form-control" id="birthDate" name="birthDate" placeholder="01/01/2000">
+                            {% if validators.birthDate.error is not empty %}<div class="text-danger">{{ validators.birthDate.error }}</div>{% endif %}
+                        </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-lg-4"><label for="EmergencyContact">Contact d'urgence</label></div>
